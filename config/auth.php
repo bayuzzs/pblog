@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+    'defaults'         => [
+        'guard'     => 'web',
+        'passwords' => 'pengimpor',
     ],
 
     /*
@@ -35,10 +35,14 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
+    'guards'           => [
+        'web'     => [
+            'driver'   => 'session',
+            'provider' => 'pengimpor',
+        ],
+        'petugas' => [
+            'driver'   => 'session',
+            'provider' => 'petugas',
         ],
     ],
 
@@ -59,16 +63,16 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
+    'providers'        => [
+        'pengimpor' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model'  => App\Models\Pengimpor::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'petugas'   => [
+            'driver' => 'eloquent',
+            'model'  => App\Models\Petugas::class,
+        ],
     ],
 
     /*
@@ -90,11 +94,11 @@ return [
     |
     */
 
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_reset_tokens',
-            'expire' => 60,
+    'passwords'        => [
+        'pengimpor' => [
+            'provider' => 'pengimpor',
+            'table'    => 'password_reset_tokens',
+            'expire'   => 60,
             'throttle' => 60,
         ],
     ],
