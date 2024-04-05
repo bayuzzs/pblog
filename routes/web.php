@@ -20,44 +20,6 @@ Route::get('/login', function () {
     return 'test';
     })->name('login');
 
-Route::get('login-pengimpor', function (Request $request) {
-    $credentials = [
-        'username' => 'pengimpor',
-        'password' => 'pengimpor',
-    ];
-
-    if ( Auth::attempt($credentials) ) {
-        $request->session()->regenerate();
-
-        return 'berhasil login';
-        }
-    return 'gagal login';
-    })->name('register');
-
-Route::get('login-petugas', function (Request $request) {
-    $credentials = [
-        'username' => 'petugas',
-        'password' => 'petugas',
-    ];
-
-    if ( Auth::guard('petugas')->attempt($credentials) ) {
-        $request->session()->regenerate();
-
-        return 'berhasil login';
-        }
-    return 'gagal login';
-    })->name('register');
-
-Route::get('/pengimpor', function () {
-    if ( auth()->check() && ! auth('petugas')->check() ) {
-        return 'pengimpor';
-        }
-    return 'belum login';
-    })->name('register');
-
-Route::get('/petugas', function () {
-    if ( auth('petugas')->check() ) {
-        return 'sudah login petugas';
-        }
-    return 'bukan petugas';
-    })->name('register');
+Route::get('/test', function () {
+    return view('welcome');
+    });
