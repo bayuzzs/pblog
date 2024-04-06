@@ -12,31 +12,54 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('hs', function (Blueprint $table) {
-            $table->integer('kodeHS', 10)->primary();
+            $table->integer('kodeHS')->length(10)->primary(); // Hapus definisi primary key yang kedua
             $table->string('uraianBarangBahasa');
             $table->string('uraianBarangEnglish');
             $table->boolean('isLartas');
+            $table->timestamps();
         });
 
         Schema::create('valuta', function (Blueprint $table) {
-            $table->string('kodeValuta', 3)->primary();
+            $table->char('kodeValuta', 3)->primary();
             $table->string('namaValuta');
             $table->integer('kurs');
+            $table->timestamps();
         });
 
-        Schema::create('jeniskemasan', function (Blueprint $table) {
-            $table->string('kodeKemasan', 2)->primary();
+        Schema::create('jenis_kemasan', function (Blueprint $table) {
+            $table->char('kodeKemasan', 2)->primary();
             $table->string('namaKemasan');
+            $table->timestamps();
         });
 
-        Schema::create('jenisdokumen', function (Blueprint $table) {
-            $table->string('kodeJenisDokumen', 5)->primary();
+        Schema::create('jenis_dokumen', function (Blueprint $table) {
+            $table->char('kodeJenisDokumen', 5)->primary();
             $table->string('namaDokumen');
+            $table->timestamps();
+        });
+
+        Schema::create('kantor', function (Blueprint $table) {
+            $table->char('kodeKantor', 6)->primary();
+            $table->string('namaKantor');
+            $table->timestamps();
+        });
+
+        Schema::create('negara', function (Blueprint $table) {
+            $table->char('kodeNegara', 2)->primary();
+            $table->string('namaNegara');
+            $table->timestamps();
         });
 
         Schema::create('pelabuhan', function (Blueprint $table) {
-            $table->string('kodeKantor', 6)->primary();
-            $table->string('namaKantor');
+            $table->char('kodePelabuhan', 4)->primary();
+            $table->string('namaPelabuhan');
+            $table->timestamps();
+        });
+
+        Schema::create('satuan_barang', function (Blueprint $table) {
+            $table->char('kodeSatuanBarang', 3)->primary();
+            $table->string('namaSatuanBarang');
+            $table->timestamps();
         });
     }
 
@@ -49,6 +72,9 @@ return new class extends Migration
         Schema::dropIfExists('valuta');
         Schema::dropIfExists('jeniskemasan');
         Schema::dropIfExists('jenisdokumen');
+        Schema::dropIfExists('kantor');
+        Schema::dropIfExists('negara');
         Schema::dropIfExists('pelabuhan');
+        Schema::dropIfExists('satuanbarang');
     }
 };
