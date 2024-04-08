@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/login');
-
-Route::get('/login', function () {
-    return 'test';
-    })->name('login');
+Route::redirect('/', 'login');
 
 Route::get('/test', function () {
     return view('welcome');
     });
+
+require __DIR__ . '/auth.php';
