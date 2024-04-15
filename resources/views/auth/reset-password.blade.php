@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>{{ config('app.name') }}</title>
+		<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 		@vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -37,7 +38,7 @@
 										</div>
 										<div>
 												<label for="password" class="mb-2 block text-sm font-medium text-gray-900">Kata sandi</label>
-												<input type="password" name="password" id="password" placeholder="••••••••"
+												<input type="password" name="password" id="password" placeholder="••••••••" required
 														class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm"
 														required>
 										</div>
@@ -45,6 +46,7 @@
 												<label for="password_confirmation" class="mb-2 block text-sm font-medium text-gray-900">Konfimasi kata
 														sandi</label>
 												<input type="password" name="password_confirmation" id="password_confirmation" placeholder="••••••••"
+														required
 														class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm"
 														required>
 										</div>

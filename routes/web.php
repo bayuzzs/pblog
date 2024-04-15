@@ -15,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', 'login');
+Route::redirect('/', 'auth')->name('home');
 
-Route::get('/test', function () {
+Route::get('/dashboard', function () {
     return view('welcome');
+    })->middleware('auth')->name('dashboard');
+
+
+Route::fallback(function () {
+    return view('404');
     });
 
 require __DIR__ . '/auth.php';

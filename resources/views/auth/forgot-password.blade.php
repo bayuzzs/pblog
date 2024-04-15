@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>{{ config('app.name') }}</title>
+		<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 		@vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -18,7 +19,7 @@
 						</a>
 						<div class="w-full rounded-lg bg-white p-6 shadow sm:max-w-md sm:p-8 md:mt-0">
 								<h1 class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-										Lupa Kata Sandi?
+										Lupa Password?
 								</h1>
 								<p class="font-light text-gray-500">Ketikkan email akun anda di bawah ini dan kami akan mengirim tautan untuk
 										mengatur ulang kata sandi anda!</p>
@@ -40,8 +41,9 @@
 										</div>
 										<button type="submit"
 												class="w-full rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Reset
-												Kata Sandi</button>
+												Password</button>
 								</form>
+								<a href="{{ route('auth') }}" class="text-sm font-light text-gray-500 underline">Kembali</a>
 						</div>
 				</div>
 		</section>

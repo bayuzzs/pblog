@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('guest')->group(function () {
-	Route::get('/login', [PengimporAuthController::class, 'indexLogin'])->name('login');
+	Route::get('/auth', [PengimporAuthController::class, 'indexAuth'])->name('auth');
 
 	Route::post('/login', [PengimporAuthController::class, 'storeLogin'])->name('login.store');
 

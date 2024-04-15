@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PengimporAuthController extends Controller
     {
     /**
      * Display a listing of the resource.
      */
-    public function indexLogin()
+    public function indexAuth()
         {
-        return view('auth.login-pengimpor');
+        return view('auth.auth-pengimpor');
         }
 
     /**
@@ -28,7 +29,15 @@ class PengimporAuthController extends Controller
      */
     public function storeLogin( Request $request )
         {
-        //
+        $credentials = $request->validate(['username' => 'required|exists:pengimpor', 'password' => 'required']);
+
+        if ( ! Auth::guard('pengimpor')->attempt($credentials) ) {
+            return back()->withErrors([
+                'username' => 'Kredensial yang diberikan tidak cocok.',
+            ])->onlyInput('email');
+            }
+        $request->session()->regenerate();
+        return redirect()->intended('dashboard');
         }
 
     /**
