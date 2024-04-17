@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/login');
+Route::redirect('/', 'auth')->name('home');
 
-Route::get('/login', function () {
-    return 'test';
-    })->name('login');
-
-Route::get('/test', function () {
+Route::get('/dashboard', function () {
     return view('welcome');
+    })->middleware('auth')->name('dashboard');
+
+
+Route::fallback(function () {
+    return view('404');
     });
+
+require __DIR__ . '/auth.php';

@@ -14,7 +14,7 @@ return [
     */
 
     'defaults'         => [
-        'guard'     => 'web',
+        'guard'     => 'pengimpor',
         'passwords' => 'pengimpor',
     ],
 
@@ -36,11 +36,11 @@ return [
     */
 
     'guards'           => [
-        'web'     => [
+        'pengimpor' => [
             'driver'   => 'session',
             'provider' => 'pengimpor',
         ],
-        'petugas' => [
+        'petugas'   => [
             'driver'   => 'session',
             'provider' => 'petugas',
         ],
