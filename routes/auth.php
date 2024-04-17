@@ -9,6 +9,8 @@ Route::middleware('guest')->group(function () {
 
 	Route::post('/login', [PengimporAuthController::class, 'storeLogin'])->name('login.store');
 
+	Route::post('/register', [PengimporAuthController::class, 'storeRegister'])->name('register.store');
+
 	Route::get('/forgot-password', [PasswordResetController::class, 'indexForgot'])->name('password.request');
 
 	Route::post('/forgot-password', [PasswordResetController::class, 'storeForgot'])->name('password.email');
@@ -16,4 +18,8 @@ Route::middleware('guest')->group(function () {
 	Route::get('/reset-password/{token}', [PasswordResetController::class, 'indexReset'])->name('password.reset');
 
 	Route::post('/reset-password', [PasswordResetController::class, 'storeReset'])->name('password.update');
+	});
+
+Route::middleware('auth')->group(function () {
+	Route::post('/logout', [PengimporAuthController::class, 'logout'])->name('logout');
 	});
