@@ -15,10 +15,10 @@ return new class extends Migration {
             $table->string('namaPerusahaan');
             $table->text('alamatPerusahaan');
             $table->char('teleponPerusahaan', 12);
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('password');
             $table->string('nama');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->char('telepon', 12);
             $table->rememberToken();
             $table->timestamps();

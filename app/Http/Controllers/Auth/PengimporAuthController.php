@@ -3,63 +3,50 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterValidationRequest;
+use App\Models\Pengimpor;
+use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PengimporAuthController extends Controller
     {
-    /**
-     * Display a listing of the resource.
-     */
-    public function indexLogin()
+    public function indexAuth()
         {
-        return view('auth.login-pengimpor');
+        return view('auth.auth-pengimpor');
         }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function storeRegister( RegisterValidationRequest $request )
         {
-        //
+        $validatedRequest = $request->validated();
+
+        Pengimpor::create([
+            'password' => Hash::make($request->password),
+            ...$validatedRequest
+        ]);
+
+        return redirect('auth')->with('status', 'Berhasil Daftar! silahkan login.');
         }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function storeLogin( Request $request )
         {
-        //
+        $credentials = $request->validate(['username' => 'required|exists:pengimpor', 'password' => 'required']);
+
+        if ( ! Auth::guard('pengimpor')->attempt($credentials) ) {
+            return back()->withErrors([
+                'username' => 'Kredensial yang diberikan tidak cocok.',
+            ])->onlyInput('username');
+            }
+
+        $request->session()->regenerate();
+        return redirect()->intended('dashboard');
         }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show( string $id )
+    public function logout( Request $request )
         {
-        //
-        }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit( string $id )
-        {
-        //
-        }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update( Request $request, string $id )
-        {
-        //
-        }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy( string $id )
-        {
-        //
+        Auth::guard('pengimpor')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('auth');
         }
     }
