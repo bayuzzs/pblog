@@ -29,7 +29,7 @@ class RegisterValidationRequest extends FormRequest
             'alamatPerusahaan'  => 'required|',
             'teleponPerusahaan' => 'required|numeric|digits:12',
             'username'          => 'required|unique:pengimpor',
-            'password'          => 'required|confirmed',
+            'password'          => 'required|confirmed|min:8',
             'nama'              => 'required|',
             'email'             => 'required|unique:pengimpor|email:dns',
             'telepon'           => 'required|digits:12',
