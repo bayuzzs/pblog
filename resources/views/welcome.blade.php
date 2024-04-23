@@ -74,9 +74,12 @@
 																				role="menuitem">Earnings</a>
 																</li>
 																<li>
-																		<a href="#"
-																				class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-																				role="menuitem">Sign out</a>
+																		<form action="{{ route('logout') }}" method="post">
+																				@csrf
+																				<button
+																						class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+																						role="menuitem">Sign out</button>
+																		</form>
 																</li>
 														</ul>
 												</div>
@@ -191,9 +194,13 @@
 		{{-- Sidebar Section End --}}
 		{{-- Main content here --}}
 		<div class="p-4 sm:ml-64">
-
 				<div class="mt-14 rounded-lg p-4">
-						hello world
+						@auth('pengimpor')
+								{{ var_dump(auth('pengimpor')->user()) }}
+						@endauth
+						@auth('petugas')
+								{{ var_dump(auth('petugas')->user()) }}
+						@endauth
 				</div>
 		</div>
 		{{-- Main content --}}

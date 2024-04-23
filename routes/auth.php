@@ -1,11 +1,16 @@
 <?php
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\PengimporAuthController;
+use App\Http\Controllers\Auth\PetugasAuthController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('guest')->group(function () {
 	Route::get('/auth', [PengimporAuthController::class, 'indexAuth'])->name('auth');
+
+	Route::get('/auth-petugas', [PetugasAuthController::class, 'indexAuth'])->name('auth-pengimpor');
+
+	Route::post('/login-petugas', [PetugasAuthController::class, 'storeLogin'])->name('login-petugas.store');
 
 	Route::post('/login', [PengimporAuthController::class, 'storeLogin'])->name('login.store');
 
@@ -20,6 +25,6 @@ Route::middleware('guest')->group(function () {
 	Route::post('/reset-password', [PasswordResetController::class, 'storeReset'])->name('password.update');
 	});
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:pengimpor,petugas')->group(function () {
 	Route::post('/logout', [PengimporAuthController::class, 'logout'])->name('logout');
 	});

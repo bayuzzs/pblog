@@ -19,7 +19,7 @@ Route::redirect('/', 'auth')->name('home');
 
 Route::get('/dashboard', function () {
     return view('welcome');
-    })->middleware('auth')->name('dashboard');
+    })->middleware('auth:pengimpor,petugas')->name('dashboard');
 
 
 Route::fallback(function () {
