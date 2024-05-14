@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Auth;
 use Illuminate\Http\Request;
 
 class PetugasAuthController extends Controller
@@ -10,9 +11,9 @@ class PetugasAuthController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function indexAuth()
         {
-        //
+        return view('auth.auth-petugas');
         }
 
     /**
@@ -26,9 +27,18 @@ class PetugasAuthController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store( Request $request )
+    public function storeLogin( Request $request )
         {
-        //
+        $credentials = $request->validate(['username' => 'required|exists:petugas', 'password' => 'required']);
+
+        if ( ! Auth::guard('petugas')->attempt($credentials) ) {
+            return back()->withErrors([
+                'username' => 'Kredensial yang diberikan tidak cocok.',
+            ])->onlyInput('username');
+            }
+
+        $request->session()->regenerate();
+        return redirect()->intended('dashboard');
         }
 
     /**
