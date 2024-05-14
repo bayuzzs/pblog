@@ -20,7 +20,7 @@ class ValutaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'kodeValuta' => 'required|unique:valuta',
             'namaValuta' => 'required',
             'kurs' => 'required|integer',
@@ -41,7 +41,8 @@ class ValutaController extends Controller
 
     public function update(Request $request, $kodeValuta)
     {
-        $request->validate([
+        $validateData = $request->validate([
+            'KodeValuta' => 'required',
             'namaValuta' => 'required',
             'kurs' => 'required|integer',
         ]);

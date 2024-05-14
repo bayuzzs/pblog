@@ -12,15 +12,13 @@ class NegaraController extends Controller
      */
     public function index()
     {
-        $negaras = Negara::all();
-        return view('negara.index', compact('negaras'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
         return view('negara.create');
     }
 
@@ -29,7 +27,7 @@ class NegaraController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $ValidateData = $request->validate([
             'kodeNegara' => 'required|unique:negara',
             'namaNegara' => 'required',
         ]);
@@ -62,12 +60,13 @@ class NegaraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validatedRequest = $request->validate([
+            'kodeNegara' => 'required',
             'namaNegara' => 'required',
         ]);
-
-        $negara = Negara::findOrFail($id);
-        $negara->update($request->all());
+        $kodeNegara = $request->kodeNegara;
+        $negara = Negara::findOrFail($kodeNegara);
+        $negara->update($validatedRequest);
 
         return redirect()->route('negara.index')->with('success', 'Negara berhasil diperbarui');
     }
@@ -76,10 +75,20 @@ class NegaraController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-    {
-        $negara = Negara::findOrFail($id);
-        $negara->delete();
+{
+    $negara = Negara::where('kodenegara', $id)->get();
 
-        return redirect()->route('negara.index')->with('success', 'Negara berhasil dihapus');
+    if($negara->count() != 1){
+        return redirect('/Negara')->with([
+            'notifikasi' => 'Data Negara tidak berhasil ditemukan!',
+            'type'  => 'error'
+        ]);
     }
+
+    $negara = Negara::findOrFail($id);
+    $negara->delete();
+
+    return redirect()->route('negara.index')->with('success', 'Negara berhasil dihapus');
+}
+
 }

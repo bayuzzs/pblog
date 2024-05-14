@@ -29,7 +29,7 @@ class JenisDokumenController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'kodeJenisDokumen' => 'required|unique:jenis_dokumen',
             'namaDokumen' => 'required',
         ]);
@@ -61,25 +61,34 @@ class JenisDokumenController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'namaDokumen' => 'required',
-        ]);
+{
+    $validateData = $request->validate([
+        'kodeJenisDokumen' => 'required',
+        'namaDokumen' => 'required',
+    ]);
 
-        $jenisDokumen = JenisDokumen::findOrFail($id);
-        $jenisDokumen->update($request->all());
+    $jenisDokumen = JenisDokumen::findOrFail($id);
+    $jenisDokumen->update($request->all());
 
-        return redirect()->route('jenis-dokumen.index')->with('success', 'Jenis Dokumen berhasil diperbarui');
-    }
+    return redirect()->route('jenis-dokumen.index')->with('success', 'Jenis Dokumen berhasil diperbarui');
+}
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-    {
+    {$jenisDokumen = JenisDokumen::where('KodeJenisDokumen', $id)->get();
+
+        if($jenisDokumen->count() != 1){
+            return redirect('/JenisDokumen')->with([
+                'notifikasi' => 'Data Jenis Dokumen tidak berhasil ditemukan!',
+                'type'  => 'error'
+            ]);
+        }
+    
         $jenisDokumen = JenisDokumen::findOrFail($id);
         $jenisDokumen->delete();
-
+    
         return redirect()->route('jenis-dokumen.index')->with('success', 'Jenis Dokumen berhasil dihapus');
     }
 }

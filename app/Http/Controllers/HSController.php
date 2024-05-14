@@ -31,7 +31,7 @@ class HSController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'kodeHS' => 'required|unique:hs',
             'uraianBarangBahasa' => 'required',
             'uraianBarangEnglish' => 'required',
@@ -39,6 +39,7 @@ class HSController extends Controller
         ]);
 
         HS::create($request->all());
+
         return redirect()->route('hs.index')->with('success', 'Data HS berhasil ditambahkan');
     }
 
@@ -65,23 +66,35 @@ class HSController extends Controller
      */
     public function update(Request $request, string $kodeHS)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'uraianBarangBahasa' => 'required',
             'uraianBarangEnglish' => 'required',
             'isLartas' => 'required|boolean',
         ]);
+        $kodeHs = $request->kodeHs;
         $hs = HS::findOrFail($kodeHS);
         $hs->update($request->all());
+
         return redirect()->route('hs.index')->with('success', 'Data HS berhasil diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $kodeHS)
-    {
-        $hs = HS::findOrFail($kodeHS);
-        $hs->delete();
-        return redirect()->route('hs.index')->with('success', 'Data HS berhasil dihapus');
+    public function destroy($kodeHs)
+{
+    $hs = Hs::where('kodeHs', $kodeHs)->get();
+
+    if ($hs->count() != 1) {
+        return redirect('/Hs')->with([
+            'notifikasi' => 'Data Hs tidak berhasil ditemukan!',
+            'type'  => 'error'
+        ]);
     }
+    $hs = Hs::findOrFail($kodeHs);
+    $hs->delete();
+
+    return redirect()->route('Hs.index')->with('success', 'Kode Hs berhasil dihapus');
+}
+
 }

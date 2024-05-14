@@ -29,7 +29,7 @@ class JenisKemasanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'kodeKemasan' => 'required|unique:jenis_kemasan',
             'namaKemasan' => 'required',
         ]);
@@ -62,9 +62,11 @@ class JenisKemasanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validateData = $request->validate([
+            'KodeKemasan' => 'required',
             'namaKemasan' => 'required',
         ]);
+
 
         $jenisKemasan = JenisKemasan::findOrFail($id);
         $jenisKemasan->update($request->all());
@@ -77,6 +79,15 @@ class JenisKemasanController extends Controller
      */
     public function destroy($id)
     {
+       $jenisKemasan = JenisKemasan::where('KodeKemasan', $id)->get();
+
+        if($jenisKemasan->count() != 1){
+            return redirect('/JenisKemasan')->with([
+                'notifikasi' => 'Data Jenis Kemasan tidak berhasil ditemukan!',
+                'type'  => 'error'
+            ]);
+        }
+    
         $jenisKemasan = JenisKemasan::findOrFail($id);
         $jenisKemasan->delete();
         return redirect()->route('jenis-kemasan.index')->with('success', 'Jenis Kemasan berhasil dihapus');

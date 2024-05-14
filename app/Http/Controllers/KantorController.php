@@ -29,7 +29,7 @@ class KantorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'kodeKantor' => 'required|unique:kantor',
             'namaKantor' => 'required',
         ]);
@@ -62,7 +62,8 @@ class KantorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validateData = $request->validate([
+            'kodeKantor' => 'required',
             'namaKantor' => 'required',
         ]);
 
@@ -76,7 +77,14 @@ class KantorController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-    {
+    {   $kantor = Kantor::where('KodeKantor', $id)->get();
+
+        if($kantor->count() != 1){
+            return redirect('/Kantor')->with([
+                'notifikasi' => 'Data kantor tidak berhasil ditemukan!',
+                'type'  => 'error'
+            ]);
+        }
         $kantor = Kantor::findOrFail($id);
         $kantor->delete();
         return redirect()->route('kantor.index')->with('success', 'Kantor berhasil dihapus');

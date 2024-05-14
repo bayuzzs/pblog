@@ -20,7 +20,7 @@ class SatuanBarangController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'kodeSatuanBarang' => 'required|unique:satuan_barang',
             'namaSatuanBarang' => 'required',
         ]);
@@ -40,7 +40,7 @@ class SatuanBarangController extends Controller
 
     public function update(Request $request, $kodeSatuanBarang)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'namaSatuanBarang' => 'required',
         ]);
         $satuanBarang = SatuanBarang::find($kodeSatuanBarang);
@@ -54,8 +54,11 @@ class SatuanBarangController extends Controller
     public function destroy($kodeSatuanBarang)
     {
         $satuanBarang = SatuanBarang::find($kodeSatuanBarang);
-        if (!$satuanBarang) {
-            return redirect()->route('satuan-barang.index')->with('error', 'Satuan Barang tidak ditemukan');
+        if($satuanBarang->count() != 1){
+            return redirect('/SatuanBarang')->with([
+                'notifikasi' => 'Data Satuan Barang tidak berhasil ditemukan!',
+                'type'  => 'error'
+            ]);
         }
         $satuanBarang->delete();
         return redirect()->route('satuan-barang.index')->with('success', 'Satuan Barang berhasil dihapus');

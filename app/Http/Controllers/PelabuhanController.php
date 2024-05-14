@@ -20,10 +20,9 @@ class PelabuhanController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'kodePelabuhan' => 'required|unique:pelabuhan',
             'namaPelabuhan' => 'required',
-            'kodeKantor' => 'required',
         ]);
 
         Pelabuhan::create($request->all());
@@ -41,9 +40,10 @@ class PelabuhanController extends Controller
 
     public function update(Request $request, $kodePelabuhan)
     {
-        $request->validate([
+        $validateData = $request->validate([
+            'kodePelabuhan' => 'required',
             'namaPelabuhan' => 'required',
-            'kodeKantor' => 'required',
+            
         ]);
 
         $pelabuhan = Pelabuhan::find($kodePelabuhan);
@@ -54,13 +54,15 @@ class PelabuhanController extends Controller
         return redirect()->route('pelabuhan.index')->with('success', 'Pelabuhan berhasil diubah');
     }
 
-    public function destroy($kodePelabuhan)
-    {
-        $pelabuhan = Pelabuhan::find($kodePelabuhan);
-        if (!$pelabuhan) {
-            return redirect()->route('pelabuhan.index')->with('error', 'Pelabuhan tidak ditemukan');
+    public function destroy($KodePelabuhan)
+    {   $pelabuhan = Pelabuhan::find('kodePelabuhan');
+        if($pelabuhan->count() != 1){
+            return redirect('/Pelabuhan')->with([
+                'notifikasi' => 'Data Pelabuhan tidak berhasil ditemukan!',
+                'type'  => 'error'
+            ]);
         }
-
+        $KodePelabuhan = Pelabuhan::findOrFail($KodePelabuhan);
         $pelabuhan->delete();
         return redirect()->route('pelabuhan.index')->with('success', 'Pelabuhan berhasil dihapus');
     }
