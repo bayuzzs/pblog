@@ -20,6 +20,11 @@ class Pengimpor extends Authenticatable implements CanResetPasswordContract
     protected $guard = 'pengimpor';
     protected $primaryKey = 'npwp';
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     protected $fillable = [
         'npwp',
         'namaPerusahaan',
