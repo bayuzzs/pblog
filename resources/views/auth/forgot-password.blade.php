@@ -23,21 +23,21 @@
 								<img class="max-w-72 mr-2" src="{{ asset('images/logo/polibatam-logistik-caption.png') }}" alt="logo">
 						</a>
 						<div class="w-full rounded-lg bg-white p-6 shadow sm:max-w-md sm:p-8 md:mt-0">
-								<h1 class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+								<h1 class="mb-1 text-xl font-bold font-['Poppins'] leading-tight tracking-tight text-gray-900 md:text-2xl">
 										Lupa Password?
 								</h1>
-								<p class="font-light text-gray-500">Ketikkan email akun anda di bawah ini dan kami akan mengirim tautan untuk
+								<p class="font-light text-gray-600">Ketikkan email akun anda di bawah ini dan kami akan mengirim tautan untuk
 										mengatur ulang kata sandi anda!</p>
 								<form class="mt-4 space-y-4 md:space-y-5 lg:mt-5" action="{{ route('password.email') }}" method="POST">
 										@csrf
 										<div>
-												<label for="email" class="mb-2 block text-sm font-medium text-gray-900">Email
+												<label for="email" class="mb-2 block text-sm font-medium font-['Poppins'] text-gray-900">Email
 														anda</label>
 												@session('status')
 														<p class="mb-2 block text-sm text-green-600">{{ $value }}</p>
 												@endsession
 												<input type="email" name="email" id="email"
-														class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm"
+														class="block w-full rounded-lg font-light font-['Poppins'] border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm"
 														placeholder="contoh@example.com" required>
 
 												@error('email')
@@ -45,10 +45,14 @@
 												@enderror
 										</div>
 										<button type="submit"
-												class="w-full rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Reset
+												class="w-full rounded-lg bg-blue-600 px-5 py-2.5 text-center text-md font-['Poppins'] text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Reset
 												Password</button>
+												&nbsp
 								</form>
-								<a href="{{ route('auth') }}" class="text-sm font-light text-gray-500 underline">Kembali</a>
+								
+								<div class="text-md font-medium text-gray-500 dark:text-gray-300">
+								<a href="{{ route('auth') }}" class="text-blue-700 hover:underline dark:text-blue-500">Kembali ke menu awal</a>
+								</div>
 						</div>
 				</div>
 		</section>

@@ -41,7 +41,7 @@
 												id="default-tab" data-tabs-toggle="#auth-tab-content" role="tablist">
 												{{-- Login Tab --}}
 												<li class="-mb-[2px] me-2" role="presentation">
-														<button class="inline-block rounded-t-lg border-b-2 p-4" id="profile-tab" data-tabs-target="#login"
+														<button class="inline-block font-['Poppins'] rounded-t-lg border-b-2 p-4" id="profile-tab" data-tabs-target="#login"
 																type="button" role="tab" aria-controls="profile"
 																aria-selected="{{ session('activeTab') == 'login' ? 'true' : 'false' }}">Masuk</button>
 												</li>
@@ -68,7 +68,7 @@
 																		</span>
 																		<input type="text" id="username" name="username" placeholder="Username"
 																				value="{{ old('username') }}" required
-																				class="block w-full min-w-0 flex-1 rounded-none rounded-e-lg border border-gray-300 p-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500">
+																				class="block w-full min-w-0 flex-1 font-light font-['Poppins'] rounded-none rounded-e-lg border border-gray-300 p-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500">
 																</div>
 																@error('username')
 																		<p class="text-sm text-red-600">{{ $message }}</p>
@@ -86,14 +86,14 @@
 																				</svg>
 																		</span>
 																		<input type="password" id="password" name="password" placeholder="Password" required
-																				class="block w-full min-w-0 flex-1 rounded-none rounded-e-lg border border-gray-300 p-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500">
+																				class="block w-full min-w-0 flex-1 font-light font-['Poppins'] rounded-none rounded-e-lg border border-gray-300 p-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500">
 																</div>
 																@error('password')
 																		<p class="mb-2 text-sm text-red-600">{{ $message }}</p>
 																@enderror
 														</div>
 														<button type="submit"
-																class="me-2 w-full rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Masuk</button>
+																class="me-2 w-full rounded-lg bg-blue-700 px-5 py-2.5 text-md font-['Poppins'] text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Masuk</button>
 												</form>
 										</div>
 										{{-- Login Tab Content End --}}
