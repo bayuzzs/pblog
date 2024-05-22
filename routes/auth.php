@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('guest')->group(function () {
-	Route::get('/auth', [PengimporAuthController::class, 'indexAuth'])->name('auth');
+	Route::get('/auth', [PengimporAuthController::class, 'indexAuth'])->middleware('bukan_petugas')->name('auth');
 
 	Route::get('/auth-petugas', [PetugasAuthController::class, 'indexAuth'])->name('auth-pengimpor');
 

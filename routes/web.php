@@ -18,9 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'auth')->name('home');
 
 Route::get('/dashboard', function () {
-    return view('welcome');
+    return view('dashboard');
     })->middleware('auth:pengimpor,petugas')->name('dashboard');
 
+Route::get('/data-master', function () {
+    return view('data-master');
+    });
 
 Route::fallback(function () {
     return view('404');
