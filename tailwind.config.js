@@ -3,10 +3,18 @@ module.exports = {
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
-        "./node_modules/flowbite/**/*.js",
+        "./node_modules/preline/dist/*.js",
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                poppins: ["Poppins", "sans-serif"],
+            },
+            colors: {
+                surface: "#f0f5f9",
+            },
+        },
     },
-    plugins: [require("flowbite/plugin")],
+    darkMode: "class",
+    plugins: [require("@tailwindcss/forms"), require("preline/plugin")],
 };

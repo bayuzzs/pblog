@@ -26,5 +26,9 @@ Route::middleware('guest')->group(function () {
 	});
 
 Route::middleware('auth:pengimpor,petugas')->group(function () {
-	Route::post('/logout', [PengimporAuthController::class, 'logout'])->name('logout');
+	Route::get('/logout', [PengimporAuthController::class, 'logout'])->name('auth.logout');
+
+	Route::post('/change-password', [PengimporAuthController::class, 'storeChangePassword'])->middleware('bukan_petugas')->name('change-password.store');
+
+	Route::post('/update-profile', [PengimporAuthController::class, 'updateProfile'])->middleware('bukan_petugas')->name('updateProfile.store');
 	});

@@ -21,14 +21,14 @@ class DatabaseSeeder extends Seeder
         // ]);
         \App\Models\Pengimpor::create([
             'npwp'              => '1234567890123456',
-            'namaPerusahaan'    => 'Pengimpor',
+            'namaPerusahaan'    => 'Akademi Crypto Tbk.',
             'alamatPerusahaan'  => 'Jl. Raya Cibodas No. 1',
-            'teleponPerusahaan' => '1234567890',
+            'teleponPerusahaan' => '081298567834',
             'username'          => 'pengimpor',
             'password'          => Hash::make('pengimpor'),
-            'nama'              => 'Pengimpor',
-            'email'             => 'qgN8I@example.com',
-            'telepon'           => '1234567890',
+            'nama'              => 'Pengimpor Ronald',
+            'email'             => 'pengimpor@example.com',
+            'telepon'           => '081298567834',
         ]);
 
         \App\Models\Petugas::create([

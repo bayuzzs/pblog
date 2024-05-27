@@ -2,7 +2,7 @@
 
 @section('main-content')
 		<div class="h-max w-screen rounded-md bg-white p-5 shadow-md">
-				<p class="mb-1 pb-4 font-['Poppins'] font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">
+				<p class="mb-1 pb-4 font-poppins font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">
 						Kelola Data Master
 				</p>
 				{{-- Alert info start --}}
@@ -26,13 +26,13 @@
 						<div class="relative flex overflow-x-auto sm:rounded-lg">
 								<div class="relative h-[300px] w-[500px] flex-1">
 										<div class="absolute left-[6px] top-0 h-[230px] w-[410px] rounded-lg border-2 border-blue-600 bg-white">
-												<span class="absolute pl-5 pt-12 text-center font-['Poppins'] text-[96px] font-bold text-blue-600"><span
+												<span class="absolute pl-5 pt-12 text-center font-poppins text-[96px] font-bold text-blue-600"><span
 																class="num" data-val="862">000</span></span>
-												<span class="absolute pl-6 pt-40 text-center font-['Poppins'] text-2xl font-normal text-blue-600">Satuan
+												<span class="absolute pl-6 pt-40 text-center font-poppins text-2xl font-normal text-blue-600">Satuan
 														Barang Terdata</span>
 										</div>
 										<div class="absolute left-[6px] top-0 h-[60px] w-[410px] rounded-t-lg bg-blue-600">
-												<p class="pt-3 text-center font-['Poppins'] text-2xl font-bold text-white">Satuan Barang</p>
+												<p class="pt-3 text-center font-poppins text-2xl font-bold text-white">Satuan Barang</p>
 										</div>
 										<button
 												class="absolute left-0 top-[215px] h-10 w-[428px] rounded-[5px] bg-rose-500 font-[poppins] text-lg font-medium text-white hover:bg-rose-700">Kelola
@@ -40,13 +40,13 @@
 								</div>
 								<div class="relative h-[300px] w-[500px] flex-1">
 										<div class="absolute left-[6px] top-0 h-[230px] w-[410px] rounded-lg border-2 border-blue-600 bg-white">
-												<span class="absolute pl-5 pt-12 text-center font-['Poppins'] text-[96px] font-bold text-blue-600"><span
+												<span class="absolute pl-5 pt-12 text-center font-poppins text-[96px] font-bold text-blue-600"><span
 																class="num" data-val="516">000</span></span>
-												<span class="absolute pl-6 pt-40 text-center font-['Poppins'] text-2xl font-normal text-blue-600">Jenis
+												<span class="absolute pl-6 pt-40 text-center font-poppins text-2xl font-normal text-blue-600">Jenis
 														Dokumen Terdata</span>
 										</div>
 										<div class="absolute left-[6px] top-0 h-[60px] w-[410px] rounded-t-lg bg-blue-600">
-												<p class="pt-3 text-center font-['Poppins'] text-2xl font-bold text-white">Jenis Dokumen</p>
+												<p class="pt-3 text-center font-poppins text-2xl font-bold text-white">Jenis Dokumen</p>
 										</div>
 										<button
 												class="absolute left-0 top-[215px] h-10 w-[428px] rounded-[5px] bg-rose-500 font-[poppins] text-lg font-medium text-white hover:bg-rose-700">Kelola
@@ -54,13 +54,13 @@
 								</div>
 								<div class="relative h-[300px] w-[500px] flex-1">
 										<div class="absolute left-[6px] top-0 h-[230px] w-[410px] rounded-lg border-2 border-blue-600 bg-white">
-												<span class="absolute pl-5 pt-12 text-center font-['Poppins'] text-[96px] font-bold text-blue-600"><span
+												<span class="absolute pl-5 pt-12 text-center font-poppins text-[96px] font-bold text-blue-600"><span
 																class="num" data-val="224">000</span></span>
-												<span class="absolute pl-6 pt-40 text-center font-['Poppins'] text-2xl font-normal text-blue-600">Jenis
+												<span class="absolute pl-6 pt-40 text-center font-poppins text-2xl font-normal text-blue-600">Jenis
 														Kemasan Terdata</span>
 										</div>
 										<div class="absolute left-[6px] top-0 h-[60px] w-[410px] rounded-t-lg bg-blue-600">
-												<p class="pt-3 text-center font-['Poppins'] text-2xl font-bold text-white">Jenis Kemasan</p>
+												<p class="pt-3 text-center font-poppins text-2xl font-bold text-white">Jenis Kemasan</p>
 										</div>
 										<button
 												class="absolute left-0 top-[215px] h-10 w-[428px] rounded-[5px] bg-rose-500 font-[poppins] text-lg font-medium text-white hover:bg-rose-700">Kelola
@@ -70,13 +70,13 @@
 						<div class="relative flex overflow-x-auto sm:rounded-lg">
 								<div class="relative h-[300px] w-[500px] flex-1">
 										<div class="absolute left-[6px] top-0 h-[230px] w-[410px] rounded-lg border-2 border-blue-600 bg-white">
-												<span class="absolute pl-5 pt-12 text-center font-['Poppins'] text-[96px] font-bold text-blue-600"><span
+												<span class="absolute pl-5 pt-12 text-center font-poppins text-[96px] font-bold text-blue-600"><span
 																class="num" data-val="1532">000</span></span>
-												<span class="absolute pl-6 pt-40 text-center font-['Poppins'] text-2xl font-normal text-blue-600">Kode HS
+												<span class="absolute pl-6 pt-40 text-center font-poppins text-2xl font-normal text-blue-600">Kode HS
 														Terdata</span>
 										</div>
 										<div class="absolute left-[6px] top-0 h-[60px] w-[410px] rounded-t-lg bg-blue-600">
-												<p class="pt-3 text-center font-['Poppins'] text-2xl font-bold text-white">Kode HS</p>
+												<p class="pt-3 text-center font-poppins text-2xl font-bold text-white">Kode HS</p>
 										</div>
 										<button
 												class="absolute left-0 top-[215px] h-10 w-[428px] rounded-[5px] bg-rose-500 font-[poppins] text-lg font-medium text-white hover:bg-rose-700">Kelola
@@ -84,13 +84,13 @@
 								</div>
 								<div class="relative h-[300px] w-[500px] flex-1">
 										<div class="absolute left-[6px] top-0 h-[230px] w-[410px] rounded-lg border-2 border-blue-600 bg-white">
-												<span class="absolute pl-5 pt-12 text-center font-['Poppins'] text-[96px] font-bold text-blue-600"><span
+												<span class="absolute pl-5 pt-12 text-center font-poppins text-[96px] font-bold text-blue-600"><span
 																class="num" data-val="96">000</span></span>
-												<span class="absolute pl-6 pt-40 text-center font-['Poppins'] text-2xl font-normal text-blue-600">Valuta
+												<span class="absolute pl-6 pt-40 text-center font-poppins text-2xl font-normal text-blue-600">Valuta
 														Terdata</span>
 										</div>
 										<div class="absolute left-[6px] top-0 h-[60px] w-[410px] rounded-t-lg bg-blue-600">
-												<p class="pt-3 text-center font-['Poppins'] text-2xl font-bold text-white">Valuta</p>
+												<p class="pt-3 text-center font-poppins text-2xl font-bold text-white">Valuta</p>
 										</div>
 										<button
 												class="absolute left-0 top-[215px] h-10 w-[428px] rounded-[5px] bg-rose-500 font-[poppins] text-lg font-medium text-white hover:bg-rose-700">Kelola
@@ -98,13 +98,13 @@
 								</div>
 								<div class="relative h-[300px] w-[500px] flex-1">
 										<div class="absolute left-[6px] top-0 h-[230px] w-[410px] rounded-lg border-2 border-blue-600 bg-white">
-												<span class="absolute pl-5 pt-12 text-center font-['Poppins'] text-[96px] font-bold text-blue-600"><span
+												<span class="absolute pl-5 pt-12 text-center font-poppins text-[96px] font-bold text-blue-600"><span
 																class="num" data-val="167">000</span></span>
-												<span class="absolute pl-6 pt-40 text-center font-['Poppins'] text-2xl font-normal text-blue-600">Negara
+												<span class="absolute pl-6 pt-40 text-center font-poppins text-2xl font-normal text-blue-600">Negara
 														Terdata</span>
 										</div>
 										<div class="absolute left-[6px] top-0 h-[60px] w-[410px] rounded-t-lg bg-blue-600">
-												<p class="pt-3 text-center font-['Poppins'] text-2xl font-bold text-white">Negara</p>
+												<p class="pt-3 text-center font-poppins text-2xl font-bold text-white">Negara</p>
 										</div>
 										<button
 												class="absolute left-0 top-[215px] h-10 w-[428px] rounded-[5px] bg-rose-500 font-[poppins] text-lg font-medium text-white hover:bg-rose-700">Kelola
@@ -114,13 +114,13 @@
 						<div class="relative flex overflow-x-auto sm:rounded-lg">
 								<div class="relative h-[300px] w-[500px] flex-1">
 										<div class="absolute left-[6px] top-0 h-[230px] w-[410px] rounded-lg border-2 border-blue-600 bg-white">
-												<span class="absolute pl-5 pt-12 text-center font-['Poppins'] text-[96px] font-bold text-blue-600"><span
+												<span class="absolute pl-5 pt-12 text-center font-poppins text-[96px] font-bold text-blue-600"><span
 																class="num" data-val="932">000</span></span>
-												<span class="absolute pl-6 pt-40 text-center font-['Poppins'] text-2xl font-normal text-blue-600">Pelabuhan
+												<span class="absolute pl-6 pt-40 text-center font-poppins text-2xl font-normal text-blue-600">Pelabuhan
 														Terdata</span>
 										</div>
 										<div class="absolute left-[6px] top-0 h-[60px] w-[410px] rounded-t-lg bg-blue-600">
-												<p class="pt-3 text-center font-['Poppins'] text-2xl font-bold text-white">Pelabuhan</p>
+												<p class="pt-3 text-center font-poppins text-2xl font-bold text-white">Pelabuhan</p>
 										</div>
 										<button
 												class="absolute left-0 top-[215px] h-10 w-[428px] rounded-[5px] bg-rose-500 font-[poppins] text-lg font-medium text-white hover:bg-rose-700">Kelola
@@ -128,13 +128,13 @@
 								</div>
 								<div class="relative h-[300px] w-[500px] flex-1">
 										<div class="absolute left-[6px] top-0 h-[230px] w-[410px] rounded-lg border-2 border-blue-600 bg-white">
-												<span class="absolute pl-5 pt-12 text-center font-['Poppins'] text-[96px] font-bold text-blue-600"><span
+												<span class="absolute pl-5 pt-12 text-center font-poppins text-[96px] font-bold text-blue-600"><span
 																class="num" data-val="778">000</span></span>
-												<span class="absolute pl-6 pt-40 text-center font-['Poppins'] text-2xl font-normal text-blue-600">Kantor
+												<span class="absolute pl-6 pt-40 text-center font-poppins text-2xl font-normal text-blue-600">Kantor
 														Terdata</span>
 										</div>
 										<div class="absolute left-[6px] top-0 h-[60px] w-[410px] rounded-t-lg bg-blue-600">
-												<p class="pt-3 text-center font-['Poppins'] text-2xl font-bold text-white">Kantor</p>
+												<p class="pt-3 text-center font-poppins text-2xl font-bold text-white">Kantor</p>
 										</div>
 										<button
 												class="absolute left-0 top-[215px] h-10 w-[428px] rounded-[5px] bg-rose-500 font-[poppins] text-lg font-medium text-white hover:bg-rose-700">Kelola

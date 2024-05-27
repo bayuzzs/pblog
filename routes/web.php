@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,16 +19,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'auth')->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-    })->middleware('auth:pengimpor,petugas')->name('dashboard');
+Route::fallback(function () {
+    return view('404');
+    });
+
+Route::middleware('auth:pengimpor,petugas')->group(function () {
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/settings', [DashboardController::class, 'settings'])->middleware('bukan_petugas')->name('settings');
+    });
+Route::get('/dump', function () {
+    return view('dump');
+    });
 
 Route::get('/data-master', function () {
     return view('data-master');
     });
 
-Route::fallback(function () {
-    return view('404');
-    });
 
 require __DIR__ . '/auth.php';

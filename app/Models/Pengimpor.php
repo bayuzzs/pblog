@@ -35,6 +35,7 @@ class Pengimpor extends Authenticatable implements CanResetPasswordContract
         'nama',
         'email',
         'telepon',
+        'urlProfile',
     ];
 
     protected $casts = [

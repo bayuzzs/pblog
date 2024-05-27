@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('password');
             $table->string('nama');
             $table->string('email')->unique();
+            $table->string('urlProfile')->nullable();
             $table->char('telepon', 12);
             $table->rememberToken();
             $table->timestamps();

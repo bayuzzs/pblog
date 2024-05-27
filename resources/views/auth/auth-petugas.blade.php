@@ -8,6 +8,7 @@
 		<title>{{ config('app.name') }}</title>
 		<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 		@vite(['resources/css/app.css', 'resources/js/app.js'])
+		<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
 		<style>
 				/* disabled the arrow in input number */
 				/* Chrome, Safari, Edge, Opera */
@@ -30,19 +31,17 @@
 </head>
 
 <body>
-		<section class="bg-auth">
-				<div class="mx-auto flex flex-col items-center justify-center px-6 py-8 md:min-h-screen lg:py-0">
-						<a href="{{ route('home') }}" class="mb-6 flex flex-col items-center text-2xl font-semibold text-gray-900">
-								<img class="max-w-72 mr-2" src="{{ asset('images/logo/polibatam-logistik-caption.png') }}" alt="logo">
-						</a>
-						<div class="w-full bg-[rgba('255,255,255,0.7')] px-6 pb-6 backdrop-blur sm:max-w-md sm:px-8 sm:pb-8 md:mt-0">
+		<section class="bg-auth grid h-screen items-center">
+				<div class="min-w-96 flex flex-col items-center justify-center px-6 py-8 lg:py-0">
+						<img class="max-w-72 mb-6 mr-2" src="{{ asset('images/logo/polibatam-logistik-caption.png') }}" alt="logo">
+						<div class="min-w-96 bg-[rgba('255,255,255,0.7')] backdrop-blur sm:px-8 sm:pb-8 md:mt-0">
 								<div class="mb-4">
 										<ul class="-mb-px flex flex-wrap justify-center border-b-2 border-gray-100 text-center text-sm font-medium"
 												id="default-tab" data-tabs-toggle="#auth-tab-content" role="tablist">
 												{{-- Login Tab --}}
 												<li class="-mb-[2px] me-2" role="presentation">
-														<button class="inline-block font-['Poppins'] rounded-t-lg border-b-2 p-4" id="profile-tab" data-tabs-target="#login"
-																type="button" role="tab" aria-controls="profile"
+														<button class="inline-block rounded-t-lg border-b-2 p-4 font-poppins" id="profile-tab"
+																data-tabs-target="#login" type="button" role="tab" aria-controls="profile"
 																aria-selected="{{ session('activeTab') == 'login' ? 'true' : 'false' }}">Masuk</button>
 												</li>
 												{{-- Login Tab End --}}
@@ -68,7 +67,7 @@
 																		</span>
 																		<input type="text" id="username" name="username" placeholder="Username"
 																				value="{{ old('username') }}" required
-																				class="block w-full min-w-0 flex-1 font-light font-['Poppins'] rounded-none rounded-e-lg border border-gray-300 p-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500">
+																				class="block w-full min-w-0 flex-1 rounded-none rounded-e-lg border border-gray-300 p-2 font-poppins text-sm font-light text-gray-900 focus:border-blue-500 focus:ring-blue-500">
 																</div>
 																@error('username')
 																		<p class="text-sm text-red-600">{{ $message }}</p>
@@ -86,14 +85,14 @@
 																				</svg>
 																		</span>
 																		<input type="password" id="password" name="password" placeholder="Password" required
-																				class="block w-full min-w-0 flex-1 font-light font-['Poppins'] rounded-none rounded-e-lg border border-gray-300 p-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500">
+																				class="block w-full min-w-0 flex-1 rounded-none rounded-e-lg border border-gray-300 p-2 font-poppins text-sm font-light text-gray-900 focus:border-blue-500 focus:ring-blue-500">
 																</div>
 																@error('password')
 																		<p class="mb-2 text-sm text-red-600">{{ $message }}</p>
 																@enderror
 														</div>
 														<button type="submit"
-																class="me-2 w-full rounded-lg bg-blue-700 px-5 py-2.5 text-md font-['Poppins'] text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Masuk</button>
+																class="me-2 w-full rounded-lg bg-blue-700 px-5 py-2.5 font-poppins text-sm text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Masuk</button>
 												</form>
 										</div>
 										{{-- Login Tab Content End --}}
