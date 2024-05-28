@@ -27,15 +27,9 @@ Route::middleware('auth:pengimpor,petugas')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/settings', [DashboardController::class, 'settings'])->middleware('bukan_petugas')->name('settings');
-    });
-Route::get('/dump', function () {
-    return view('dump');
-    });
-
-Route::get('/data-master', function () {
-    return view('data-master');
     });
 
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/pengimpor.php';
+require __DIR__ . '/petugas.php';

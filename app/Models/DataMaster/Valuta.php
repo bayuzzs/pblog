@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\DataMaster;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JenisDokumen extends Model
-{
+class Valuta extends Model
+    {
     use HasFactory;
-    protected $table = 'jenis_dokumen';
-    protected $primaryKey = 'kodeJenisDokumen';
+
+    protected $table = 'valuta';
+    protected $primaryKey = 'kodeValuta';
     public $incrementing = false;
     public $timestamps = true;
 
     protected $fillable = [
-        'kodeJenisDokumen',
-        'namaDokumen',
+        'kodeValuta',
+        'namaValuta',
+        'kurs',
     ];
-}
+    }
 

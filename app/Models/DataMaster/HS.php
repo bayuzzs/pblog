@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\DataMaster;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class HS extends Model
-{
+    {
     use HasFactory;
 
     protected $table = 'hs';
@@ -20,5 +20,5 @@ class HS extends Model
         'uraianBarangEnglish',
         'isLartas',
     ];
-}
+    }
 

@@ -1,22 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\DataMaster;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JenisKemasan extends Model
-{
+class Kantor extends Model
+    {
     use HasFactory;
-    
-    protected $table = 'jenis_kemasan';
-    protected $primaryKey = 'kodeKemasan';
+    protected $table = 'kantor';
+    protected $primaryKey = 'kodeKantor';
     public $incrementing = false;
     public $timestamps = true;
 
     protected $fillable = [
-        'kodeKemasan',
-        'namaKemasan',
+        'kodeKantor',
+        'namaKantor',
     ];
-}
-
+    }
