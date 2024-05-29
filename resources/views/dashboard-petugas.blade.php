@@ -1,7 +1,8 @@
 @extends('layout.dashboard')
 
 @section('main-content')
-		<div class="custom-scrollbar h-[75vh] w-full overflow-auto rounded-2xl bg-white p-5 shadow-xl dark:bg-gray-800">
+		<div
+				class="custom-scrollbar h-[calc(100vh-150px)] w-full overflow-auto rounded-2xl bg-white p-5 shadow-xl dark:bg-gray-800">
 				<p class="mb-1 font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-200 md:text-3xl">
 						Daftar Akun Pengimpor
 				</p>

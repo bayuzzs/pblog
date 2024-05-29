@@ -15,7 +15,11 @@ Route::middleware('auth:petugas')->group(function () {
     Route::prefix('/data-master/hs')->group(function () {
         Route::get('/', [HSController::class, 'index'])->name('data-master.hs');
 
-        Route::delete('/', [HSController::class, 'destroy'])->name('data-master.hs.delete');
+        Route::post('/', [HSController::class, 'store']);
+
+        Route::put('/', [HSController::class, 'update']);
+
+        Route::delete('/', [HSController::class, 'destroy']);
         });
 
     Route::prefix('/data-master/negara')->group(function () {

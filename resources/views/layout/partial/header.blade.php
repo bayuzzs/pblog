@@ -11,35 +11,35 @@
 				</div>
 
 				<div class="ms-auto flex w-full items-center justify-end py-2.5 sm:order-3 sm:justify-between sm:gap-x-3 sm:py-4">
-						{{-- tombol search --}}
-						<div class="sm:hidden">
-								<button type="button"
-										class="inline-flex h-[2.375rem] w-[2.375rem] items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-gray-700">
-										<svg class="size-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-												viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-												stroke-linejoin="round">
-												<circle cx="11" cy="11" r="8" />
-												<path d="m21 21-4.3-4.3" />
-										</svg>
-								</button>
+						{{-- Biar flex nya jalan wkwk --}}
+						<div class="lg:hidden">
+
 						</div>
 
 						{{-- ini input search nya --}}
-						<div class="hidden sm:block">
-								<label for="icon" class="sr-only">Search</label>
-								<div class="min-w-72 md:min-w-80 relative">
-										<div class="pointer-events-none absolute inset-y-0 start-0 z-20 flex items-center ps-4">
-												<svg class="size-4 flex-shrink-0 text-gray-400 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg"
-														width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-														stroke-linecap="round" stroke-linejoin="round">
-														<circle cx="11" cy="11" r="8" />
-														<path d="m21 21-4.3-4.3" />
-												</svg>
-										</div>
-										<input type="text" id="icon" name="icon"
-												class="block w-full rounded-lg border-gray-200 px-4 py-2 ps-11 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-												placeholder="Search">
-								</div>
+						<div class="hidden lg:block">
+								<!-- Breadcrumb -->
+								<ol class="ms-3 flex items-center gap-2 whitespace-nowrap">
+										<li>
+												<a href="/"
+														class="flex items-center gap-1 rounded-full px-1.5 py-1.5 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">
+														<iconify-icon icon="bi:house" class="text-lg"></iconify-icon>
+														<iconify-icon icon="simple-line-icons:arrow-right" class="text-xs"></iconify-icon>
+												</a>
+										</li>
+										@foreach (request()->segments() as $segment)
+												<li aria-current="{{ $loop->last ? 'page' : 'false' }}">
+														<a href="/{{ implode('/', array_slice(request()->segments(), 0, $loop->index + 1)) }}"
+																class="{{ $loop->last ? 'font-semibold' : '' }} flex items-center gap-1 rounded-full px-1.5 py-1.5 text-base text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">
+																{{ $segment }}
+																@if (!$loop->last)
+																		<iconify-icon icon="simple-line-icons:arrow-right" class="text-xs"></iconify-icon>
+																@endif
+														</a>
+												</li>
+										@endforeach
+								</ol>
+								<!-- End Breadcrumb -->
 						</div>
 						<div class="flex flex-row items-center justify-end gap-2">
 								{{-- button darkmode --}}

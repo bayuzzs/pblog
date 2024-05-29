@@ -16,7 +16,7 @@ class RedirectIfPetugas
     public function handle( Request $request, Closure $next ) : Response
         {
         if ( auth()->guard('petugas')->check() ) {
-            return redirect('/dashboard');
+            return redirect(route('dashboard'));
             }
         return $next($request);
         }

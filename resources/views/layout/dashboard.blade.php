@@ -40,7 +40,7 @@
 						@include('layout.partial.header')
 						<!-- ========== END HEADER ========== -->
 						<!-- Breadcrumb -->
-						@include('layout.partial.breadcumb')
+						@include('layout.partial.header-mobile')
 						<!-- End Breadcrumb -->
 						@yield('main-content')
 				</div>
