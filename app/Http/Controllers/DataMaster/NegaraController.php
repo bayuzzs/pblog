@@ -4,6 +4,7 @@ namespace App\Http\Controllers\DataMaster;
 
 use App\Http\Controllers\Controller;
 use App\Models\DataMaster\Negara;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class NegaraController extends Controller
@@ -11,9 +12,9 @@ class NegaraController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() : View
         {
-        //
+        return view('data-master.negara');
         }
 
     /**

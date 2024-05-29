@@ -26,37 +26,37 @@ class DataMasterController extends Controller
             [
                 'name'  => 'Negara',
                 'value' => Negara::all()->count(),
-                'route' => route('data-master.hs'),
+                'route' => route('data-master.negara'),
             ],
             [
                 'name'  => 'Valuta',
                 'value' => Valuta::all()->count(),
-                'route' => route('data-master.hs'),
+                'route' => route('data-master.valuta'),
             ],
             [
                 'name'  => 'Jenis Kemasan',
                 'value' => JenisKemasan::all()->count(),
-                'route' => route('data-master.hs'),
+                'route' => route('data-master.jenis-kemasan'),
             ],
             [
                 'name'  => 'Jenis Dokumen',
                 'value' => JenisDokumen::all()->count(),
-                'route' => route('data-master.hs'),
+                'route' => route('data-master.jenis-dokumen'),
             ],
             [
                 'name'  => 'Satuan Barang',
                 'value' => SatuanBarang::all()->count(),
-                'route' => route('data-master.hs'),
+                'route' => route('data-master.satuan-barang'),
             ],
             [
                 'name'  => 'Pelabuhan',
                 'value' => Pelabuhan::all()->count(),
-                'route' => route('data-master.hs'),
+                'route' => route('data-master.pelabuhan'),
             ],
             [
                 'name'  => 'Kantor',
                 'value' => Kantor::all()->count(),
-                'route' => route('data-master.hs'),
+                'route' => route('data-master.kantor'),
             ],
         ];
         return $dataMasters;

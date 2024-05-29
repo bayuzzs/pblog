@@ -36,18 +36,18 @@
 						<img class="max-w-72 mb-6 mr-2" src="{{ asset('images/logo/polibatam-logistik-caption.png') }}" alt="logo">
 						<div class="min-w-96 max-w-md bg-[rgba('255,255,255,0.7')] px-6 pb-6 backdrop-blur sm:px-8 sm:pb-8 md:mt-0">
 								<div id="auth-tab-content">
-										<div class="border-b border-gray-200 dark:border-neutral-700">
+										<div class="border-b border-gray-200 dark:border-gray-700">
 												<nav class="-mb-0.5 flex justify-center space-x-6" aria-label="Tabs" role="tablist">
 														{{-- Login Tab --}}
 														<button type="button"
-																class="active inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm text-gray-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50 hs-tab-active:border-blue-600 hs-tab-active:font-semibold hs-tab-active:text-blue-600 dark:text-neutral-400 dark:hover:text-blue-500"
+																class="active inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm text-gray-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50 hs-tab-active:border-blue-600 hs-tab-active:font-semibold hs-tab-active:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
 																id="horizontal-alignment-item-1" data-hs-tab="#login-tab" aria-controls="login-tab" role="tab">
 																Masuk
 														</button>
 														{{-- Login Tab End --}}
 														{{-- Register Tab --}}
 														<button type="button"
-																class="inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm text-gray-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50 hs-tab-active:border-blue-600 hs-tab-active:font-semibold hs-tab-active:text-blue-600 dark:text-neutral-400 dark:hover:text-blue-500"
+																class="inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm text-gray-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50 hs-tab-active:border-blue-600 hs-tab-active:font-semibold hs-tab-active:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
 																id="horizontal-alignment-item-2" data-hs-tab="#register-tab" aria-controls="register-tab"
 																role="tab">
 																Daftar
@@ -138,10 +138,10 @@
 																{{-- Accordion Start --}}
 																<div class="hs-accordion-group">
 																		<div
-																				class="hs-accordion -mt-px border bg-white first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:bg-neutral-800"
+																				class="hs-accordion -mt-px border bg-white first:rounded-t-lg last:rounded-b-lg dark:border-gray-700 dark:bg-gray-800"
 																				id="hs-bordered-heading-one">
 																				<button
-																						class="hs-accordion-toggle inline-flex w-full items-center gap-x-3 px-5 py-4 text-start text-sm text-gray-800 hover:text-gray-500 disabled:pointer-events-none disabled:opacity-50 hs-accordion-active:text-blue-600 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 dark:focus:outline-none dark:hs-accordion-active:text-blue-500"
+																						class="hs-accordion-toggle inline-flex w-full items-center gap-x-3 px-5 py-4 text-start text-sm text-gray-800 hover:text-gray-500 disabled:pointer-events-none disabled:opacity-50 hs-accordion-active:text-blue-600 dark:text-gray-200 dark:hover:text-gray-400 dark:focus:text-gray-400 dark:focus:outline-none dark:hs-accordion-active:text-blue-500"
 																						aria-controls="hs-accordion-data-perusahaan">
 																						<iconify-icon icon="ep:arrow-down-bold"
 																								class="block text-sm hs-accordion-active:hidden"></iconify-icon>

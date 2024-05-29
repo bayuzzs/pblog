@@ -1,6 +1,6 @@
 @props(['class' => ''])
 <div id="dismiss-alert"
-		class="{{ $class }} rounded-lg border border-teal-200 bg-teal-100 p-4 text-sm text-teal-800 transition duration-300 hs-removing:translate-x-5 hs-removing:opacity-0 dark:border-teal-900 dark:bg-teal-800/10 dark:text-teal-500"
+		class="{{ $class }} rounded-lg border border-teal-300 bg-teal-50 p-4 text-sm text-teal-800 transition duration-300 hs-removing:translate-x-5 hs-removing:opacity-0 dark:border-teal-900 dark:bg-teal-800/10 dark:text-teal-500"
 		role="alert">
 		<div class="flex">
 				<div class="flex-shrink-0">
@@ -12,14 +12,14 @@
 						</svg>
 				</div>
 				<div class="ms-2">
-						<div class="text-sm font-medium">
+						<div class="text-sm">
 								{{ $slot }}
 						</div>
 				</div>
 				<div class="ms-auto ps-3">
 						<div class="-mx-1.5 -my-1.5">
 								<button type="button"
-										class="inline-flex rounded-lg bg-teal-100 p-1.5 text-teal-500 hover:bg-teal-200 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-offset-2 focus:ring-offset-teal-50 dark:bg-transparent dark:text-teal-600 dark:hover:bg-teal-800/50"
+										class="inline-flex rounded-lg bg-teal-50 p-1.5 text-teal-500 hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-offset-2 focus:ring-offset-teal-50 dark:bg-transparent dark:text-teal-600 dark:hover:bg-teal-800/50"
 										data-hs-remove-element="#dismiss-alert">
 										<span class="sr-only">Dismiss</span>
 										<svg class="size-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24"

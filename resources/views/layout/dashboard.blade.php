@@ -25,12 +25,10 @@
 		<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
 </head>
 
-<body class="bg-surface dark:bg-gray-900">
+<body class="custom-scrollbar bg-surface dark:bg-gray-900">
 
 
 		<!-- ========== MAIN CONTENT ========== -->
-
-
 		<!-- Sidebar -->
 		@include('layout.partial.sidebar')
 		<!-- End Sidebar -->
