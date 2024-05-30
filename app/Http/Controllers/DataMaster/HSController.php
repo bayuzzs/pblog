@@ -124,7 +124,7 @@ class HSController extends Controller
             return redirect()->back()->withErrors(['kodeHS', 'Gagal Hapus Data HS']);
             }
 
-        HS::destroy($validatedRequest);
+        HS::destroy($validatedRequest['kodeHS']);
         return redirect(route('data-master.hs'))->with('success', 'Data HS berhasil di hapus');
         }
     }
