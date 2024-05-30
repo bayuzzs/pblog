@@ -12,6 +12,6 @@ if ( ! function_exists('getInitials') ) {
                 }
             }
 
-        return $inisial; // Mengembalikan inisial
+        return ucfirst($inisial); // Mengembalikan inisial
         }
     }
