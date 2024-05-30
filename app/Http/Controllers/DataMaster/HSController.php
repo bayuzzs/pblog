@@ -114,13 +114,17 @@ class HSController extends Controller
      */
     public function destroy( Request $request )
         {
-        $kodeHS = $request->kodeHS;
+        $validatedRequest = $request->validate([
+            'kodeHS' => 'required|array',
+        ], [
+            'kodeHS.required' => 'Kode HS harus diisi',
+        ]);
 
-        if ( ! $kodeHS ) {
+        if ( ! $validatedRequest ) {
             return redirect()->back()->withErrors(['kodeHS', 'Gagal Hapus Data HS']);
             }
 
-        HS::destroy($kodeHS);
+        HS::destroy($validatedRequest);
         return redirect(route('data-master.hs'))->with('success', 'Data HS berhasil di hapus');
         }
     }

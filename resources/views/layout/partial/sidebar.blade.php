@@ -26,7 +26,7 @@
 
 								<li class="hs-accordion" id="users-accordion">
 										<button type="button"
-												class="hs-accordion-toggle flex w-full items-center gap-x-3.5 rounded-lg px-2.5 py-2 text-start text-sm text-gray-700 hover:bg-gray-100 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:hs-accordion-active:text-white">
+												class="hs-accordion-toggle flex w-full items-center gap-x-3.5 rounded-lg px-2.5 py-3.5 text-start text-sm text-gray-700 hover:bg-gray-100 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:hs-accordion-active:text-white">
 												<iconify-icon icon="gridicons:computer" class="text-lg"></iconify-icon>
 												Single Core System
 
@@ -47,13 +47,13 @@
 												class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300">
 												<ul class="ps-2 pt-2">
 														<li>
-																<a class="flex items-center gap-x-2 rounded-lg px-2.5 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
+																<a class="flex items-center gap-x-2 rounded-lg px-2.5 py-3.5 text-sm text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
 																		href="#">
 																		<b>•</b> Dokumen Pabean
 																</a>
 														</li>
 														<li>
-																<a class="flex items-center gap-x-2 rounded-lg px-2.5 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
+																<a class="flex items-center gap-x-2 rounded-lg px-2.5 py-3.5 text-sm text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
 																		href="#">
 																		<b>•</b> Pengajuan Rush Handling
 																</a>

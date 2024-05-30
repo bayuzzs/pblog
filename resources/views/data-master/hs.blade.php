@@ -13,14 +13,14 @@
 										<iconify-icon icon="charm:menu-kebab" class="text-xl"></iconify-icon>
 								</button>
 								<div
-										class="hs-dropdown-menu duration min-w-28 z-20 mt-2 hidden rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] before:absolute before:-top-4 before:start-0 before:h-4 before:w-full after:absolute after:-bottom-4 after:start-0 after:h-4 after:w-full hs-dropdown-open:opacity-100 dark:divide-gray-700 dark:border dark:border-gray-700 dark:bg-gray-800"
+										class="hs-dropdown-menu duration min-w-48 z-20 mt-2 hidden rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] before:absolute before:-top-4 before:start-0 before:h-4 before:w-full after:absolute after:-bottom-4 after:start-0 after:h-4 after:w-full hs-dropdown-open:opacity-100 dark:divide-gray-700 dark:border dark:border-gray-700 dark:bg-gray-800"
 										aria-labelledby="hs-dropdown-delete">
 										<button data-hs-overlay="#hs-add-modal"
-												class="flex w-full items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-200 focus:bg-gray-100 focus:outline-none dark:text-gray-400 dark:focus:bg-gray-700">
+												class="flex w-full items-center gap-x-3.5 rounded-lg px-3 py-3 text-sm text-gray-800 hover:bg-gray-200 focus:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:bg-gray-700">
 												Tambah Data
 										</button>
 										<button onclick="submitDeleteForm()"
-												class="{{ !$HSs->items() ? 'hidden' : '' }} flex w-full items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-200 focus:bg-gray-100 focus:outline-none dark:text-gray-400 dark:focus:bg-gray-700">
+												class="{{ !$HSs->items() ? 'hidden' : '' }} flex w-full items-center gap-x-3.5 rounded-lg px-3 py-3 text-sm text-gray-800 hover:bg-gray-200 focus:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:bg-gray-700">
 												Hapus Data
 										</button>
 								</div>
@@ -58,20 +58,13 @@
 										class="!left-0 hidden">
 										{{-- Let this choose stand alone --}}
 										<option value="">Choose</option>
-										<option value="kodeHS_asc" {{ request('sortOption') == 'kodeHS_asc' ? 'selected' : '' }}>Kode HS
-										</option>
-										<option value="kodeHS_desc" {{ request('sortOption') == 'kodeHS_desc' ? 'selected' : '' }}>Kode HS
-												(DESC)</option>
-										<option value="uraianBarangBahasa_asc"
-												{{ request('sortOption') == 'uraianBarangBahasa_asc' ? 'selected' : '' }}>Nama Barang</option>
-										<option value="uraianBarangBahasa_desc"
-												{{ request('sortOption') == 'uraianBarangBahasa_desc' ? 'selected' : '' }}>Nama Barang (DESC)
-										</option>
-										<option value="isLartas_asc" {{ request('sortOption') == 'isLartas_asc' ? 'selected' : '' }}>Lartas
-										</option>
-										<option value="isLartas_desc" {{ request('sortOption') == 'isLartas_desc' ? 'selected' : '' }}>
-												Lartas
-												(DESC)</option>
+										<x-select-option valueInput="kodeHS_asc" requestParam="sortOption">Kode HS</x-select-option>
+										<x-select-option valueInput="kodeHS_desc" requestParam="sortOption">Kode HS (DESC)</x-select-option>
+										<x-select-option valueInput="uraianBarangBahasa_asc" requestParam="sortOption">Uraian Barang</x-select-option>
+										<x-select-option valueInput="uraianBarangBahasa_desc" requestParam="sortOption">Uraian Barang
+												(DESC)</x-select-option>
+										<x-select-option valueInput="isLartas_asc" requestParam="sortOption">Terkena Lartas</x-select-option>
+										<x-select-option valueInput="isLartas_desc" requestParam="sortOption">Tidak Terkena Lartas</x-select-option>
 								</select>
 								<!-- End Select -->
 								<button type="submit"
