@@ -24,6 +24,14 @@
 										Dashboard
 								</x-nav-link>
 
+								<x-nav-link active="{{ request()->routeIs('dokumen-impor*') }}" href="{{ route('dokumen-impor') }}">
+										<x-slot:icon>
+												<iconify-icon icon="fluent:document-one-page-multiple-24-regular" width="1.5em"
+														height="1.5em"></iconify-icon>
+										</x-slot:icon>
+										Dokumen Impor
+								</x-nav-link>
+
 								<li class="hs-accordion" id="users-accordion">
 										<button type="button"
 												class="hs-accordion-toggle flex w-full items-center gap-x-3.5 rounded-lg px-2.5 py-3.5 text-start text-sm text-gray-700 hover:bg-gray-100 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:hs-accordion-active:text-white">
