@@ -32,7 +32,7 @@
 								<button type="button"
 										class="ml-10 inline-flex items-center gap-x-2 justify-self-end rounded-lg border border-transparent bg-blue-600 px-2 py-1.5 text-sm text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50"
 										data-hs-overlay="#hs-change-avatar">
-										Upload Foto
+										Unggah Foto
 								</button>
 								{{-- Modal Content --}}
 								<div id="hs-change-avatar"
@@ -44,7 +44,7 @@
 																accept="image/*">
 																<div class="flex items-center justify-between border-b px-4 py-3 dark:border-gray-700">
 																		<h3 class="font-bold text-gray-800 dark:text-white">
-																				Upload Foto Profil
+																				Unggah Foto Profil
 																		</h3>
 																		<button type="button"
 																				class="size-7 flex items-center justify-center rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-gray-700"
@@ -66,7 +66,7 @@
 																						<path fill="currentColor"
 																								d="M11 16V7.85l-2.6 2.6L7 9l5-5l5 5l-1.4 1.45l-2.6-2.6V16zm-5 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z" />
 																				</svg>
-																				<p class="text-sm font-medium">Upload File disini</p>
+																				<p class="text-sm font-medium">Unggah File disini (maks 2048KB)</p>
 																		</label>
 																		<input type="file" name="userProfile" id="input-file-avatar" class="hidden">
 																</div>
@@ -78,7 +78,7 @@
 																		</button>
 																		<button type="submit"
 																				class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
-																				Upload
+																				Unggah
 																		</button>
 																</div>
 														</form>
@@ -106,7 +106,7 @@
 						</div>
 						<div class="space-y-1">
 								<div class="grid grid-cols-3 gap-4 p-2 text-sm dark:text-gray-200">
-										<p class="col-span-1">Username</p>
+										<p class="col-span-1">Nama Pengguna</p>
 										<p class="col-span-2">{{ auth()->user()->username }}</p>
 								</div>
 								<div class="grid grid-cols-3 gap-4 p-2 text-sm dark:text-gray-200">

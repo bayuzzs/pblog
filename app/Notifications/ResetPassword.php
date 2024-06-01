@@ -75,11 +75,11 @@ class ResetPassword extends Notification
     protected function buildMailMessage( $url )
         {
         return (new MailMessage)
-            ->subject('Notifikasi Reset Password')
-            ->line('Anda menerima email ini karena kami menerima permintaan reset password untuk akun Anda.')
-            ->action('Reset Password', $url)
-            ->line(Lang::get('Tautan reset password ini akan kedaluwarsa dalam :count menit.', ['count' => config('auth.passwords.' . config('auth.defaults.passwords') . '.expire')]))
-            ->line('Jika Anda tidak meminta reset password, Anda tidak perlu melakukan tindakan lebih lanjut.');
+            ->subject('Notifikasi Atur Ulang Kata Sandi')
+            ->line('Anda menerima email ini karena kami menerima permintaan atur ulang kata sandi untuk akun Anda.')
+            ->action('Atur Ulang Sandi', $url)
+            ->line(Lang::get('Tautan atur ulang kata sandi ini akan kedaluwarsa dalam :count menit.', ['count' => config('auth.passwords.' . config('auth.defaults.passwords') . '.expire')]))
+            ->line('Jika Anda tidak meminta atur ulang kata sandi, Anda tidak perlu melakukan tindakan lebih lanjut.');
         }
 
     /**
