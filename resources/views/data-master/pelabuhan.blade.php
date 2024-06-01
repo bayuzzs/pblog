@@ -5,7 +5,7 @@
     class="custom-scrollbar h-[calc(100vh-150px)] w-full overflow-auto rounded-2xl bg-white p-5 shadow-xl dark:bg-gray-800">
     <div class="flex justify-between">
       <p class="mb-1 font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-200 md:text-3xl">
-        Daftar Data HS
+        Daftar Data Pelabuhan Barang
       </p>
       <div class="hs-dropdown relative inline-flex">
         <button id="hs-dropdown-delete" type="button"
@@ -20,7 +20,7 @@
             Tambah Data
           </button>
           <button onclick="submitDeleteForm()"
-            class="{{ !$HSs->items() ? 'hidden' : '' }} flex w-full items-center gap-x-3.5 rounded-lg px-3 py-3 text-sm text-gray-800 hover:bg-gray-200 focus:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+            class="{{ !$pelabuhans->items() ? 'hidden' : '' }} flex w-full items-center gap-x-3.5 rounded-lg px-3 py-3 text-sm text-gray-800 hover:bg-gray-200 focus:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:bg-gray-700">
             Hapus Data
           </button>
         </div>
@@ -28,7 +28,7 @@
     </div>
 
     {{-- Search bar start --}}
-    <form action="{{ route('data-master.hs') }}" method="GET"
+    <form action="{{ route('data-master.pelabuhan') }}" method="GET"
       class="sticky -top-5 z-10 mb-2 flex items-center justify-between gap-2 space-y-4 bg-white py-2 dark:bg-gray-800 md:space-y-0">
       <label for="table-search" class="sr-only">Search</label>
       <div class="relative w-full">
@@ -41,7 +41,7 @@
         </div>
         <input type="text" id="table-search-users" name="search"
           class="block w-full rounded-lg border border-gray-300 bg-transparent p-2 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:text-white"
-          placeholder="Cari kode HS" value="{{ request('search') }}">
+          placeholder="Cari kode Pelabuhan Barang" value="{{ request('search') }}">
       </div>
       <div class="flex gap-1">
         <!-- Select -->
@@ -58,13 +58,10 @@
           class="!left-0 hidden">
           {{-- Let this choose stand alone --}}
           <option value="">Choose</option>
-          <x-select-option valueInput="kodeHS_asc" requestParam="sortOption">Kode HS ↑</x-select-option>
-          <x-select-option valueInput="kodeHS_desc" requestParam="sortOption">Kode HS ↓</x-select-option>
-          <x-select-option valueInput="uraianBarangBahasa_asc" requestParam="sortOption">Uraian Barang ↑</x-select-option>
-          <x-select-option valueInput="uraianBarangBahasa_desc" requestParam="sortOption">Uraian Barang ↓
-          </x-select-option>
-          <x-select-option valueInput="isLartas_asc" requestParam="sortOption">Tidak Terkena Lartas </x-select-option>
-          <x-select-option valueInput="isLartas_desc" requestParam="sortOption">Terkena Lartas </x-select-option>
+          <x-select-option valueInput="kodePelabuhan_asc" requestParam="sortOption">Kode Pelabuhan ↑</x-select-option>
+          <x-select-option valueInput="kodePelabuhan_desc" requestParam="sortOption">Kode Pelabuhan ↓</x-select-option>
+          <x-select-option valueInput="namaPelabuhan_asc" requestParam="sortOption">Nama Pelabuhan ↑</x-select-option>
+          <x-select-option valueInput="namaPelabuhan_desc" requestParam="sortOption">Nama Pelabuhan ↓</x-select-option>
         </select>
         <!-- End Select -->
         <button type="submit"
@@ -82,7 +79,7 @@
     @endsession
 
     {{-- Table start --}}
-    <form action="{{ route('data-master.hs') }}" method="POST" class="flex flex-col" id="delete-form" method="POST">
+    <form action="{{ route('data-master.pelabuhan') }}" method="POST" class="flex flex-col" id="delete-form" method="POST">
       @csrf
       @method('DELETE')
       <div class="custom-scrollbar -m-1.5 overflow-x-auto">
@@ -99,46 +96,33 @@
                   </th>
                   <th scope="col"
                     class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
-                    Kode HS
+                    Kode Pelabuhan
                   </th>
                   <th scope="col"
-                    class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">Uraian
-                    Barang (Bahasa)
+                    class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">Nama
+                    Pelabuhan
                   </th>
-                  <th scope="col"
-                    class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">Uraian
-                    Barang (English)
-                  </th>
-                  <th scope="col"
-                    class="flex px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
-                    Terkena Lartas
 
-                  </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                @forelse ($HSs as $hs)
-                  <tr data-json="{{ json_encode($hs) }}" onclick="showEditModal(event)"
+                @forelse ($pelabuhans as $pelabuhan)
+                  <tr data-json="{{ json_encode($pelabuhan) }}" onclick="showEditModal(event)"
                     class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
                     <td class="py-3 ps-4">
                       <div class="flex h-5 items-center">
-                        <input id="hs-table-checkbox-1" type="checkbox" name="kodeHS[]" value="{{ $hs->kodeHS }}"
-                          onclick="event.stopPropagation();"
+                        <input id="hs-table-checkbox-1" type="checkbox" name="kodePelabuhan[]"
+                          value="{{ $pelabuhan->kodePelabuhan }}" onclick="event.stopPropagation();"
                           class="rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800">
                       </div>
                     </td>
                     <td class="flex items-center px-6 py-4 text-gray-800 dark:text-gray-200">
-                      {{ $hs->kodeHS }}
+                      {{ $pelabuhan->kodePelabuhan }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
-                      {{ $hs->uraianBarangBahasa }}
+                      {{ $pelabuhan->namaPelabuhan }}
                     </td>
-                    <td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
-                      {{ $hs->uraianBarangEnglish }}
-                    </td>
-                    <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
-                      {{ $hs->isLartas ? 'Ya' : 'Tidak' }}
-                    </td>
+
                   </tr>
                 @empty
                   <tr>
@@ -146,7 +130,7 @@
                       <div
                         class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-200">
                         <iconify-icon icon="iwwa:box" class="text-4xl"></iconify-icon>
-                        Tidak ada data HS
+                        Tidak ada data Pelabuhan
                       </div>
                     </td>
                   </tr>
@@ -160,14 +144,14 @@
     {{-- Table end --}}
 
     <!-- Pagination -->
-    @if ($HSs->hasPages())
+    @if ($pelabuhans->hasPages())
       <div class="mt-5 flex items-center justify-between px-3">
         <p class="w-48 break-words text-sm dark:text-gray-400 sm:w-full">
-          Data <span class="font-semibold">{{ $HSs->firstItem() }}</span> ke <span
-            class="font-semibold">{{ $HSs->lastItem() }}</span> dari total <span
-            class="font-semibold">{{ $HSs->total() }}</span> Data HS
+          Data <span class="font-semibold">{{ $pelabuhans->firstItem() }}</span> ke <span
+            class="font-semibold">{{ $pelabuhans->lastItem() }}</span> dari total <span
+            class="font-semibold">{{ $pelabuhans->total() }}</span> Data Pelabuhan
         </p>
-        <x-pagination :data="$HSs" />
+        <x-pagination :data="$pelabuhans" />
       </div>
     @endif
     <!-- End Pagination -->
@@ -178,13 +162,13 @@
   <div id="hs-add-modal"
     class="hs-overlay size-full pointer-events-none fixed start-0 top-0 z-[80] hidden overflow-y-auto overflow-x-hidden opacity-0 transition-all hs-overlay-open:opacity-100 hs-overlay-open:duration-500">
     <div class="m-3 sm:mx-auto sm:w-full sm:max-w-lg">
-      <form action="{{ route('data-master.hs') }}" method="POST">
+      <form action="{{ route('data-master.pelabuhan') }}" method="POST">
         @csrf
         <div
           class="pointer-events-auto flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-gray-700/70">
           <div class="flex items-center justify-between border-b px-4 py-3 dark:border-gray-700">
             <h3 class="font-bold text-gray-800 dark:text-white">
-              Tambah Data HS
+              Tambah Data Pelabuhan
             </h3>
             <button type="button"
               class="size-7 flex items-center justify-center rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-gray-700"
@@ -200,43 +184,14 @@
           </div>
           <div class="custom-scrollbar overflow-y-auto p-4">
             <div class="grid grid-cols-4 items-center gap-y-3">
-              <label for="kodeHS" class="text-sm dark:text-gray-50">Kode HS</label>
-              <input type="number" id="kodeHS" name="kodeHS"
+              <label for="kodePelabuhan" class="text-sm dark:text-gray-50">Kode Pelabuhan</label>
+              <input type="number" id="kodePelabuhan" name="kodePelabuhan"
                 class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-                placeholder="00000000" required>
-
-              <label for="uraianBarang" class="text-sm dark:text-gray-50">Uraian Barang (Bahasa)</label>
-              <input type="text" id="uraianBarang" name="uraianBarangBahasa"
+                placeholder="000" required>
+              <label for="namaPelabuhan" class="text-sm dark:text-gray-50">Nama Pelabuhan</label>
+              <input type="text" id="namaPelabuhan" name="namaPelabuhan"
                 class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-                placeholder="Uraian dalam bhs Indonesia" required>
-
-              <label for="uraianBarangEnglish" class="text-sm dark:text-gray-50">Uraian Barang (English)</label>
-              <input type="text" id="uraianBarangEnglish" name="uraianBarangEnglish"
-                class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-                placeholder="Uraian dalam bhs Inggris" required>
-
-              <label for="isLartas" class="text-sm dark:text-gray-50">Terkena Lartas?</label>
-              <div class="col-span-3">
-                <!-- Radio -->
-                <div class="grid gap-2 sm:grid-cols-2">
-                  <label for="isLartasYa"
-                    class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-                    <input type="radio" name="isLartas" value="1"
-                      class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-                      id="isLartasYa" required>
-                    <span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Ya</span>
-                  </label>
-
-                  <label for="isLartasTidak"
-                    class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-                    <input type="radio" name="isLartas" value="0"
-                      class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-                      id="isLartasTidak" required>
-                    <span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Tidak</span>
-                  </label>
-                </div>
-                <!-- End Radio -->
-              </div>
+                placeholder="Nama Pelabuhan" required>
             </div>
           </div>
           <div class="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-gray-700">
@@ -259,14 +214,14 @@
   <div id="hs-edit-modal"
     class="hs-overlay size-full pointer-events-none fixed start-0 top-0 z-[80] hidden overflow-y-auto overflow-x-hidden opacity-0 transition-all hs-overlay-open:opacity-100 hs-overlay-open:duration-500">
     <div class="m-3 sm:mx-auto sm:w-full sm:max-w-lg">
-      <form action="{{ route('data-master.hs') }}" method="POST">
+      <form action="{{ route('data-master.pelabuhan') }}" method="POST">
         @csrf
         @method('PUT')
         <div
           class="pointer-events-auto flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-gray-700/70">
           <div class="flex items-center justify-between border-b px-4 py-3 dark:border-gray-700">
             <h3 class="font-bold text-gray-800 dark:text-white">
-              Edit Data HS
+              Edit Data Pelabuhan
             </h3>
             <button type="button"
               class="size-7 flex items-center justify-center rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-gray-700"
@@ -282,43 +237,14 @@
           </div>
           <div class="custom-scrollbar overflow-y-auto p-4">
             <div class="grid grid-cols-4 items-center gap-y-3">
-              <label for="kodeHS" class="text-sm dark:text-gray-50">Kode HS</label>
-              <input type="number" id="kodeHS" name="kodeHS"
+              <label for="kodePelabuhan" class="text-sm dark:text-gray-50">Kode Pelabuhan</label>
+              <input type="number" id="kodePelabuhan" name="kodePelabuhan"
                 class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-                placeholder="00000000" required readonly>
-
-              <label for="uraianBarang" class="text-sm dark:text-gray-50">Uraian Barang (Bahasa)</label>
-              <input type="text" id="uraianBarang" name="uraianBarangBahasa"
+                placeholder="000" required>
+              <label for="namaPelabuhan" class="text-sm dark:text-gray-50">Nama Pelabuhan</label>
+              <input type="text" id="namaPelabuhan" name="namaPelabuhan"
                 class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-                placeholder="Uraian dalam bhs Indonesia" required>
-
-              <label for="uraianBarangEnglish" class="text-sm dark:text-gray-50">Uraian Barang (English)</label>
-              <input type="text" id="uraianBarangEnglish" name="uraianBarangEnglish"
-                class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-                placeholder="Uraian dalam bhs Inggris" required>
-
-              <label for="isLartas" class="text-sm dark:text-gray-50">Terkena Lartas?</label>
-              <div class="col-span-3">
-                <!-- Radio -->
-                <div class="grid gap-2 sm:grid-cols-2">
-                  <label for="isLartasYaEdit"
-                    class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-                    <input type="radio" name="isLartas" value="1"
-                      class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-                      id="isLartasYaEdit" required>
-                    <span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Ya</span>
-                  </label>
-
-                  <label for="isLartasTidakEdit"
-                    class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-                    <input type="radio" name="isLartas" value="0"
-                      class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-                      id="isLartasTidakEdit" required>
-                    <span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Tidak</span>
-                  </label>
-                </div>
-                <!-- End Radio -->
-              </div>
+                placeholder="Nama Pelabuhan" required>
             </div>
           </div>
           <div class="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-gray-700">
@@ -339,7 +265,7 @@
   {{-- Modal Edit end --}}
   {{-- Modal End --}}
   {{-- Sort Form --}}
-  <form id="sort-form" action="{{ route('data-master.hs') }}" class="hidden">
+  <form id="sort-form" action="{{ route('data-master.pelabuhan') }}" class="hidden">
     <input type="hidden" name="sortOption">
   </form>
   {{-- Sort Form --}}
@@ -348,7 +274,7 @@
 @push('script-bawah')
   <script>
     function checkAll(e) {
-      document.getElementsByName("kodeHS[]").forEach((x) => (x.checked = e.checked));
+      document.getElementsByName("kodePelabuhan[]").forEach((x) => (x.checked = e.checked));
     }
 
     function submitDeleteForm() {

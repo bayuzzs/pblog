@@ -18,9 +18,18 @@ class DashboardController extends Controller
         {
         if ( Auth::guard('petugas')->check() ) {
             $search     = $request->query('search');
-            $pengimpors = Pengimpor::when($search, function ($query) use ($search) {
-                return $query->where('nama', 'like', '%' . $search . '%');
-                })->orderBy('nama', 'asc')->paginate(10);
+            $sortOption = $request->query('sortOption', 'nama_asc');
+            list($filter, $sortDirection) = explode('_', $sortOption);
+           
+            $pengimpors = Pengimpor::query()
+            ->when($search, function ($query) use ($search) {
+                $query->where('nama', 'like', '%' . $search . '%');
+                })
+            ->orderBy($filter, $sortDirection)
+            ->paginate(10);
+            // $pengimpors = Pengimpor::when($search, function ($query) use ($search) {
+            //     return $query->where('nama', 'like', '%' . $search . '%');
+            //     })->orderBy('nama', 'asc')->paginate(10); omaygattt aakwoakwoakwokaowkaowkaokwa
             return view('dashboard-petugas', compact('pengimpors'));
             }
 
