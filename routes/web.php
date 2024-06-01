@@ -25,7 +25,7 @@ Route::fallback(function () {
 
 Route::middleware('auth:pengimpor,petugas')->group(function () {
 
-    Route::get('/dasbor', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/beranda', [DashboardController::class, 'index'])->name('beranda');
 
     });
 

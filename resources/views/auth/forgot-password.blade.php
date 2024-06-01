@@ -24,7 +24,7 @@
 						</a>
 						<div class="w-full rounded-lg bg-white p-6 shadow sm:max-w-md sm:p-8 md:mt-0">
 								<h1 class="mb-1 font-poppins text-lg font-bold leading-tight tracking-tight text-gray-900 md:text-xl">
-										Lupa Password?
+										Lupa Kata Sandi?
 								</h1>
 								<p class="text-sm font-light text-gray-600">Ketikkan email akun anda di bawah ini dan kami akan mengirim tautan
 										untuk
@@ -39,15 +39,15 @@
 												@endsession
 												<input type="email" name="email" id="email"
 														class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 font-poppins font-light text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm"
-														placeholder="contoh@example.com" required>
+														placeholder="contoh@email.com" required>
 
 												@error('email')
 														<p class="block text-sm text-red-600">{{ $message }}</p>
 												@enderror
 										</div>
 										<button type="submit"
-												class="w-full rounded-lg bg-blue-600 px-5 py-2.5 text-center font-poppins text-sm text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Reset
-												Password</button>
+												class="w-full rounded-lg bg-blue-600 px-5 py-2.5 text-center font-poppins text-sm text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Atur Ulang
+												Sandi</button>
 										&nbsp
 								</form>
 								<div class="text-sm font-medium text-gray-500 dark:text-gray-300">

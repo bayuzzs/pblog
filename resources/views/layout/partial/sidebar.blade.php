@@ -21,7 +21,7 @@
 														<polyline points="9 22 9 12 15 12 15 22" />
 												</svg>
 										</x-slot:icon>
-										Dashboard
+										Beranda
 								</x-nav-link>
 
 								<x-nav-link active="{{ request()->routeIs('dokumen-impor*') }}" href="{{ route('dokumen-impor') }}">
