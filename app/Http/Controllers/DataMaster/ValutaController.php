@@ -12,9 +12,22 @@ class ValutaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index(Request $request) : View
         {
-        return view('data-master.valuta');
+        $search     = $request->query('search');
+        $sortOption = $request->query('sortOption', 'kodeValuta_asc');
+
+        // Split the sortOption into filter and sortDirection
+        list($filter, $sortDirection) = explode('_', $sortOption);
+
+        $Valutas = Valuta::query()
+            ->when($search, function ($query) use ($search) {
+                $query->where('kodeValuta', 'like', '%' . $search . '%');
+                })
+            ->orderBy($filter, $sortDirection)
+            ->paginate(10);
+
+        return view('data-master.valuta', compact('Valutas'));
         }
 
     /**
@@ -30,6 +43,21 @@ class ValutaController extends Controller
      */
     public function store( Request $request )
         {
+            $validatedRequest = $request->validate([
+                'kodeValuta'              => 'required|unique:valuta|max:3',
+                'namaValuta'  => 'required',
+                'kurs' => 'required',
+            ], [
+                'kodeValuta.unique'                => 'Kode Valuta sudah terdaftar',
+                'kodeValuta.required'              => 'Kode Valuta harus diisi',
+                'kodeValuta.max'                   => 'Kode Valuta maksimal 10 karakter',
+                'namaValuta.required'              => 'Nama Valuta harus diisi',
+                'kurs.required'                    => 'kurs harus diisi',
+            ]);
+    
+            Valuta::create($validatedRequest);
+    
+            return redirect(route('data-master.valuta'))->with('success', 'Data Valuta berhasil ditambahkan');
         //
         }
 
@@ -54,14 +82,46 @@ class ValutaController extends Controller
      */
     public function update( Request $request, Valuta $valuta )
         {
+            $validatedRequest = $request->validate([
+                'kodeValuta'              => 'required|exists:valuta,kodeValuta|max:3',
+                'namaValuta'  => 'required',
+                'kurs' => 'required',
+            ], [
+                'kodeValuta.exists'                => 'Kode Valuta tidak ditemukan di database',
+                'kodeValuta.required'              => 'Kode Valuta harus diisi',
+                'kodeValuta.max'                   => 'Kode Valuta maksimal 10 karakter',
+                'namaValuta.required'              => 'Nama Valuta harus diisi',
+                'kurs.required'                    => 'Kurs harus diisi',
+            ]);
+    
+            // Find the HS model by kodeHS
+            $valuta = Valuta::where('kodeValuta', $validatedRequest['kodeValuta'])->firstOrFail();
+    
+            // Update the HS model with validated data
+            $valuta->update($validatedRequest);
+    
+            // Return a response or redirect as needed
+            return redirect()->route('data-master.valuta')->with('success', 'Data Valuta berhasil diupdate');
         //
         }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( Valuta $valuta )
+    public function destroy( Request $request )
         {
+            $validatedRequest = $request->validate([
+                'kodeValuta' => 'required|array',
+            ], [
+                'kodeValuta.required' => 'Kode Valuta harus diisi',
+            ]);
+    
+            if ( ! $validatedRequest ) {
+                return redirect()->back()->withErrors(['kodeValuta', 'Gagal Hapus Data Valuta']);
+                }
+    
+            Valuta::destroy($validatedRequest['kodeValuta']);
+            return redirect(route('data-master.valuta'))->with('success', 'Data Valuta berhasil di hapus');  
         //
         }
     }
