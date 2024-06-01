@@ -71,10 +71,10 @@ class PengimporAuthController extends Controller
     public function updateProfile( Request $request )
         {
         $request->validate(['userProfile' => 'required|image|mimes:jpeg,jpg,png|max:2048']);
-        if ( is_file(Auth::guard('pengimpor')->user()->urlProfile) ) {
-            unlink(Auth::guard('pengimpor')->user()->urlProfile);
-            }
 
+        if ( ! empty(Auth::guard('pengimpor')->user()->urlProfile) && Storage::exists('public/avatars/' . Auth::guard('pengimpor')->user()->urlProfile) ) {
+            Storage::delete('public/avatars/' . Auth::guard('pengimpor')->user()->urlProfile);
+            }
 
         $stored_file = $request->file('userProfile')->store('public/avatars');
         $nama        = pathinfo($stored_file)['basename'];

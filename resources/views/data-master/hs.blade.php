@@ -45,7 +45,7 @@
 						</div>
 						<div class="flex gap-1">
 								<!-- Select -->
-								<select onchange="submitSortForm()" name="sortOption"
+								<select onchange="submitSortForm(event)"
 										data-hs-select='{
         "placeholder": "<span class=\"inline-flex items-center\"><svg class=\"flex-shrink-0 size-3.5 me-2\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3\"/></svg></span>",
         "toggleTag": "<button type=\"button\"></button>",
@@ -338,6 +338,11 @@
 		</div>
 		{{-- Modal Edit end --}}
 		{{-- Modal End --}}
+		{{-- Sort Form --}}
+		<form id="sort-form" action="{{ route('data-master.hs') }}" class="hidden">
+				<input type="hidden" name="sortOption">
+		</form>
+		{{-- Sort Form --}}
 @endsection
 
 @push('script-bawah')
@@ -350,8 +355,12 @@
 						document.getElementById('delete-form').submit();
 				}
 
-				function submitSortForm() {
-						console.log(document.getElementById('sort-form'));
+				function submitSortForm(event) {
+						const sortForm = document.getElementById('sort-form');
+						// fill the sortOption input with current value from dropdown filter
+						sortForm.querySelector('input[name="sortOption"]').value = event.currentTarget.value;
+						// then submit the form awokawokawok
+						sortForm.submit();
 				}
 
 				function showEditModal(event) {

@@ -1,5 +1,5 @@
 <div id="application-sidebar"
-		class="hs-overlay fixed left-5 top-5 z-[60] hidden w-[260px] -translate-x-full transform rounded-t-2xl bg-white shadow-xl transition-all duration-300 [--auto-close:lg] hs-overlay-open:translate-x-0 dark:bg-gray-800 lg:bottom-0 lg:end-auto lg:block lg:translate-x-0">
+		class="hs-overlay fixed left-5 top-5 z-[60] hidden h-[95vh] w-[260px] -translate-x-full transform rounded-2xl bg-white shadow-xl transition-all duration-300 [--auto-close:lg] hs-overlay-open:translate-x-0 dark:bg-gray-800 lg:bottom-0 lg:end-auto lg:block lg:h-full lg:translate-x-0">
 		<div class="px-8 pt-7">
 				<!-- Logo -->
 				<a class="inline-block flex-none rounded-xl text-xl font-semibold focus:opacity-80 focus:outline-none"

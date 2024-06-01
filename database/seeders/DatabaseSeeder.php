@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             'email'             => 'qgN8I@example.com',
             'telepon'           => '1234567890',
         ]);
-        for ( $i = 0; $i < 50; $i++ ) {
+        for ( $i = 0; $i < 30; $i++ ) {
             do {
                 $npwp = substr(str_shuffle('123456789012343') . $i, 0, 16);
 
@@ -55,12 +55,49 @@ class DatabaseSeeder extends Seeder
             ]);
             }
 
-        for ( $i = 0; $i < 30; $i++ ) {
+        for ( $i = 10; $i < 30; $i++ ) {
             \App\Models\DataMaster\HS::create([
                 'kodeHs'              => sprintf('%010d', $i + 1),
                 'uraianBarangBahasa'  => $faker->sentence(),
                 'uraianBarangEnglish' => $faker->sentence(),
                 'isLartas'            => 0,
+            ]);
+
+            \App\Models\DataMaster\Negara::create([
+                'kodeNegara' => $faker->unique()->countryCode,
+                'namaNegara' => $faker->country,
+            ]);
+
+            \App\Models\DataMaster\Valuta::create([
+                'kodeValuta' => $faker->unique()->currencyCode,
+                'namaValuta' => $faker->currencyCode(),
+                'kurs'       => $faker->randomFloat(2, 0.1, 1.5),
+            ]);
+
+            \App\Models\DataMaster\JenisKemasan::create([
+                'kodeKemasan' => $i,
+                'namaKemasan' => $faker->word,
+            ]);
+
+            \App\Models\DataMaster\JenisDokumen::create([
+                'kodeJenisDokumen' => $i,
+                'namaDokumen'      => $faker->word,
+            ]);
+
+            \App\Models\DataMaster\SatuanBarang::create([
+                'kodeSatuanBarang' => $i,
+                'namaSatuanBarang' => $faker->word,
+            ]);
+
+            \App\Models\DataMaster\Pelabuhan::create([
+                'kodePelabuhan' => $i,
+                'namaPelabuhan' => $faker->city,
+            ]);
+
+
+            \App\Models\DataMaster\Kantor::create([
+                'kodeKantor' => $i,
+                'namaKantor' => $faker->company,
             ]);
             }
 
