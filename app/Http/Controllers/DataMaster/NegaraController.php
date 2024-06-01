@@ -102,7 +102,7 @@ class NegaraController extends Controller
             $validatedRequest = $request->validate([
             'kodeNegara' => 'required|array',
         ], [
-            'kodeNegara.required' => 'KodeNegara harus diisi',
+            'kodeNegara.required' => 'Kode Negara harus diisi',
         ]);
 
         if ( ! $validatedRequest ) {
