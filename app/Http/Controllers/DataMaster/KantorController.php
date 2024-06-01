@@ -12,9 +12,21 @@ class KantorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index(Request $request) : View
         {
-        return view('data-master.kantor');
+        $search     = $request->query('search');
+        $sortOption = $request->query('sortOption', 'kodeKantor_asc');
+
+        // Split the sortOption into filter and sortDirection
+        list($filter, $sortDirection) = explode('_', $sortOption);
+
+        $Kantors = Kantor::query()
+            ->when($search, function ($query) use ($search) {
+                $query->where('kodeKantor', 'like', '%' . $search . '%');
+                })
+            ->orderBy($filter, $sortDirection)
+            ->paginate(10);
+    return view('data-master.kantor', compact('Kantors'));
         }
 
     /**
@@ -30,6 +42,19 @@ class KantorController extends Controller
      */
     public function store( Request $request )
         {
+            $validatedRequest = $request->validate([
+                'kodeKantor'              => 'required|unique:kantor|max:6',
+                'namaKantor'  => 'required',
+            ], [
+                'kodeKantor.unique'                => 'Kode Kantor sudah terdaftar',
+                'kodeKantor.required'              => 'Kode Kantor harus diisi',
+                'kodeKantor.max'                   => 'Kode Kantor maksimal 10 karakter',
+                'namaKantor.required'            => 'Nama Kantor harus diisi',
+            ]);
+    
+            Kantor::create($validatedRequest);
+    
+            return redirect(route('data-master.kantor'))->with('success', 'Data Kantor berhasil ditambahkan');
         //
         }
 
@@ -54,14 +79,44 @@ class KantorController extends Controller
      */
     public function update( Request $request, Kantor $kantor )
         {
+            $validatedRequest = $request->validate([
+                'kodeKantor'              => 'required|exists:kantor,kodeKantor|max:6',
+                'namaKantor'  => 'required',
+            ], [
+                'kodeKantor.exists'                => 'Kode Kantor tidak ditemukan di database',
+                'kodeKantor.required'              => 'Kode Kantor harus diisi',
+                'kodeKantor.max'                   => 'Kode Kantor maksimal 6 karakter',
+                'namaKantor.required'            => 'Nama Kantor harus diisi'
+            ]);
+    
+            // Find the HS model by kodeHS
+            $kantors = Kantor::where('kodeKantor', $validatedRequest['kodeKantor'])->firstOrFail();
+    
+            // Update the HS model with validated data
+            $kantor->update($validatedRequest);
+    
+            // Return a response or redirect as needed
+            return redirect()->route('data-master.kantor')->with('success', 'Data Kantor berhasil diupdate');  
         //
         }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( Kantor $kantor )
+    public function destroy( Request $request )
         {
+            $validatedRequest = $request->validate([
+                'kodeKantor' => 'required|array',
+            ], [
+                'kodeKantor.required' => 'Kode Kantor harus diisi',
+            ]);
+    
+            if ( ! $validatedRequest ) {
+                return redirect()->back()->withErrors(['kodeKantor', 'Gagal Hapus Data Kantor']);
+                }
+    
+            Kantor::destroy($validatedRequest['kodeKantor']);
+            return redirect(route('data-master.kantor'))->with('success', 'Data Kantor berhasil di hapus');
         //
         }
     }
