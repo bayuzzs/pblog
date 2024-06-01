@@ -59,9 +59,12 @@ class HSController extends Controller
             'uraianBarangEnglish.required' => 'Uraian harus diisi',
         ]);
 
-        HS::create($validatedRequest);
-
-        return redirect(route('data-master.hs'))->with('success', 'Data HS berhasil ditambahkan');
+        try {
+            HS::create($validatedRequest);
+            return redirect(route('data-master.hs'))->with('success', 'Data HS berhasil ditambahkan');
+            } catch (\Throwable $e) {
+            return redirect()->back()->withErrors(['error' => 'Terjadi Kesalahan: ' . $e->getMessage()]);
+            }
         }
 
     /**
@@ -99,14 +102,13 @@ class HSController extends Controller
             'uraianBarangEnglish.required' => 'Uraian harus diisi',
         ]);
 
-        // Find the HS model by kodeHS
-        $hS = HS::where('kodeHS', $validatedRequest['kodeHS'])->firstOrFail();
-
-        // Update the HS model with validated data
-        $hS->update($validatedRequest);
-
-        // Return a response or redirect as needed
-        return redirect()->route('data-master.hs')->with('success', 'Data HS berhasil diupdate');
+        try {
+            $hS = HS::where('kodeHS', $validatedRequest['kodeHS'])->firstOrFail();
+            $hS->update($validatedRequest);
+            return redirect()->route('data-master.hs')->with('success', 'Data HS berhasil diupdate');
+            } catch (\Throwable $e) {
+            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+            }
         }
 
     /**
@@ -124,7 +126,11 @@ class HSController extends Controller
             return redirect()->back()->withErrors(['kodeHS', 'Gagal Hapus Data HS']);
             }
 
-        HS::destroy($validatedRequest['kodeHS']);
-        return redirect(route('data-master.hs'))->with('success', 'Data HS berhasil di hapus');
+        try {
+            HS::destroy($validatedRequest['kodeHS']);
+            return redirect(route('data-master.hs'))->with('success', 'Data HS berhasil di hapus');
+            } catch (\Throwable $th) {
+            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan: ' . $th->getMessage()]);
+            }
         }
     }

@@ -12,7 +12,7 @@ class JenisKemasanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request ) : View
+    public function index( Request $request ) : View
         {
         $search     = $request->query('search');
         $sortOption = $request->query('sortOption', 'kodeKemasan_asc');
@@ -20,13 +20,13 @@ class JenisKemasanController extends Controller
         // Split the sortOption into filter and sortDirection
         list($filter, $sortDirection) = explode('_', $sortOption);
 
-        $JenisKemasans = JenisKemasan::query()
+        $jenisKemasans = JenisKemasan::query()
             ->when($search, function ($query) use ($search) {
                 $query->where('kodeKemasan', 'like', '%' . $search . '%');
                 })
             ->orderBy($filter, $sortDirection)
             ->paginate(10);
-        return view('data-master.jenis-kemasan', compact('JenisKemasans'));
+        return view('data-master.jenis-kemasan', compact('jenisKemasans'));
         }
 
     /**
@@ -42,19 +42,19 @@ class JenisKemasanController extends Controller
      */
     public function store( Request $request )
         {
-            $validatedRequest = $request->validate([
-                'kodeKemasan'              => 'required|unique:jenis_kemasan|max:5',
-                'namaKemasan'  => 'required',
-            ], [
-                'kodeKemasan.unique'                => 'Kode Kemasan sudah terdaftar',
-                'kodeKemasan.required'              => 'Kode Kemasan harus diisi',
-                'kodeKemasan.max'                   => 'Kode Kemasan maksimal 5 karakter',
-                'namaKemasan.required'            => 'Nama kemasan harus diisi',
-            ]);
-    
-            JenisKemasan::create($validatedRequest);
-    
-            return redirect(route('data-master.jenis-kemasan'))->with('success', 'Data Kemasan berhasil ditambahkan');
+        $validatedRequest = $request->validate([
+            'kodeKemasan' => 'required|unique:jenis_kemasan|max:5',
+            'namaKemasan' => 'required',
+        ], [
+            'kodeKemasan.unique'   => 'Kode Kemasan sudah terdaftar',
+            'kodeKemasan.required' => 'Kode Kemasan harus diisi',
+            'kodeKemasan.max'      => 'Kode Kemasan maksimal 5 karakter',
+            'namaKemasan.required' => 'Nama kemasan harus diisi',
+        ]);
+
+        JenisKemasan::create($validatedRequest);
+
+        return redirect(route('data-master.jenis-kemasan'))->with('success', 'Data Kemasan berhasil ditambahkan');
         //
         }
 
@@ -79,25 +79,25 @@ class JenisKemasanController extends Controller
      */
     public function update( Request $request, JenisKemasan $jenisKemasan )
         {
-            $validatedRequest = $request->validate([
-                'kodeKemasan'              => 'required|exists:jenis_kemasan,kodeKemasan|max:5',
-                'namaKemasan'  => 'required',
-            ], [
-                'kodeKemasan.exists'                => 'Kode Kemasan tidak ditemukan di database',
-                'kodeKemasan.required'              => 'Kode Kemasan harus diisi',
-                'kodeKemasan.max'                   => 'Kode Kemasan maksimal 10 karakter',
-                'namaKemasan.required'            => 'Nama Kemasan harus diisi',
-            ]);
-    
-            // Find the HS model by kodeHS
+        $validatedRequest = $request->validate([
+            'kodeKemasan' => 'required|exists:jenis_kemasan,kodeKemasan|max:5',
+            'namaKemasan' => 'required',
+        ], [
+            'kodeKemasan.exists'   => 'Kode Kemasan tidak ditemukan di database',
+            'kodeKemasan.required' => 'Kode Kemasan harus diisi',
+            'kodeKemasan.max'      => 'Kode Kemasan maksimal 10 karakter',
+            'namaKemasan.required' => 'Nama Kemasan harus diisi',
+        ]);
+
+        try {
             $jenis_kemasan = JenisKemasan::where('kodeKemasan', $validatedRequest['kodeKemasan'])->firstOrFail();
-    
-            // Update the HS model with validated data
             $jenis_kemasan->update($validatedRequest);
-    
-            // Return a response or redirect as needed
             return redirect()->route('data-master.jenis-kemasan')->with('success', 'Data Kemasan berhasil diupdate');
-        //
+
+            } catch (\Exception $e) {
+            return redirect()->route('data-master.jenis-kemasan')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+
+            }
         }
 
     /**
@@ -105,18 +105,23 @@ class JenisKemasanController extends Controller
      */
     public function destroy( Request $request )
         {
-            $validatedRequest = $request->validate([
-                'kodeKemasan' => 'required|array',
-            ], [
-                'kodeKemasan.required' => 'Kode Kemasan harus diisi',
-            ]);
-    
-            if ( ! $validatedRequest ) {
-                return redirect()->back()->withErrors(['kodeKemasan', 'Gagal Hapus Data Kemasan']);
-                }
-    
+        $validatedRequest = $request->validate([
+            'kodeKemasan' => 'required|array',
+        ], [
+            'kodeKemasan.required' => 'Kode Kemasan harus diisi',
+        ]);
+
+        if ( ! $validatedRequest ) {
+            return redirect()->back()->withErrors(['kodeKemasan', 'Gagal Hapus Data Kemasan']);
+            }
+
+        try {
             JenisKemasan::destroy($validatedRequest['kodeKemasan']);
-            return redirect(route('data-master.jenis-kemasan'))->with('success', 'Data Kemasan berhasil di hapus');
-        //
+            return redirect(route('data-master.jenis-kemasan'))->with('success', 'Data Kemasan berhasil dihapus');
+
+            } catch (\Exception $e) {
+            return redirect(route('data-master.jenis-kemasan'))->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+
+            }
         }
     }

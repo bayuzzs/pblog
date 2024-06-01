@@ -12,7 +12,7 @@ class PelabuhanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request) : View
+    public function index( Request $request ) : View
         {
         $search     = $request->query('search');
         $sortOption = $request->query('sortOption', 'kodePelabuhan_asc');
@@ -20,14 +20,14 @@ class PelabuhanController extends Controller
         // Split the sortOption into filter and sortDirection
         list($filter, $sortDirection) = explode('_', $sortOption);
 
-        $Pelabuhans = Pelabuhan::query()
+        $pelabuhans = Pelabuhan::query()
             ->when($search, function ($query) use ($search) {
                 $query->where('kodePelabuhan', 'like', '%' . $search . '%');
                 })
             ->orderBy($filter, $sortDirection)
             ->paginate(10);
 
-        return view('data-master.pelabuhan', compact('Pelabuhans'));
+        return view('data-master.pelabuhan', compact('pelabuhans'));
         }
 
     /**
@@ -43,20 +43,22 @@ class PelabuhanController extends Controller
      */
     public function store( Request $request )
         {
-            $validatedRequest = $request->validate([
-                'kodePelabuhan'              => 'required|unique:pelabuhan|max:4',
-                'namaPelabuhan'  => 'required',
-            ], [
-                'kodePelabuhan.unique'                => 'Kode Pelabuhan sudah terdaftar',
-                'kodePelabuhan.required'              => 'Kode Pelabuhan harus diisi',
-                'kodePelabuhan.max'                   => 'Kode Pelabuhan maksimal 10 karakter',
-                'namaPelabuhan.required'              => 'Nama Pelabuhan harus diisi',
-            ]);
-    
+        $validatedRequest = $request->validate([
+            'kodePelabuhan' => 'required|unique:pelabuhan|max:4',
+            'namaPelabuhan' => 'required',
+        ], [
+            'kodePelabuhan.unique'   => 'Kode Pelabuhan sudah terdaftar',
+            'kodePelabuhan.required' => 'Kode Pelabuhan harus diisi',
+            'kodePelabuhan.max'      => 'Kode Pelabuhan maksimal 10 karakter',
+            'namaPelabuhan.required' => 'Nama Pelabuhan harus diisi',
+        ]);
+
+        try {
             Pelabuhan::create($validatedRequest);
-    
             return redirect(route('data-master.pelabuhan'))->with('success', 'Data Pelabuhan berhasil ditambahkan');
-        //
+            } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+            }
         }
 
     /**
@@ -80,25 +82,23 @@ class PelabuhanController extends Controller
      */
     public function update( Request $request, Pelabuhan $pelabuhan )
         {
-            $validatedRequest = $request->validate([
-                'kodePelabuhan'              => 'required|exists:pelabuhan,kodePelabuhan|max:4',
-                'namaPelabuhan'  => 'required',
-            ], [
-                'kodePelabuhan.exists'                => 'Kode Pelabuhan tidak ditemukan di database',
-                'kodePelabuhan.required'              => 'Kode Pelabuhan harus diisi',
-                'kodePelabuhan.max'                   => 'Kode Pelabuhan maksimal 4 karakter',
-                'namaPelabuhan.required'            => 'Nama Pelabuhan harus diisi',
-            ]);
-    
-            // Find the HS model by kodeHS
+        $validatedRequest = $request->validate([
+            'kodePelabuhan' => 'required|exists:pelabuhan,kodePelabuhan|max:4',
+            'namaPelabuhan' => 'required',
+        ], [
+            'kodePelabuhan.exists'   => 'Kode Pelabuhan tidak ditemukan di database',
+            'kodePelabuhan.required' => 'Kode Pelabuhan harus diisi',
+            'kodePelabuhan.max'      => 'Kode Pelabuhan maksimal 4 karakter',
+            'namaPelabuhan.required' => 'Nama Pelabuhan harus diisi',
+        ]);
+
+        try {
             $pelabuhan = Pelabuhan::where('kodePelabuhan', $validatedRequest['kodePelabuhan'])->firstOrFail();
-    
-            // Update the HS model with validated data
             $pelabuhan->update($validatedRequest);
-    
-            // Return a response or redirect as needed
             return redirect()->route('data-master.pelabuhan')->with('success', 'Data Pelabuhan berhasil diupdate');
-        //
+            } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+            }
         }
 
     /**
@@ -106,18 +106,21 @@ class PelabuhanController extends Controller
      */
     public function destroy( Request $request )
         {
-            $validatedRequest = $request->validate([
-                'kodePelabuhan' => 'required|array',
-            ], [
-                'kodePelabuhan.required' => 'Kode Pelabuhan harus diisi',
-            ]);
-    
-            if ( ! $validatedRequest ) {
-                return redirect()->back()->withErrors(['kodePelabuhan', 'Gagal Hapus Data Pelabuhan']);
-                }
-    
+        $validatedRequest = $request->validate([
+            'kodePelabuhan' => 'required|array',
+        ], [
+            'kodePelabuhan.required' => 'Kode Pelabuhan harus diisi',
+        ]);
+
+        if ( ! $validatedRequest ) {
+            return redirect()->back()->withErrors(['kodePelabuhan', 'Gagal Hapus Data Pelabuhan']);
+            }
+
+        try {
             Pelabuhan::destroy($validatedRequest['kodePelabuhan']);
             return redirect(route('data-master.pelabuhan'))->with('success', 'Data Pelabuhan berhasil di hapus');
-        //
+            } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+            }
         }
     }
