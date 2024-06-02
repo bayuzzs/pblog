@@ -69,7 +69,7 @@
 														<ul class="space-y-1.5">
 																<li>
 																		@auth('pengimpor')
-																				<a class="{{ request()->routeIs('settings') ? 'bg-gray-100 dark:bg-gray-700' : '' }} flex items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+																				<a class="{{ request()->routeIs('settings') ? 'bg-gray-100 dark:bg-gray-700' : '' }} flex items-center gap-x-3.5 rounded-lg px-3 py-3 text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
 																						href="{{ route('settings') }}">
 																						<iconify-icon icon="uil:setting" class="text-lg"></iconify-icon>
 																						Pengaturan Akun
@@ -77,7 +77,7 @@
 																		@endauth
 																</li>
 																<li>
-																		<a class="flex items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+																		<a class="flex items-center gap-x-3.5 rounded-lg px-3 py-3 text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
 																				href="{{ route('auth.logout') }}">
 																				<iconify-icon icon="material-symbols:logout" class="text-lg"></iconify-icon>
 																				Keluar

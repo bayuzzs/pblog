@@ -58,10 +58,10 @@
 										class="!left-0 hidden">
 										{{-- Let this choose stand alone --}}
 										<option value="">Choose</option>
-										<x-select-option valueInput="kodeValuta_asc" requestParam="sortOption">Kode Valuta ↑</x-select-option>
-										<x-select-option valueInput="kodeValuta_desc" requestParam="sortOption">Kode Valuta ↓</x-select-option>
-										<x-select-option valueInput="namaValuta_asc" requestParam="sortOption">Nama Valuta ↑</x-select-option>
-										<x-select-option valueInput="namaValuta_desc" requestParam="sortOption">Nama Valuta ↓</x-select-option>
+										<x-filter-option valueInput="kodeValuta_asc" requestParam="sortOption">Kode Valuta ↑</x-filter-option>
+										<x-filter-option valueInput="kodeValuta_desc" requestParam="sortOption">Kode Valuta ↓</x-filter-option>
+										<x-filter-option valueInput="namaValuta_asc" requestParam="sortOption">Nama Valuta ↑</x-filter-option>
+										<x-filter-option valueInput="namaValuta_desc" requestParam="sortOption">Nama Valuta ↓</x-filter-option>
 								</select>
 								<!-- End Select -->
 								<button type="submit"
@@ -134,7 +134,7 @@
 																		<tr>
 																				<td colspan="5">
 																						<div
-																								class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-200">
+																								class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-400">
 																								<iconify-icon icon="iwwa:box" class="text-4xl"></iconify-icon>
 																								Tidak ada data Valuta
 																						</div>

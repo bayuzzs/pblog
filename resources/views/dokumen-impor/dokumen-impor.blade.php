@@ -9,7 +9,7 @@
 						</p>
 						<div class="hs-dropdown relative inline-flex">
 								<button id="hs-dropdown-delete" type="button"
-										class="hs-dropdown-toggle inline-flex items-center rounded-full px-1 py-1 text-gray-800 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-800">
+										class="hs-dropdown-toggle inline-flex items-center rounded-full px-1 py-1 text-gray-800 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700">
 										<iconify-icon icon="charm:menu-kebab" class="text-xl"></iconify-icon>
 								</button>
 								<div
@@ -58,13 +58,13 @@
 										class="!left-0 hidden">
 										{{-- Let this choose stand alone --}}
 										<option value="">Choose</option>
-										<x-select-option valueInput="kodeHS_asc" requestParam="sortOption">Kode HS</x-select-option>
-										<x-select-option valueInput="kodeHS_desc" requestParam="sortOption">Kode HS (DESC)</x-select-option>
-										<x-select-option valueInput="uraianBarangBahasa_asc" requestParam="sortOption">Uraian Barang</x-select-option>
-										<x-select-option valueInput="uraianBarangBahasa_desc" requestParam="sortOption">Uraian Barang
-												(DESC)</x-select-option>
-										<x-select-option valueInput="isLartas_asc" requestParam="sortOption">Terkena Lartas</x-select-option>
-										<x-select-option valueInput="isLartas_desc" requestParam="sortOption">Tidak Terkena Lartas</x-select-option>
+										<x-filter-option valueInput="kodeHS_asc" requestParam="sortOption">Kode HS</x-filter-option>
+										<x-filter-option valueInput="kodeHS_desc" requestParam="sortOption">Kode HS (DESC)</x-filter-option>
+										<x-filter-option valueInput="uraianBarangBahasa_asc" requestParam="sortOption">Uraian Barang</x-filter-option>
+										<x-filter-option valueInput="uraianBarangBahasa_desc" requestParam="sortOption">Uraian Barang
+												(DESC)</x-filter-option>
+										<x-filter-option valueInput="isLartas_asc" requestParam="sortOption">Terkena Lartas</x-filter-option>
+										<x-filter-option valueInput="isLartas_desc" requestParam="sortOption">Tidak Terkena Lartas</x-filter-option>
 								</select>
 								<!-- End Select -->
 								<button type="submit"
@@ -144,7 +144,7 @@
 																<tr>
 																		<td colspan="5">
 																				<div
-																						class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-200">
+																						class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-400">
 																						<iconify-icon icon="iwwa:box" class="text-4xl"></iconify-icon>
 																						Tidak ada Dokumen Impor
 																				</div>
@@ -177,14 +177,14 @@
 		{{-- Modal Add Start --}}
 		<div id="hs-add-modal"
 				class="hs-overlay size-full pointer-events-none fixed start-0 top-0 z-[80] hidden overflow-y-auto overflow-x-hidden opacity-0 transition-all hs-overlay-open:opacity-100 hs-overlay-open:duration-500">
-				<div class="m-3 sm:mx-auto sm:w-full sm:max-w-lg">
+				<div class="mt-20 sm:mx-auto sm:w-full sm:max-w-2xl">
 						<form action="{{ route('data-master.hs') }}" method="POST">
 								@csrf
 								<div
 										class="pointer-events-auto flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-gray-700/70">
 										<div class="flex items-center justify-between border-b px-4 py-3 dark:border-gray-700">
 												<h3 class="font-bold text-gray-800 dark:text-white">
-														Tambah Data HS
+														Dokumen Baru
 												</h3>
 												<button type="button"
 														class="size-7 flex items-center justify-center rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-gray-700"
@@ -199,43 +199,44 @@
 												</button>
 										</div>
 										<div class="custom-scrollbar overflow-y-auto p-4">
-												<div class="grid grid-cols-4 items-center gap-y-3">
-														<label for="kodeHS" class="text-sm dark:text-gray-50">Kode HS</label>
-														<input type="number" id="kodeHS" name="kodeHS"
-																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-																placeholder="00000000" required>
-
-														<label for="uraianBarang" class="text-sm dark:text-gray-50">Uraian Barang (Bahasa)</label>
-														<input type="text" id="uraianBarang" name="uraianBarangBahasa"
-																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-																placeholder="Uraian dalam bhs Indonesia" required>
-
-														<label for="uraianBarangEnglish" class="text-sm dark:text-gray-50">Uraian Barang (English)</label>
-														<input type="text" id="uraianBarangEnglish" name="uraianBarangEnglish"
-																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-																placeholder="Uraian dalam bhs Inggris" required>
-
-														<label for="isLartas" class="text-sm dark:text-gray-50">Terkena Lartas?</label>
-														<div class="col-span-3">
-																<!-- Radio -->
-																<div class="grid gap-2 sm:grid-cols-2">
-																		<label for="isLartasYa"
-																				class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-																				<input type="radio" name="isLartas" value="1"
-																						class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-																						id="isLartasYa" required>
-																				<span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Ya</span>
-																		</label>
-
-																		<label for="isLartasTidak"
-																				class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-																				<input type="radio" name="isLartas" value="0"
-																						class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-																						id="isLartasTidak" required>
-																				<span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Tidak</span>
-																		</label>
+												<div class="space-y-5">
+														<div class="grid grid-cols-5 items-center gap-5">
+																<div class="col-span-2">
+																		<p class="text-sm dark:text-gray-200 md:text-base">Jenis Pemberitahuan</p>
 																</div>
-																<!-- End Radio -->
+																<div class="col-span-3">
+																		<x-select name="jenisPib">
+																				<option value="1" selected>PEMASUKAN</option>
+																		</x-select>
+																</div>
+														</div>
+														<div class="grid grid-cols-5 items-center gap-5">
+																<div class="col-span-2">
+																		<p class="text-sm dark:text-gray-200 md:text-base">Asal Barang</p>
+																</div>
+																<div class="col-span-3">
+																		<x-select name="jenisPib">
+																				<option value="1" selected>1 - LUAR DAERAH PABEAN</option>
+																		</x-select>
+																</div>
+														</div>
+														<div class="grid grid-cols-5 items-center gap-5">
+																<div class="col-span-2">
+																		<p class="text-sm dark:text-gray-200 md:text-base">Tujuan Barang</p>
+																</div>
+																<div class="col-span-3">
+																		<x-select name="jenisPib">
+																				<option value="1" selected>DALAM DAERAH PABEAN</option>
+																		</x-select>
+																</div>
+														</div>
+														<div class="grid grid-cols-5 items-center gap-5">
+																<div class="col-span-2">
+																		<p class="text-sm dark:text-gray-200 md:text-base">Jenis Dokumen</p>
+																</div>
+																<div class="col-span-3">
+																		<p class="text-sm font-semibold text-gray-800 dark:text-gray-200 md:text-base">PIB/IMPOR</p>
+																</div>
 														</div>
 												</div>
 										</div>
@@ -243,11 +244,11 @@
 												<button type="button"
 														class="inline-flex items-center gap-x-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800"
 														data-hs-overlay="#hs-add-modal">
-														Tutup
+														Batal
 												</button>
 												<button type="submit"
 														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
-														Tambah
+														Selanjutnya
 												</button>
 										</div>
 								</div>

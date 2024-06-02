@@ -25,11 +25,11 @@
 										class="block w-full rounded-lg border border-gray-300 bg-transparent p-2 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700"
 										placeholder="Cari akun pengimpor" value="{{ request('search') }}">
 						</div>
-						
+
 						<div class="flex gap-1">
-							<!-- Select -->
-							<select onchange="submitSortForm(event)"
-								data-hs-select='{
+								<!-- Select -->
+								<select onchange="submitSortForm(event)"
+										data-hs-select='{
 							"placeholder": "<span class=\"inline-flex items-center\"><svg class=\"flex-shrink-0 size-3.5 me-2\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3\"/></svg></span>",
 							"toggleTag": "<button type=\"button\"></button>",
 							"toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-2.5 px-4 pe-9 flex text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:border-blue-500 focus:ring-blue-500 before:absolute before:inset-0 before:z-[1] dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400",
@@ -38,20 +38,20 @@
 							"optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"flex-shrink-0 size-3.5 text-blue-600 dark:text-blue-500\" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
 							"extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"flex-shrink-0 size-3.5 text-gray-500 dark:text-gray-500\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
 					}'
-								class="!left-0 hidden">
-								{{-- Let this choose stand alone --}}
-								<option value="">Choose</option>
-								<x-select-option valueInput="nama_asc" requestParam="sortOption">Pengimpor ↑</x-select-option>
-								<x-select-option valueInput="nama_desc" requestParam="sortOption">Pengimpor ↓</x-select-option>
-								<x-select-option valueInput="npwp_asc" requestParam="sortOption">Nomor NPWP ↑</x-select-option>
-								<x-select-option valueInput="npwp_desc" requestParam="sortOption">Nomor NPWP ↓
-									</x-select-option>
-								<x-select-option valueInput="namaPerusahaan_asc" requestParam="sortOption">Perusahaan ↑</x-select-option>
-								<x-select-option valueInput="namaPerusahaan_desc" requestParam="sortOption">Perusahaan ↓</x-select-option>
-							</select>
-							<!-- End Select -->
-							<button type="submit"
-								class="rounded-lg bg-blue-700 px-7 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Cari</button>
+										class="!left-0 hidden">
+										{{-- Let this choose stand alone --}}
+										<option value="">Choose</option>
+										<x-filter-option valueInput="nama_asc" requestParam="sortOption">Pengimpor ↑</x-filter-option>
+										<x-filter-option valueInput="nama_desc" requestParam="sortOption">Pengimpor ↓</x-filter-option>
+										<x-filter-option valueInput="npwp_asc" requestParam="sortOption">Nomor NPWP ↑</x-filter-option>
+										<x-filter-option valueInput="npwp_desc" requestParam="sortOption">Nomor NPWP ↓
+										</x-filter-option>
+										<x-filter-option valueInput="namaPerusahaan_asc" requestParam="sortOption">Perusahaan ↑</x-filter-option>
+										<x-filter-option valueInput="namaPerusahaan_desc" requestParam="sortOption">Perusahaan ↓</x-filter-option>
+								</select>
+								<!-- End Select -->
+								<button type="submit"
+										class="rounded-lg bg-blue-700 px-7 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Cari</button>
 						</div>
 				</form>
 				{{-- Search bar end --}}
@@ -110,7 +110,7 @@
 																		<tr>
 																				<td colspan="4">
 																						<div
-																								class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-200">
+																								class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-400">
 																								<iconify-icon icon="iwwa:box" class="text-4xl"></iconify-icon>
 																								Tidak ada akun pengimpor
 																						</div>
@@ -125,21 +125,19 @@
 				</div>
 				{{-- Table end --}}
 				<form id="sort-form" action="{{ route('dashboard') }}" class="hidden">
-					<input type="hidden" name="sortOption">
+						<input type="hidden" name="sortOption">
 				</form>
 				@push('script-bawah')
-				<script>
-					
-					function submitSortForm(event) {
-						const sortForm = document.getElementById('sort-form');
-						// fill the sortOption input with current value from dropdown filter
-						sortForm.querySelector('input[name="sortOption"]').value = event.currentTarget.value;
-						// then submit the form awokawokawok
-						sortForm.submit();
-					}
-			
-				</script>
-			@endpush
+						<script>
+								function submitSortForm(event) {
+										const sortForm = document.getElementById('sort-form');
+										// fill the sortOption input with current value from dropdown filter
+										sortForm.querySelector('input[name="sortOption"]').value = event.currentTarget.value;
+										// then submit the form awokawokawok
+										sortForm.submit();
+								}
+						</script>
+				@endpush
 				<!-- Pagination -->
 				@if ($pengimpors->hasPages())
 						<div class="mt-5 flex items-center justify-between px-3">

@@ -2,7 +2,7 @@
 
 @section('main-content')
 		<div
-				class="custom-scrollbar h-[calc(100vh-150px)] w-full overflow-auto rounded-2xl bg-white p-5 shadow-xl dark:bg-gray-800">
+				class="custom-y-scrollbar h-[calc(100vh-150px)] w-full overflow-auto rounded-2xl bg-white p-5 shadow-xl dark:bg-gray-800">
 				<div class="flex justify-between">
 						<p class="mb-1 font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-200 md:text-3xl">
 								Daftar Data HS
@@ -58,13 +58,13 @@
 										class="!left-0 hidden">
 										{{-- Let this choose stand alone --}}
 										<option value="">Choose</option>
-										<x-select-option valueInput="kodeHS_asc" requestParam="sortOption">Kode HS ↑</x-select-option>
-										<x-select-option valueInput="kodeHS_desc" requestParam="sortOption">Kode HS ↓</x-select-option>
-										<x-select-option valueInput="uraianBarangBahasa_asc" requestParam="sortOption">Uraian Barang ↑</x-select-option>
-										<x-select-option valueInput="uraianBarangBahasa_desc" requestParam="sortOption">Uraian Barang ↓
-										</x-select-option>
-										<x-select-option valueInput="isLartas_asc" requestParam="sortOption">Tidak Terkena Lartas </x-select-option>
-										<x-select-option valueInput="isLartas_desc" requestParam="sortOption">Terkena Lartas </x-select-option>
+										<x-filter-option valueInput="kodeHS_asc" requestParam="sortOption">Kode HS ↑</x-filter-option>
+										<x-filter-option valueInput="kodeHS_desc" requestParam="sortOption">Kode HS ↓</x-filter-option>
+										<x-filter-option valueInput="uraianBarangBahasa_asc" requestParam="sortOption">Uraian Barang ↑</x-filter-option>
+										<x-filter-option valueInput="uraianBarangBahasa_desc" requestParam="sortOption">Uraian Barang ↓
+										</x-filter-option>
+										<x-filter-option valueInput="isLartas_asc" requestParam="sortOption">Tidak Terkena Lartas </x-filter-option>
+										<x-filter-option valueInput="isLartas_desc" requestParam="sortOption">Terkena Lartas </x-filter-option>
 								</select>
 								<!-- End Select -->
 								<button type="submit"
@@ -85,7 +85,7 @@
 				<form action="{{ route('data-master.hs') }}" method="POST" class="flex flex-col" id="delete-form" method="POST">
 						@csrf
 						@method('DELETE')
-						<div class="custom-scrollbar -m-1.5 overflow-x-auto">
+						<div class="custom-y-scrollbar -m-1.5 overflow-x-auto">
 								<div class="inline-block min-w-full p-1.5 align-middle">
 										<div class="overflow-hidden rounded-lg border shadow dark:border-gray-700 dark:shadow-gray-900">
 												<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -144,7 +144,7 @@
 																		<tr>
 																				<td colspan="5">
 																						<div
-																								class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-200">
+																								class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-400">
 																								<iconify-icon icon="iwwa:box" class="text-4xl"></iconify-icon>
 																								Tidak ada data HS
 																						</div>
@@ -198,7 +198,7 @@
 														</svg>
 												</button>
 										</div>
-										<div class="custom-scrollbar overflow-y-auto p-4">
+										<div class="custom-y-scrollbar overflow-y-auto p-4">
 												<div class="grid grid-cols-4 items-center gap-y-3">
 														<label for="kodeHS" class="text-sm dark:text-gray-50">Kode HS</label>
 														<input type="number" id="kodeHS" name="kodeHS"
@@ -280,7 +280,7 @@
 														</svg>
 												</button>
 										</div>
-										<div class="custom-scrollbar overflow-y-auto p-4">
+										<div class="custom-y-scrollbar overflow-y-auto p-4">
 												<div class="grid grid-cols-4 items-center gap-y-3">
 														<label for="kodeHS" class="text-sm dark:text-gray-50">Kode HS</label>
 														<input type="number" id="kodeHS" name="kodeHS"

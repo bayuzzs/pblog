@@ -9,20 +9,35 @@
 						</p>
 						<hr class="w-full dark:border-gray-700" />
 				</div>
-				<div class="border-b-2 border-gray-200 dark:border-gray-700">
-						<nav class="-mb-0.5 flex space-x-6 px-5">
-								<a class="{{ request()->routeIs('dokumen-impor.header') ? 'dokumen-impor-nav-active' : '' }} inline-flex items-center gap-2 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm text-gray-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none dark:text-gray-500 dark:hover:text-blue-500"
-										href="{{ route('dokumen-impor.header', ['nomorAju' => request()->route('nomorAju')]) }}">
+				<div class="custom-scrollbar mb-5 overflow-x-auto overflow-y-hidden border-b-2 border-gray-200 dark:border-gray-700">
+						<nav class="flex space-x-6 px-5">
+								<x-nav-tab routeName="dokumen-impor.header">
 										Header
-								</a>
-								<a class="{{ request()->routeIs('dokumen-impor.entitas') ? 'dokumen-impor-nav-active' : '' }} inline-flex items-center gap-2 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm text-gray-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none dark:text-gray-500 dark:hover:text-blue-500"
-										href="{{ route('dokumen-impor.entitas', ['nomorAju' => request()->route('nomorAju')]) }}" aria-current="page">
+								</x-nav-tab>
+								<x-nav-tab routeName="dokumen-impor.entitas">
 										Entitas
-								</a>
-								<a class="{{ request()->routeIs('dokumen-impor.dokumen-pendukung') ? 'dokumen-impor-nav-active' : '' }} inline-flex items-center gap-2 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm text-gray-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none dark:text-gray-500 dark:hover:text-blue-500"
-										href="{{ route('dokumen-impor.dokumen-pendukung', ['nomorAju' => request()->route('nomorAju')]) }}">
+								</x-nav-tab>
+								<x-nav-tab routeName="dokumen-impor.dokumen-pendukung">
 										Dokumen Pendukung
-								</a>
+								</x-nav-tab>
+								<x-nav-tab routeName="dokumen-impor.pengangkutan">
+										Pengangkutan
+								</x-nav-tab>
+								<x-nav-tab routeName="dokumen-impor.kemasan-kontainer">
+										Kemasan & Kontainer
+								</x-nav-tab>
+								<x-nav-tab routeName="dokumen-impor.transaksi">
+										Transaksi
+								</x-nav-tab>
+								<x-nav-tab routeName="dokumen-impor.barang">
+										Barang
+								</x-nav-tab>
+								<x-nav-tab routeName="dokumen-impor.pungutan">
+										Pungutan
+								</x-nav-tab>
+								<x-nav-tab routeName="dokumen-impor.pernyataan">
+										Pernyataan
+								</x-nav-tab>
 						</nav>
 				</div>
 				@yield('dokumen-impor-content')

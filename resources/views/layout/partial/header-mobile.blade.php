@@ -1,5 +1,5 @@
 <div
-		class="inset-x-0 top-5 z-20 rounded-2xl bg-white px-4 shadow-md dark:border-gray-700 dark:bg-gray-800 sm:px-6 md:px-8 lg:hidden lg:shadow-xl">
+		class="custom-scrollbar inset-x-0 top-5 z-20 overflow-x-auto rounded-2xl bg-white px-4 shadow-md dark:border-gray-700 dark:bg-gray-800 sm:px-6 md:px-8 lg:hidden lg:shadow-xl">
 		<div class="flex items-center justify-between py-2">
 				<x-breadcumb />
 

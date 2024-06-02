@@ -58,14 +58,14 @@
 										class="!left-0 hidden">
 										{{-- Let this choose stand alone --}}
 										<option value="">Choose</option>
-										<x-select-option valueInput="kodeSatuanBarang_asc" requestParam="sortOption">Kode Satuan Barang
-												↑</x-select-option>
-										<x-select-option valueInput="kodeSatuanBarang_desc" requestParam="sortOption">Kode Satuan Barang
-												↓</x-select-option>
-										<x-select-option valueInput="namaSatuanBarang_asc" requestParam="sortOption">Nama Satuan Barang
-												↑</x-select-option>
-										<x-select-option valueInput="namaSatuanBarang_desc" requestParam="sortOption">Nama Satuan Barang
-												↓</x-select-option>
+										<x-filter-option valueInput="kodeSatuanBarang_asc" requestParam="sortOption">Kode Satuan Barang
+												↑</x-filter-option>
+										<x-filter-option valueInput="kodeSatuanBarang_desc" requestParam="sortOption">Kode Satuan Barang
+												↓</x-filter-option>
+										<x-filter-option valueInput="namaSatuanBarang_asc" requestParam="sortOption">Nama Satuan Barang
+												↑</x-filter-option>
+										<x-filter-option valueInput="namaSatuanBarang_desc" requestParam="sortOption">Nama Satuan Barang
+												↓</x-filter-option>
 								</select>
 								<!-- End Select -->
 								<button type="submit"
@@ -133,7 +133,7 @@
 																		<tr>
 																				<td colspan="5">
 																						<div
-																								class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-200">
+																								class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-400">
 																								<iconify-icon icon="iwwa:box" class="text-4xl"></iconify-icon>
 																								Tidak ada data Satuan Barang
 																						</div>
