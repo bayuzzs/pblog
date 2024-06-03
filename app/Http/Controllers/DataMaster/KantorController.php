@@ -28,6 +28,30 @@ class KantorController extends Controller
             ->paginate(10);
         return view('data-master.kantor', compact('kantors'));
         }
+    /**
+     * Listing all of resource
+     */
+    public function list( Request $request )
+        {
+        try {
+            $kodeKantor = $request->query('kodeKantor');
+            $limit      = $request->query('limit', 10);
+
+            $kantors = Kantor::query()
+                ->when($kodeKantor, function ($query) use ($kodeKantor) {
+                    $query->where('kodeKantor', 'like', '%' . $kodeKantor . '%');
+                    })
+                ->limit($limit)
+                ->get();
+
+            return response()->json($kantors);
+            } catch (\Exception $e) {
+            return response()->json([
+                'error'   => 'Failed to retrieve resources',
+                'message' => $e->getMessage()
+            ], 500);
+            }
+        }
 
     /**
      * Show the form for creating a new resource.

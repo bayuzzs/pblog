@@ -30,6 +30,31 @@ class HSController extends Controller
         return view('data-master.hs', compact('HSs'));
         }
 
+    /**
+     * Listing all of resource
+     */
+    public function list( Request $request )
+        {
+        try {
+            $kodeHS = $request->query('kodeHS');
+            $limit  = $request->query('limit', 10);
+
+            $HSs = HS::query()
+                ->when($kodeHS, function ($query) use ($kodeHS) {
+                    $query->where('kodeHS', 'like', '%' . $kodeHS . '%');
+                    })
+                ->limit($limit)
+                ->get();
+
+            return response()->json($HSs);
+            } catch (\Exception $e) {
+            return response()->json([
+                'error'   => 'Failed to retrieve resources',
+                'message' => $e->getMessage()
+            ], 500);
+            }
+        }
+
 
 
     /**
@@ -49,6 +74,8 @@ class HSController extends Controller
             'kodeHS'              => 'required|unique:hs|max:10',
             'uraianBarangBahasa'  => 'required',
             'uraianBarangEnglish' => 'required',
+            'pphApi'              => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'pphNonApi'           => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
             'isLartas'            => 'required',
         ], [
             'kodeHS.unique'                => 'Kode HS sudah terdaftar',
@@ -57,7 +84,12 @@ class HSController extends Controller
             'isLartas.required'            => 'Lartas harus diisi',
             'uraianBarangBahasa.required'  => 'Uraian harus diisi',
             'uraianBarangEnglish.required' => 'Uraian harus diisi',
+            'pphApi.required'              => 'PPH API harus diisi',
+            'pphApi.regex'                 => 'PPH API harus berupa angka dengan maksimal dua angka di belakang koma',
+            'pphNonApi.required'           => 'PPH Non-API harus diisi',
+            'pphNonApi.regex'              => 'PPH Non-API harus berupa angka dengan maksimal dua angka di belakang koma',
         ]);
+
 
         try {
             HS::create($validatedRequest);
@@ -89,17 +121,23 @@ class HSController extends Controller
     public function update( Request $request, HS $hS )
         {
         $validatedRequest = $request->validate([
-            'kodeHS'              => 'required|exists:hs,kodeHS|max:10',
+            'kodeHS'              => 'required|exists:hs|max:10',
             'uraianBarangBahasa'  => 'required',
             'uraianBarangEnglish' => 'required',
+            'pphApi'              => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'pphNonApi'           => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
             'isLartas'            => 'required',
         ], [
-            'kodeHS.exists'                => 'Kode HS tidak ditemukan di database',
+            'kodeHS.unique'                => 'Kode HS sudah terdaftar',
             'kodeHS.required'              => 'Kode HS harus diisi',
             'kodeHS.max'                   => 'Kode HS maksimal 10 karakter',
             'isLartas.required'            => 'Lartas harus diisi',
             'uraianBarangBahasa.required'  => 'Uraian harus diisi',
             'uraianBarangEnglish.required' => 'Uraian harus diisi',
+            'pphApi.required'              => 'PPH API harus diisi',
+            'pphApi.regex'                 => 'PPH API harus berupa angka dengan maksimal dua angka di belakang koma',
+            'pphNonApi.required'           => 'PPH Non-API harus diisi',
+            'pphNonApi.regex'              => 'PPH Non-API harus berupa angka dengan maksimal dua angka di belakang koma',
         ]);
 
         try {

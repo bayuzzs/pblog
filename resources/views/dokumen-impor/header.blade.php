@@ -2,7 +2,7 @@
 
 @section('dokumen-impor-content')
 		<div class="rounded-md border border-gray-200 p-5 dark:border-gray-700">
-				<div class="space-y-12">
+				<div class="space-y-5 md:space-y-10">
 						<div class="grid grid-cols-5 items-center gap-5">
 								<div class="col-span-2">
 										<p class="text-sm dark:text-gray-200 md:text-base">Nomor Pengajuan</p>
@@ -16,7 +16,7 @@
 										<p class="text-sm dark:text-gray-200 md:text-base">Pelabuhan Tujuan</p>
 								</div>
 								<div class="col-span-3">
-										<p class="text-sm font-semibold text-gray-800 dark:text-gray-200 md:text-base">Nomor Pengajuan</p>
+										<x-combobox></x-combobox>
 								</div>
 						</div>
 						<div class="grid grid-cols-5 items-center gap-5">

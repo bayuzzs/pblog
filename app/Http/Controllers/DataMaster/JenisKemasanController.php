@@ -28,6 +28,30 @@ class JenisKemasanController extends Controller
             ->paginate(10);
         return view('data-master.jenis-kemasan', compact('jenisKemasans'));
         }
+    /**
+     * Listing all of resource
+     */
+    public function list( Request $request )
+        {
+        try {
+            $kodeKemasan = $request->query('kodeKemasan');
+            $limit       = $request->query('limit', 10);
+
+            $jenisKemasans = JenisKemasan::query()
+                ->when($kodeKemasan, function ($query) use ($kodeKemasan) {
+                    $query->where('kodeKemasan', 'like', '%' . $kodeKemasan . '%');
+                    })
+                ->limit($limit)
+                ->get();
+
+            return response()->json($jenisKemasans);
+            } catch (\Exception $e) {
+            return response()->json([
+                'error'   => 'Failed to retrieve resources',
+                'message' => $e->getMessage()
+            ], 500);
+            }
+        }
 
     /**
      * Show the form for creating a new resource.

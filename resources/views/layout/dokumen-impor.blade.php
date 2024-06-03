@@ -9,8 +9,8 @@
 						</p>
 						<hr class="w-full dark:border-gray-700" />
 				</div>
-				<div class="custom-scrollbar mb-5 overflow-x-auto overflow-y-hidden border-b-2 border-gray-200 dark:border-gray-700">
-						<nav class="flex space-x-6 px-5">
+				<div class="custom-scrollbar mb-5 overflow-x-auto overflow-y-auto border-b-2 border-gray-200 dark:border-gray-700">
+						<nav class="flex space-x-2 px-5 md:space-x-3 2xl:space-x-6">
 								<x-nav-tab routeName="dokumen-impor.header">
 										Header
 								</x-nav-tab>

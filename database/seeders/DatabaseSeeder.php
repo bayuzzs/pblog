@@ -60,6 +60,8 @@ class DatabaseSeeder extends Seeder
                 'kodeHs'              => sprintf('%010d', $i + 1),
                 'uraianBarangBahasa'  => $faker->sentence(),
                 'uraianBarangEnglish' => $faker->sentence(),
+                'pphApi'              => $faker->randomFloat(2, 0.1, 100),
+                'pphNonApi'           => $faker->randomFloat(2, 0.1, 100),
                 'isLartas'            => 0,
             ]);
 

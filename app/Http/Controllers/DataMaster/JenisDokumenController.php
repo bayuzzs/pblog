@@ -28,6 +28,30 @@ class JenisDokumenController extends Controller
 
         return view('data-master.jenis-dokumen', compact('jenisDokumens'));
         }
+    /**
+     * Listing all of resource
+     */
+    public function list( Request $request )
+        {
+        try {
+            $kodeJenisDokumen = $request->query('kodeJenisDokumen');
+            $limit            = $request->query('limit', 10);
+
+            $jenisDokumens = JenisDokumen::query()
+                ->when($kodeJenisDokumen, function ($query) use ($kodeJenisDokumen) {
+                    $query->where('kodeJenisDokumen', 'like', '%' . $kodeJenisDokumen . '%');
+                    })
+                ->limit($limit)
+                ->get();
+
+            return response()->json($jenisDokumens);
+            } catch (\Exception $e) {
+            return response()->json([
+                'error'   => 'Failed to retrieve resources',
+                'message' => $e->getMessage()
+            ], 500);
+            }
+        }
 
     /**
      * Show the form for creating a new resource.

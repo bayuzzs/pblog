@@ -29,6 +29,30 @@ class PelabuhanController extends Controller
 
         return view('data-master.pelabuhan', compact('pelabuhans'));
         }
+    /**
+     * Listing all of resource
+     */
+    public function list( Request $request )
+        {
+        try {
+            $kodePelabuhan = $request->query('kodePelabuhan');
+            $limit         = $request->query('limit', 10);
+
+            $pelabuhans = Pelabuhan::query()
+                ->when($kodePelabuhan, function ($query) use ($kodePelabuhan) {
+                    $query->where('kodePelabuhan', 'like', '%' . $kodePelabuhan . '%');
+                    })
+                ->limit($limit)
+                ->get();
+
+            return response()->json($pelabuhans);
+            } catch (\Exception $e) {
+            return response()->json([
+                'error'   => 'Failed to retrieve resources',
+                'message' => $e->getMessage()
+            ], 500);
+            }
+        }
 
     /**
      * Show the form for creating a new resource.

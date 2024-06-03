@@ -29,6 +29,30 @@ class ValutaController extends Controller
 
         return view('data-master.valuta', compact('valutas'));
         }
+    /**
+     * Listing all of resource
+     */
+    public function list( Request $request )
+        {
+        try {
+            $kodeValuta = $request->query('kodeValuta');
+            $limit      = $request->query('limit', 10);
+
+            $valutas = Valuta::query()
+                ->when($kodeValuta, function ($query) use ($kodeValuta) {
+                    $query->where('kodeValuta', 'like', '%' . $kodeValuta . '%');
+                    })
+                ->limit($limit)
+                ->get();
+
+            return response()->json($valutas);
+            } catch (\Exception $e) {
+            return response()->json([
+                'error'   => 'Failed to retrieve resources',
+                'message' => $e->getMessage()
+            ], 500);
+            }
+        }
 
     /**
      * Show the form for creating a new resource.

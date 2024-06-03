@@ -28,6 +28,30 @@ class SatuanBarangController extends Controller
             ->paginate(10);
         return view('data-master.satuan-barang', compact('satuanBarangs'));
         }
+    /**
+     * Listing all of resource
+     */
+    public function list( Request $request )
+        {
+        try {
+            $kodeSatuanBarang = $request->query('kodeSatuanBarang');
+            $limit            = $request->query('limit', 10);
+
+            $satuanBarangs = SatuanBarang::query()
+                ->when($kodeSatuanBarang, function ($query) use ($kodeSatuanBarang) {
+                    $query->where('kodeSatuanBarang', 'like', '%' . $kodeSatuanBarang . '%');
+                    })
+                ->limit($limit)
+                ->get();
+
+            return response()->json($satuanBarangs);
+            } catch (\Exception $e) {
+            return response()->json([
+                'error'   => 'Failed to retrieve resources',
+                'message' => $e->getMessage()
+            ], 500);
+            }
+        }
 
     /**
      * Show the form for creating a new resource.

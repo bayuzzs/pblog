@@ -14,6 +14,8 @@ return new class extends Migration {
             $table->char('kodeHS', 10)->primary();
             $table->string('uraianBarangBahasa');
             $table->string('uraianBarangEnglish');
+            $table->decimal('pphApi', 5, 2);
+            $table->decimal('pphNonApi', 5, 2);
             $table->boolean('isLartas');
             $table->timestamps();
             });

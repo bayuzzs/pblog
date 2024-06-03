@@ -110,6 +110,15 @@
 																				Barang (English)
 																		</th>
 																		<th scope="col"
+																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+																				PPH (API)
+																		</th>
+																		<th scope="col"
+																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+																				PPH (Non
+																				API)
+																		</th>
+																		<th scope="col"
 																				class="flex px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
 																				Terkena Lartas
 
@@ -135,6 +144,12 @@
 																				</td>
 																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
 																						{{ $hs->uraianBarangEnglish }}
+																				</td>
+																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
+																						{{ $hs->pphApi }}
+																				</td>
+																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
+																						{{ $hs->pphNonApi }}
 																				</td>
 																				<td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
 																						{{ $hs->isLartas ? 'Ya' : 'Tidak' }}
@@ -214,6 +229,16 @@
 														<input type="text" id="uraianBarangEnglish" name="uraianBarangEnglish"
 																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 																placeholder="Uraian dalam bhs Inggris" required>
+
+														<label for="pphApi" class="text-sm dark:text-gray-50">PPH API</label>
+														<input type="number" id="pphApi" name="pphApi"
+																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
+																placeholder="PPH (API)" step="0.01" required>
+
+														<label for="pphNonApi" class="text-sm dark:text-gray-50">PPH Non API</label>
+														<input type="number" id="pphNonApi" name="pphNonApi"
+																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
+																placeholder="PPH (Non API)" step="0.01" required>
 
 														<label for="isLartas" class="text-sm dark:text-gray-50">Terkena Lartas?</label>
 														<div class="col-span-3">
@@ -296,6 +321,16 @@
 														<input type="text" id="uraianBarangEnglish" name="uraianBarangEnglish"
 																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 																placeholder="Uraian dalam bhs Inggris" required>
+
+														<label for="pphApi" class="text-sm dark:text-gray-50">PPH API</label>
+														<input type="number" id="pphApi" name="pphApi"
+																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
+																placeholder="PPH (API)" step="0.01" required>
+
+														<label for="pphNonApi" class="text-sm dark:text-gray-50">PPH non API</label>
+														<input type="number" id="pphNonApi" name="pphNonApi"
+																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
+																placeholder="PPH (Non API)" step="0.01" required>
 
 														<label for="isLartas" class="text-sm dark:text-gray-50">Terkena Lartas?</label>
 														<div class="col-span-3">

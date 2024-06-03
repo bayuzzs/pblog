@@ -19,6 +19,13 @@ class HS extends Model
         'uraianBarangBahasa',
         'uraianBarangEnglish',
         'isLartas',
+        'pphApi',
+        'pphNonApi',
+    ];
+    protected $casts = [
+        'isLartas'  => 'boolean',
+        'pphApi'    => 'float',
+        'pphNonApi' => 'float',
     ];
     }
 

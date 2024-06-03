@@ -30,6 +30,31 @@ class NegaraController extends Controller
         return view('data-master.negara', compact('negaras'));
         }
     /**
+     * Listing all of resource
+     */
+    public function list( Request $request )
+        {
+        try {
+            $kodeNegara = $request->query('kodeNegara');
+            $limit      = $request->query('limit', 10);
+
+            $negaras = Negara::query()
+                ->when($kodeNegara, function ($query) use ($kodeNegara) {
+                    $query->where('kodeNegara', 'like', '%' . $kodeNegara . '%');
+                    })
+                ->limit($limit)
+                ->get();
+
+            return response()->json($negaras);
+            } catch (\Exception $e) {
+            return response()->json([
+                'error'   => 'Failed to retrieve resources',
+                'message' => $e->getMessage()
+            ], 500);
+            }
+        }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
