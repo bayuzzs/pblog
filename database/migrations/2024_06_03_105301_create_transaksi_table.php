@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id('transaksiId');
             $table->decimal('ndpbm', 24, 4);
             $table->decimal('freight', 24, 4);
-            $table->enum('jenisTransaksi', ['IMB', 'IOA', 'KMD', 'KON', 'LAI', 'PMK', 'RLC', 'SLC', 'ULC', 'WSI']);
+            $table->enum('kodeJenisTransaksi', ['IMB', 'IOA', 'KMD', 'KON', 'LAI', 'PMK', 'RLC', 'SLC', 'ULC', 'WSI']);
             $table->enum('kodeAsuransi', ['LN', 'DN']);
             $table->decimal('nilaiAsuransi', 24, 2);
             $table->decimal('bruto', 24, 4);

@@ -36,13 +36,11 @@ class PelabuhanController extends Controller
         {
         try {
             $kodePelabuhan = $request->query('kodePelabuhan');
-            $limit         = $request->query('limit', 10);
 
             $pelabuhans = Pelabuhan::query()
                 ->when($kodePelabuhan, function ($query) use ($kodePelabuhan) {
                     $query->where('kodePelabuhan', 'like', '%' . $kodePelabuhan . '%');
                     })
-                ->limit($limit)
                 ->get();
 
             return response()->json($pelabuhans);

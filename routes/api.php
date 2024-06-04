@@ -26,18 +26,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
     });
 
-Route::get('/hs', [HSController::class, 'list']);
+Route::get('/hs', [HSController::class, 'list'])->name('api.hs');
 
-Route::get('/negara', [NegaraController::class, 'list']);
+Route::get('/negara', [NegaraController::class, 'list'])->name('api.negara');
 
-Route::get('/valuta', [ValutaController::class, 'list']);
+Route::get('/valuta', [ValutaController::class, 'list'])->name('api.valuta');
 
-Route::get('/jenis-kemasan', [JenisKemasanController::class, 'list']);
+Route::get('/jenis-kemasan', [JenisKemasanController::class, 'list'])->name('api.jenis-kemasan');
 
-Route::get('/jenis-dokumen', [JenisDokumenController::class, 'list']);
+Route::get('/jenis-dokumen', [JenisDokumenController::class, 'list'])->name('api.jenis-dokumen');
 
-Route::get('/satuan-barang', [SatuanBarangController::class, 'list']);
+Route::get('/satuan-barang', [SatuanBarangController::class, 'list'])->name('api.satuan-barang');
 
-Route::get('/pelabuhan', [PelabuhanController::class, 'list']);
+Route::get('/pelabuhan', [PelabuhanController::class, 'list'])->name('api.pelabuhan');
 
-Route::get('/kantor', [KantorController::class, 'list']);
+Route::get('/kantor', [KantorController::class, 'list'])->name('api.kantor');

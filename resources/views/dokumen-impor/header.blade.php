@@ -16,7 +16,8 @@
 										<p class="text-sm dark:text-gray-200 md:text-base">Pelabuhan Tujuan</p>
 								</div>
 								<div class="col-span-3">
-										<x-combobox></x-combobox>
+										<x-combobox apiUrl="{{ route('api.pelabuhan') }}" apiSearchQuery="kodePelabuhan" name="kodePelabuhan"
+												item="namaPelabuhan" placeholder="Cari Kode Pelabuhan"></x-combobox>
 								</div>
 						</div>
 						<div class="grid grid-cols-5 items-center gap-5">

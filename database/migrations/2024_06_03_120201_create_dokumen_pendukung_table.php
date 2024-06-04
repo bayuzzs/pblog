@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->string('nomor');
             $table->char('seri', 3);
             $table->date('tanggal');
-            $table->string('namaFile');
             $table->char('kodeJenisDokumen', 3)->nullable();
             $table->char('nomorAju', 26);
             $table->foreign('kodeJenisDokumen')->references('kodeJenisDokumen')->on('jenis_dokumen')->onDelete('set null')->onUpdate('cascade');
