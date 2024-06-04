@@ -12,6 +12,7 @@ return new class extends Migration {
         {
         Schema::create('barang', function (Blueprint $table) {
             $table->id('barangId');
+            $table->integer('seri');
             $table->enum('kondisiBarang', ['1', '2', '3', '4', '5', '6', '7', '8']);
             $table->decimal('beratBersih', 24, 4);
             $table->string('tipe', 50);
