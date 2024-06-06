@@ -3,6 +3,13 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\DataMaster\Pelabuhan;
+use Database\Seeders\DataMaster\JenisDokumen;
+use Database\Seeders\DataMaster\JenisKemasanSeeder;
+use Database\Seeders\DataMaster\KantorSeeder;
+use Database\Seeders\DataMaster\NegaraSeeder;
+use Database\Seeders\DataMaster\SatuanBarangSeeder;
+use Database\Seeders\DataMaster\ValutaSeeder;
 use Hash;
 use Illuminate\Database\Seeder;
 
@@ -65,47 +72,26 @@ class DatabaseSeeder extends Seeder
                 'isLartas'            => 0,
             ]);
 
-            \App\Models\DataMaster\Negara::create([
-                'kodeNegara' => $faker->unique()->countryCode,
-                'namaNegara' => $faker->country,
-            ]);
-
-            \App\Models\DataMaster\Valuta::create([
-                'kodeValuta' => $faker->unique()->currencyCode,
-                'namaValuta' => $faker->currencyCode(),
-                'kurs'       => $faker->randomFloat(2, 0.1, 1.5),
-            ]);
-
-            \App\Models\DataMaster\JenisKemasan::create([
-                'kodeKemasan' => $i,
-                'namaKemasan' => $faker->word,
-            ]);
-
-            \App\Models\DataMaster\JenisDokumen::create([
-                'kodeJenisDokumen' => $i,
-                'namaDokumen'      => $faker->word,
-            ]);
-
-            \App\Models\DataMaster\SatuanBarang::create([
-                'kodeSatuanBarang' => $i,
-                'namaSatuanBarang' => $faker->word,
-            ]);
 
             \App\Models\DataMaster\Pelabuhan::create([
                 'kodePelabuhan' => $i,
                 'namaPelabuhan' => $faker->city,
             ]);
 
-
-            \App\Models\DataMaster\Kantor::create([
-                'kodeKantor' => $i,
-                'namaKantor' => $faker->company,
-            ]);
             }
 
         \App\Models\Petugas::create([
             'username' => 'petugas',
             'password' => Hash::make('petugas'),
+        ]);
+
+        $this->call([
+            NegaraSeeder::class,
+            ValutaSeeder::class,
+            JenisKemasanSeeder::class,
+            SatuanBarangSeeder::class,
+            JenisDokumen::class,
+            KantorSeeder::class,
         ]);
         }
     }
