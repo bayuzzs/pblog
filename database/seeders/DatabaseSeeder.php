@@ -4,10 +4,13 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\DataMaster\Pelabuhan;
+use Database\Seeders\DataMaster\HSSeeder;
 use Database\Seeders\DataMaster\JenisDokumen;
+use Database\Seeders\DataMaster\JenisDokumenSeeder;
 use Database\Seeders\DataMaster\JenisKemasanSeeder;
 use Database\Seeders\DataMaster\KantorSeeder;
 use Database\Seeders\DataMaster\NegaraSeeder;
+use Database\Seeders\DataMaster\PelabuhanSeeder;
 use Database\Seeders\DataMaster\SatuanBarangSeeder;
 use Database\Seeders\DataMaster\ValutaSeeder;
 use Hash;
@@ -62,24 +65,6 @@ class DatabaseSeeder extends Seeder
             ]);
             }
 
-        for ( $i = 10; $i < 30; $i++ ) {
-            \App\Models\DataMaster\HS::create([
-                'kodeHs'              => sprintf('%010d', $i + 1),
-                'uraianBarangBahasa'  => $faker->sentence(),
-                'uraianBarangEnglish' => $faker->sentence(),
-                'pphApi'              => $faker->randomFloat(2, 0.1, 100),
-                'pphNonApi'           => $faker->randomFloat(2, 0.1, 100),
-                'isLartas'            => 0,
-            ]);
-
-
-            \App\Models\DataMaster\Pelabuhan::create([
-                'kodePelabuhan' => $i,
-                'namaPelabuhan' => $faker->city,
-            ]);
-
-            }
-
         \App\Models\Petugas::create([
             'username' => 'petugas',
             'password' => Hash::make('petugas'),
@@ -90,8 +75,10 @@ class DatabaseSeeder extends Seeder
             ValutaSeeder::class,
             JenisKemasanSeeder::class,
             SatuanBarangSeeder::class,
-            JenisDokumen::class,
+            JenisDokumenSeeder::class,
             KantorSeeder::class,
+            PelabuhanSeeder::class,
+            HSSeeder::class,
         ]);
         }
     }
