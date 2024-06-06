@@ -12,7 +12,7 @@ class PelabuhanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index( Request $request ) : View
+    public function index( Request $request )
         {
         $search     = $request->query('search');
         $sortOption = $request->query('sortOption', 'kodePelabuhan_asc');
@@ -22,11 +22,15 @@ class PelabuhanController extends Controller
 
         $pelabuhans = Pelabuhan::query()
             ->when($search, function ($query) use ($search) {
-                $query->where('kodePelabuhan', 'like', '%' . $search . '%');
+                $query->where('kodePelabuhan', 'like', '%' . $search . '%')
+                    ->orWhere('namaPelabuhan', 'like', '%' . $search . '%')
+                    ->orWhere('namaNegara', 'like', '%' . $search . '%');
                 })
             ->orderBy($filter, $sortDirection)
             ->paginate(10);
-
+        if ( $request->query('page') > $pages = $pelabuhans->lastPage() ) {
+            return redirect(route('data-master.pelabuhan', ["page" => $pages]));
+            }
         return view('data-master.pelabuhan', compact('pelabuhans'));
         }
     /**
@@ -35,12 +39,21 @@ class PelabuhanController extends Controller
     public function list( Request $request )
         {
         try {
-            $kodePelabuhan = $request->query('kodePelabuhan');
+            $search = $request->query('search');
+            $limit  = (int) $request->query('limit', 10);
+
+            // Ensure limit is a positive integer
+            if ( $limit <= 0 ) {
+                $limit = 10;
+                }
 
             $pelabuhans = Pelabuhan::query()
-                ->when($kodePelabuhan, function ($query) use ($kodePelabuhan) {
-                    $query->where('kodePelabuhan', 'like', '%' . $kodePelabuhan . '%');
+                ->when($search, function ($query) use ($search) {
+                    $query->where('kodePelabuhan', 'like', '%' . $search . '%')
+                        ->orWhere('namaPelabuhan', 'like', '%' . $search . '%')
+                        ->orWhere('namaNegara', 'like', '%' . $search . '%');
                     })
+                ->limit($limit)
                 ->get();
 
             return response()->json($pelabuhans);
@@ -68,11 +81,13 @@ class PelabuhanController extends Controller
         $validatedRequest = $request->validate([
             'kodePelabuhan' => 'required|unique:pelabuhan|max:4',
             'namaPelabuhan' => 'required',
+            'namaNegara'    => 'required',
         ], [
             'kodePelabuhan.unique'   => 'Kode Pelabuhan sudah terdaftar',
             'kodePelabuhan.required' => 'Kode Pelabuhan harus diisi',
             'kodePelabuhan.max'      => 'Kode Pelabuhan maksimal 10 karakter',
             'namaPelabuhan.required' => 'Nama Pelabuhan harus diisi',
+            'namaNegara.required'    => 'Nama Negara harus diisi',
         ]);
 
         try {
@@ -107,11 +122,13 @@ class PelabuhanController extends Controller
         $validatedRequest = $request->validate([
             'kodePelabuhan' => 'required|exists:pelabuhan,kodePelabuhan|max:4',
             'namaPelabuhan' => 'required',
+            'namaNegara'    => 'required',
         ], [
             'kodePelabuhan.exists'   => 'Kode Pelabuhan tidak ditemukan di database',
             'kodePelabuhan.required' => 'Kode Pelabuhan harus diisi',
             'kodePelabuhan.max'      => 'Kode Pelabuhan maksimal 4 karakter',
             'namaPelabuhan.required' => 'Nama Pelabuhan harus diisi',
+            'namaNegara.required'    => 'Nama Negara harus diisi',
         ]);
 
         try {

@@ -22,13 +22,15 @@ return new class extends Migration {
             $table->date('tanggalTiba');
             $table->enum('kodeTps', ['1', '2', '3']);
             $table->timestamps();
-            $table->char('kodePelTransit', 4)->nullable();
-            $table->char('kodePelMuat', 4)->nullable();
-            $table->char('kodePelTujuan', 4)->nullable();
+            $table->char('kodePelTransit', 10)->nullable();
+            $table->char('kodePelMuat', 10)->nullable();
+            $table->char('kodePelTujuan', 10)->nullable();
+            $table->char('kodeBendera', 2)->nullable();
             $table->char('nomorAju', 26);
             $table->foreign('kodePelTransit')->references('kodePelabuhan')->on('pelabuhan')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('kodePelMuat')->references('kodePelabuhan')->on('pelabuhan')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('kodePelTujuan')->references('kodePelabuhan')->on('pelabuhan')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('kodeBendera')->references('kodeNegara')->on('negara')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             });
         }

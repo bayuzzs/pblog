@@ -12,7 +12,6 @@ return new class extends Migration {
         {
         Schema::create('dokumen_impor', function (Blueprint $table) {
             $table->char('nomorAju', 26)->primary();
-            $table->string('string');
             $table->string('asalBarang');
             $table->string('tujuanBarang');
             $table->string('jenisDokumen');
@@ -39,8 +38,8 @@ return new class extends Migration {
                 '17'
             ])->nullable();
             $table->char('kodeKantor', 6)->nullable();
-            $table->char('kodePelabuhan', 4)->nullable();
-            $table->char('npwp', 16)->nullable();
+            $table->char('kodePelabuhan', 10)->nullable();
+            $table->char('npwp', 16);
             $table->foreign('kodeKantor')->references('kodeKantor')->on('kantor')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('kodePelabuhan')->references('kodePelabuhan')->on('pelabuhan')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('npwp')->references('npwp')->on('pengimpor')->onDelete('cascade')->onUpdate('cascade');

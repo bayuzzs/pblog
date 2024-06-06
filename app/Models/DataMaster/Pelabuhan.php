@@ -15,5 +15,6 @@ class Pelabuhan extends Model
     protected $fillable = [
         'kodePelabuhan',
         'namaPelabuhan',
+        'namaNegara',
     ];
     }

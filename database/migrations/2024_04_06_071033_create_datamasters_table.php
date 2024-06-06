@@ -28,7 +28,7 @@ return new class extends Migration {
             });
 
         Schema::create('jenis_kemasan', function (Blueprint $table) {
-            $table->char('kodeKemasan', 2)->primary();
+            $table->char('kodeJenisKemasan', 2)->primary();
             $table->string('namaKemasan');
             $table->timestamps();
             });
@@ -52,8 +52,9 @@ return new class extends Migration {
             });
 
         Schema::create('pelabuhan', function (Blueprint $table) {
-            $table->char('kodePelabuhan', 4)->primary();
+            $table->char('kodePelabuhan', 10)->primary();
             $table->string('namaPelabuhan');
+            $table->string('namaNegara');
             $table->timestamps();
             });
 

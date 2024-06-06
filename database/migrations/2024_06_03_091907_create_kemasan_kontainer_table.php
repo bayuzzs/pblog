@@ -15,15 +15,15 @@ return new class extends Migration {
             $table->string('seri');
             $table->string('merek');
             $table->integer('jumlah');
-            $table->char('kodeKemasan', 2)->nullable();
-            $table->foreign('kodeKemasan')->references('kodeKemasan')->on('jenis_kemasan')->onDelete('set null')->onUpdate('cascade');
+            $table->char('kodeJenisKemasan', 2)->nullable();
+            $table->foreign('kodeJenisKemasan')->references('kodeJenisKemasan')->on('jenis_kemasan')->onDelete('set null')->onUpdate('cascade');
             $table->char('nomorAju', 26)->nullable();
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             });
         Schema::create('kontainer', function (Blueprint $table) {
             $table->id('kontainerId');
-            $table->char('seri');
+            $table->string('seri');
             $table->string('nomor');
             $table->enum('ukuran', ['20', '40', '45', '60']);
             $table->enum('jenis', ['4', '7', '8']);

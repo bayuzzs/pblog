@@ -12,7 +12,7 @@ class NegaraController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index( Request $request ) : View
+    public function index( Request $request )
         {
         $search     = $request->query('search');
         $sortOption = $request->query('sortOption', 'kodeNegara_asc');
@@ -22,11 +22,14 @@ class NegaraController extends Controller
 
         $negaras = Negara::query()
             ->when($search, function ($query) use ($search) {
-                $query->where('kodeNegara', 'like', '%' . $search . '%');
+                $query->where('kodeNegara', 'like', '%' . $search . '%')
+                    ->orWhere('namaNegara', 'like', '%' . $search . '%');
                 })
             ->orderBy($filter, $sortDirection)
             ->paginate(10);
-
+        if ( $request->query('page') > $pages = $negaras->lastPage() ) {
+            return redirect(route('data-master.negara', ["page" => $pages]));
+            }
         return view('data-master.negara', compact('negaras'));
         }
     /**
@@ -35,12 +38,18 @@ class NegaraController extends Controller
     public function list( Request $request )
         {
         try {
-            $kodeNegara = $request->query('kodeNegara');
-            $limit      = $request->query('limit', 10);
+            $search = $request->query('search');
+            $limit  = (int) $request->query('limit', 10);
+
+            // Ensure limit is a positive integer
+            if ( $limit <= 0 ) {
+                $limit = 10;
+                }
 
             $negaras = Negara::query()
-                ->when($kodeNegara, function ($query) use ($kodeNegara) {
-                    $query->where('kodeNegara', 'like', '%' . $kodeNegara . '%');
+                ->when($search, function ($query) use ($search) {
+                    $query->where('kodeNegara', 'like', '%' . $search . '%')
+                        ->orWhere('namaNegara', 'like', '%' . $search . '%');
                     })
                 ->limit($limit)
                 ->get();

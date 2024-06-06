@@ -12,20 +12,24 @@ class JenisKemasanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index( Request $request ) : View
+    public function index( Request $request )
         {
         $search     = $request->query('search');
-        $sortOption = $request->query('sortOption', 'kodeKemasan_asc');
+        $sortOption = $request->query('sortOption', 'kodeJenisKemasan_asc');
 
         // Split the sortOption into filter and sortDirection
         list($filter, $sortDirection) = explode('_', $sortOption);
 
         $jenisKemasans = JenisKemasan::query()
             ->when($search, function ($query) use ($search) {
-                $query->where('kodeKemasan', 'like', '%' . $search . '%');
+                $query->where('kodeJenisKemasan', 'like', '%' . $search . '%')
+                    ->orWhere('namaKemasan', 'like', '%' . $search . '%');
                 })
             ->orderBy($filter, $sortDirection)
             ->paginate(10);
+        if ( $request->query('page') > $pages = $jenisKemasans->lastPage() ) {
+            return redirect(route('data-master.jenis-kemasan', ["page" => $pages]));
+            }
         return view('data-master.jenis-kemasan', compact('jenisKemasans'));
         }
     /**
@@ -34,12 +38,18 @@ class JenisKemasanController extends Controller
     public function list( Request $request )
         {
         try {
-            $kodeKemasan = $request->query('kodeKemasan');
-            $limit       = $request->query('limit', 10);
+            $search = $request->query('search');
+            $limit  = (int) $request->query('limit', 10);
+
+            // Ensure limit is a positive integer
+            if ( $limit <= 0 ) {
+                $limit = 10;
+                }
 
             $jenisKemasans = JenisKemasan::query()
-                ->when($kodeKemasan, function ($query) use ($kodeKemasan) {
-                    $query->where('kodeKemasan', 'like', '%' . $kodeKemasan . '%');
+                ->when($search, function ($query) use ($search) {
+                    $query->where('kodeJenisKemasan', 'like', '%' . $search . '%')
+                        ->orWhere('namaKemasan', 'like', '%' . $search . '%');
                     })
                 ->limit($limit)
                 ->get();
@@ -67,13 +77,13 @@ class JenisKemasanController extends Controller
     public function store( Request $request )
         {
         $validatedRequest = $request->validate([
-            'kodeKemasan' => 'required|unique:jenis_kemasan|max:5',
-            'namaKemasan' => 'required',
+            'kodeJenisKemasan' => 'required|unique:jenis_kemasan|max:5',
+            'namaKemasan'      => 'required',
         ], [
-            'kodeKemasan.unique'   => 'Kode Kemasan sudah terdaftar',
-            'kodeKemasan.required' => 'Kode Kemasan harus diisi',
-            'kodeKemasan.max'      => 'Kode Kemasan maksimal 5 karakter',
-            'namaKemasan.required' => 'Nama kemasan harus diisi',
+            'kodeJenisKemasan.unique'   => 'Kode Kemasan sudah terdaftar',
+            'kodeJenisKemasan.required' => 'Kode Kemasan harus diisi',
+            'kodeJenisKemasan.max'      => 'Kode Kemasan maksimal 5 karakter',
+            'namaKemasan.required'      => 'Nama kemasan harus diisi',
         ]);
 
         JenisKemasan::create($validatedRequest);
@@ -104,17 +114,17 @@ class JenisKemasanController extends Controller
     public function update( Request $request, JenisKemasan $jenisKemasan )
         {
         $validatedRequest = $request->validate([
-            'kodeKemasan' => 'required|exists:jenis_kemasan,kodeKemasan|max:5',
-            'namaKemasan' => 'required',
+            'kodeJenisKemasan' => 'required|exists:jenis_kemasan,kodeJenisKemasan|max:5',
+            'namaKemasan'      => 'required',
         ], [
-            'kodeKemasan.exists'   => 'Kode Kemasan tidak ditemukan di database',
-            'kodeKemasan.required' => 'Kode Kemasan harus diisi',
-            'kodeKemasan.max'      => 'Kode Kemasan maksimal 10 karakter',
-            'namaKemasan.required' => 'Nama Kemasan harus diisi',
+            'kodeJenisKemasan.exists'   => 'Kode Kemasan tidak ditemukan di database',
+            'kodeJenisKemasan.required' => 'Kode Kemasan harus diisi',
+            'kodeJenisKemasan.max'      => 'Kode Kemasan maksimal 10 karakter',
+            'namaKemasan.required'      => 'Nama Kemasan harus diisi',
         ]);
 
         try {
-            $jenis_kemasan = JenisKemasan::where('kodeKemasan', $validatedRequest['kodeKemasan'])->firstOrFail();
+            $jenis_kemasan = JenisKemasan::where('kodeJenisKemasan', $validatedRequest['kodeJenisKemasan'])->firstOrFail();
             $jenis_kemasan->update($validatedRequest);
             return redirect()->route('data-master.jenis-kemasan')->with('success', 'Data Kemasan berhasil diupdate');
 
@@ -130,17 +140,17 @@ class JenisKemasanController extends Controller
     public function destroy( Request $request )
         {
         $validatedRequest = $request->validate([
-            'kodeKemasan' => 'required|array',
+            'kodeJenisKemasan' => 'required|array',
         ], [
-            'kodeKemasan.required' => 'Kode Kemasan harus diisi',
+            'kodeJenisKemasan.required' => 'Kode Kemasan harus diisi',
         ]);
 
         if ( ! $validatedRequest ) {
-            return redirect()->back()->withErrors(['kodeKemasan', 'Gagal Hapus Data Kemasan']);
+            return redirect()->back()->withErrors(['kodeJenisKemasan', 'Gagal Hapus Data Kemasan']);
             }
 
         try {
-            JenisKemasan::destroy($validatedRequest['kodeKemasan']);
+            JenisKemasan::destroy($validatedRequest['kodeJenisKemasan']);
             return redirect(route('data-master.jenis-kemasan'))->with('success', 'Data Kemasan berhasil dihapus');
 
             } catch (\Exception $e) {

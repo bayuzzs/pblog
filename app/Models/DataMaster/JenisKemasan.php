@@ -10,12 +10,12 @@ class JenisKemasan extends Model
     use HasFactory;
 
     protected $table = 'jenis_kemasan';
-    protected $primaryKey = 'kodeKemasan';
+    protected $primaryKey = 'kodeJenisKemasan';
     public $incrementing = false;
     public $timestamps = true;
 
     protected $fillable = [
-        'kodeKemasan',
+        'kodeJenisKemasan',
         'namaKemasan',
     ];
     }

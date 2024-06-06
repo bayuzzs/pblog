@@ -13,9 +13,9 @@ return new class extends Migration {
         Schema::create('dokumen_pendukung', function (Blueprint $table) {
             $table->id('dokumenPendukungId');
             $table->string('nomor');
-            $table->char('seri', 3);
+            $table->string('seri');
             $table->date('tanggal');
-            $table->char('kodeJenisDokumen', 3)->nullable();
+            $table->char('kodeJenisDokumen', 5)->nullable();
             $table->char('nomorAju', 26);
             $table->foreign('kodeJenisDokumen')->references('kodeJenisDokumen')->on('jenis_dokumen')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');

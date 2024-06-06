@@ -12,7 +12,7 @@ class SatuanBarangController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index( Request $request ) : View
+    public function index( Request $request )
         {
         $search     = $request->query('search');
         $sortOption = $request->query('sortOption', 'kodeSatuanBarang_asc');
@@ -22,10 +22,14 @@ class SatuanBarangController extends Controller
 
         $satuanBarangs = SatuanBarang::query()
             ->when($search, function ($query) use ($search) {
-                $query->where('kodeSatuanBarang', 'like', '%' . $search . '%');
+                $query->where('kodeSatuanBarang', 'like', '%' . $search . '%')
+                    ->orWhere('namaSatuanBarang', 'like', '%' . $search . '%');
                 })
             ->orderBy($filter, $sortDirection)
             ->paginate(10);
+        if ( $request->query('page') > $pages = $satuanBarangs->lastPage() ) {
+            return redirect(route('data-master.satuan-barang', ["page" => $pages]));
+            }
         return view('data-master.satuan-barang', compact('satuanBarangs'));
         }
     /**
@@ -34,12 +38,18 @@ class SatuanBarangController extends Controller
     public function list( Request $request )
         {
         try {
-            $kodeSatuanBarang = $request->query('kodeSatuanBarang');
-            $limit            = $request->query('limit', 10);
+            $search = $request->query('search');
+            $limit  = (int) $request->query('limit', 10);
+
+            // Ensure limit is a positive integer
+            if ( $limit <= 0 ) {
+                $limit = 10;
+                }
 
             $satuanBarangs = SatuanBarang::query()
-                ->when($kodeSatuanBarang, function ($query) use ($kodeSatuanBarang) {
-                    $query->where('kodeSatuanBarang', 'like', '%' . $kodeSatuanBarang . '%');
+                ->when($search, function ($query) use ($search) {
+                    $query->where('kodeSatuanBarang', 'like', '%' . $search . '%')
+                        ->orWhere('namaSatuanBarang', 'like', '%' . $search . '%');
                     })
                 ->limit($limit)
                 ->get();

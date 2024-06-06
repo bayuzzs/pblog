@@ -12,7 +12,7 @@ class HSController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index( Request $request ) : View
+    public function index( Request $request )
         {
         $search     = $request->query('search');
         $sortOption = $request->query('sortOption', 'kodeHS_asc');
@@ -26,7 +26,9 @@ class HSController extends Controller
                 })
             ->orderBy($filter, $sortDirection)
             ->paginate(10);
-
+        if ( $request->query('page') > $pages = $HSs->lastPage() ) {
+            return redirect(route('data-master.hs', ["page" => $pages]));
+            }
         return view('data-master.hs', compact('HSs'));
         }
 
@@ -36,12 +38,18 @@ class HSController extends Controller
     public function list( Request $request )
         {
         try {
-            $kodeHS = $request->query('kodeHS');
-            $limit  = $request->query('limit', 10);
+            $search = $request->query('search');
+            $limit  = (int) $request->query('limit', 10);
+
+            // Ensure limit is a positive integer
+            if ( $limit <= 0 ) {
+                $limit = 10;
+                }
 
             $HSs = HS::query()
-                ->when($kodeHS, function ($query) use ($kodeHS) {
-                    $query->where('kodeHS', 'like', '%' . $kodeHS . '%');
+                ->when($search, function ($query) use ($search) {
+                    $query->where('kodeHS', 'like', '%' . $search . '%')
+                        ->orWhere('uraianBarangBahasa', 'like', '%' . $search . '%');
                     })
                 ->limit($limit)
                 ->get();

@@ -12,7 +12,7 @@ class JenisDokumenController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index( Request $request ) : View
+    public function index( Request $request )
         {
         $search     = $request->query('search');
         $sortOption = $request->query('sortOption', 'kodeJenisDokumen_asc');
@@ -21,11 +21,14 @@ class JenisDokumenController extends Controller
         list($filter, $sortDirection) = explode('_', $sortOption);
         $jenisDokumens                = JenisDokumen::query()
             ->when($search, function ($query) use ($search) {
-                $query->where('kodeJenisDokumen', 'like', '%' . $search . '%');
+                $query->where('kodeJenisDokumen', 'like', '%' . $search . '%')
+                    ->orWhere('namaDokumen', 'like', '%' . $search . '%');
                 })
             ->orderBy($filter, $sortDirection)
             ->paginate(10);
-
+        if ( $request->query('page') > $pages = $jenisDokumens->lastPage() ) {
+            return redirect(route('data-master.jenis-dokumen', ["page" => $pages]));
+            }
         return view('data-master.jenis-dokumen', compact('jenisDokumens'));
         }
     /**
@@ -34,12 +37,18 @@ class JenisDokumenController extends Controller
     public function list( Request $request )
         {
         try {
-            $kodeJenisDokumen = $request->query('kodeJenisDokumen');
-            $limit            = $request->query('limit', 10);
+            $search = $request->query('search');
+            $limit  = (int) $request->query('limit', 10);
+
+            // Ensure limit is a positive integer
+            if ( $limit <= 0 ) {
+                $limit = 10;
+                }
 
             $jenisDokumens = JenisDokumen::query()
-                ->when($kodeJenisDokumen, function ($query) use ($kodeJenisDokumen) {
-                    $query->where('kodeJenisDokumen', 'like', '%' . $kodeJenisDokumen . '%');
+                ->when($search, function ($query) use ($search) {
+                    $query->where('kodeJenisDokumen', 'like', '%' . $search . '%')
+                        ->orWhere('namaDokumen', 'like', '%' . $search . '%');
                     })
                 ->limit($limit)
                 ->get();

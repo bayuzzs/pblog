@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('alamat');
             $table->enum('jenisApi', ['01', '02']);
             $table->char('noApi', 10);
-            $table->char('nomorAju', 26)->nullable();
+            $table->char('nomorAju', 26)->nullable()->unique();
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             });
@@ -28,7 +28,7 @@ return new class extends Migration {
             $table->char('noIdentitas', 20);
             $table->string('nama');
             $table->string('alamat');
-            $table->char('nomorAju', 26)->nullable();
+            $table->char('nomorAju', 26)->nullable()->unique();
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             });
@@ -38,7 +38,7 @@ return new class extends Migration {
             $table->char('noIdentitas', 20);
             $table->string('nama');
             $table->string('alamat');
-            $table->char('nomorAju', 26)->nullable();
+            $table->char('nomorAju', 26)->nullable()->unique();
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             });
@@ -46,7 +46,9 @@ return new class extends Migration {
             $table->id('entitasId');
             $table->string('nama');
             $table->string('alamat');
-            $table->char('nomorAju', 26)->nullable();
+            $table->char('kodeNegara', 2)->nullable();
+            $table->char('nomorAju', 26)->nullable()->unique();
+            $table->foreign('kodeNegara')->references('kodeNegara')->on('negara')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             });
@@ -54,7 +56,9 @@ return new class extends Migration {
             $table->id('entitasId');
             $table->string('nama');
             $table->string('alamat');
-            $table->char('nomorAju', 26)->nullable();
+            $table->char('kodeNegara', 2)->nullable();
+            $table->char('nomorAju', 26)->nullable()->unique();
+            $table->foreign('kodeNegara')->references('kodeNegara')->on('negara')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             });
