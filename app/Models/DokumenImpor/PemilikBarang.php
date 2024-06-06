@@ -5,18 +5,18 @@ namespace App\Models\DokumenImpor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pernyataan extends Model
+class PemilikBarang extends Model
     {
     use HasFactory;
 
-    protected $primaryKey = 'pernyataanId';
-    protected $table = 'pernyataan';
+    protected $primaryKey = 'entitasId';
+    protected $table = 'pemilik_barang';
 
     protected $fillable = [
-        'jabatan',
+        'jenisIdentitas',
+        'noIdentitas',
         'nama',
-        'tempat',
-        'tanggal',
+        'alamat',
         'nomorAju',
     ];
 
@@ -26,4 +26,3 @@ class Pernyataan extends Model
         return $this->belongsTo(DokumenImpor::class, 'nomorAju', 'nomorAju');
         }
     }
-

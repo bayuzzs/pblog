@@ -23,7 +23,7 @@ return new class extends Migration {
         Schema::create('valuta', function (Blueprint $table) {
             $table->char('kodeValuta', 3)->primary();
             $table->string('namaValuta');
-            $table->integer('kurs');
+            $table->decimal('kurs', 10, 4);
             $table->timestamps();
             });
 

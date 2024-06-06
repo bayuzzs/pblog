@@ -2,23 +2,30 @@
 
 namespace App\Models\DokumenImpor;
 
+use App\Models\DataMaster\JenisKemasan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pernyataan extends Model
+class Kemasan extends Model
     {
     use HasFactory;
 
-    protected $primaryKey = 'pernyataanId';
-    protected $table = 'pernyataan';
+    protected $primaryKey = 'kemasanId';
+    protected $table = 'kemasan';
 
     protected $fillable = [
-        'jabatan',
-        'nama',
-        'tempat',
-        'tanggal',
+        'seri',
+        'merek',
+        'jumlah',
+        'kodeKemasan',
         'nomorAju',
     ];
+
+    // Relasi dengan tabel 'jenis_kemasan' melalui 'kodeKemasan'
+    public function jenisKemasan()
+        {
+        return $this->belongsTo(JenisKemasan::class, 'kodeKemasan', 'kodeKemasan');
+        }
 
     // Relasi dengan tabel 'dokumen_impor' melalui 'nomorAju'
     public function dokumenImpor()
@@ -26,4 +33,3 @@ class Pernyataan extends Model
         return $this->belongsTo(DokumenImpor::class, 'nomorAju', 'nomorAju');
         }
     }
-

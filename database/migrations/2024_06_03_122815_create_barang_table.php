@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->enum('kondisiBarang', ['1', '2', '3', '4', '5', '6', '7', '8']);
             $table->decimal('beratBersih', 24, 4);
             $table->string('tipe', 50);
-            $table->integer('ukuran')->length(5);
+            $table->decimal('ukuran', 24, 2);
             $table->string('spesifikasiLain');
             $table->string('kodeBarang');
             $table->string('uraian');

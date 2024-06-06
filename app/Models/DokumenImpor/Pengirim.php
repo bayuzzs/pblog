@@ -5,18 +5,16 @@ namespace App\Models\DokumenImpor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pernyataan extends Model
+class Pengirim extends Model
     {
     use HasFactory;
 
-    protected $primaryKey = 'pernyataanId';
-    protected $table = 'pernyataan';
+    protected $primaryKey = 'entitasId';
+    protected $table = 'pengirim';
 
     protected $fillable = [
-        'jabatan',
         'nama',
-        'tempat',
-        'tanggal',
+        'alamat',
         'nomorAju',
     ];
 

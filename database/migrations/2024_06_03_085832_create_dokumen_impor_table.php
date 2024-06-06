@@ -16,9 +16,28 @@ return new class extends Migration {
             $table->string('asalBarang');
             $table->string('tujuanBarang');
             $table->string('jenisDokumen');
-            $table->enum('jenisPib', ['1', '2']);
-            $table->enum('jenisImpor', ['1', '2', '3', '4', '5', '6', '7']);
-            $table->enum('caraBayar', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17']);
+            $table->boolean('isBerwujud');
+            $table->enum('jenisPib', ['1', '2'])->nullable();
+            $table->enum('jenisImpor', ['1', '2', '3', '4', '5', '6', '7'])->nullable();
+            $table->enum('caraBayar', [
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9',
+                '10',
+                '11',
+                '12',
+                '13',
+                '14',
+                '15',
+                '16',
+                '17'
+            ])->nullable();
             $table->char('kodeKantor', 6)->nullable();
             $table->char('kodePelabuhan', 4)->nullable();
             $table->char('npwp', 16)->nullable();
