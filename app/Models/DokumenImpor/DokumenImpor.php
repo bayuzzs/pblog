@@ -20,7 +20,6 @@ class DokumenImpor extends Model
 
     protected $fillable = [
         'nomorAju',
-        'string',
         'asalBarang',
         'tujuanBarang',
         'jenisDokumen',

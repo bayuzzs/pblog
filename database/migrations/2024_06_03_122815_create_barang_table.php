@@ -50,13 +50,13 @@ return new class extends Migration {
             $table->char('kodeSatuanBarang', 3)->nullable();
             $table->char('kodeHs', 10)->nullable();
             $table->char('kodeNegara', 2)->nullable();
-            $table->char('kodeKemasan', 2)->nullable();
+            $table->char('kodeJenisKemasan', 2)->nullable();
             $table->bigInteger('dokumenPendukungId')->unsigned()->nullable();
             $table->char('nomorAju', 26);
             $table->foreign('kodeSatuanBarang')->references('kodeSatuanBarang')->on('satuan_barang')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('kodeHs')->references('kodeHS')->on('hs')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('kodeNegara')->references('kodeNegara')->on('negara')->onDelete('set null')->onUpdate('cascade');
-            $table->foreign('kodeKemasan')->references('kodeKemasan')->on('jenis_kemasan')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('kodeJenisKemasan')->references('kodeJenisKemasan')->on('jenis_kemasan')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('dokumenPendukungId')->references('dokumenPendukungId')->on('dokumen_pendukung')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

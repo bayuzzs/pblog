@@ -17,14 +17,14 @@ class Kemasan extends Model
         'seri',
         'merek',
         'jumlah',
-        'kodeKemasan',
+        'kodeJenisKemasan',
         'nomorAju',
     ];
 
-    // Relasi dengan tabel 'jenis_kemasan' melalui 'kodeKemasan'
+    // Relasi dengan tabel 'jenis_kemasan' melalui 'kodeJenisKemasan'
     public function jenisKemasan()
         {
-        return $this->belongsTo(JenisKemasan::class, 'kodeKemasan', 'kodeKemasan');
+        return $this->belongsTo(JenisKemasan::class, 'kodeJenisKemasan', 'kodeJenisKemasan');
         }
 
     // Relasi dengan tabel 'dokumen_impor' melalui 'nomorAju'

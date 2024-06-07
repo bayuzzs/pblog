@@ -16,12 +16,12 @@ return new class extends Migration {
             $table->char('nomorBc', 6);
             $table->date('tanggalBc');
             $table->char('nomorPosBc', 4);
+            $table->char('nomorSubPosBc', 8);
             $table->string('namaPengangkut');
             $table->string('nomorPengangkut');
             $table->enum('kodeCaraAngkut', ['1', '2', '3', '4', '5', '6', '7', '8', '9']);
             $table->date('tanggalTiba');
-            $table->enum('kodeTps', ['1', '2', '3']);
-            $table->timestamps();
+            $table->string('kodeTps');
             $table->char('kodePelTransit', 10)->nullable();
             $table->char('kodePelMuat', 10)->nullable();
             $table->char('kodePelTujuan', 10)->nullable();
@@ -32,6 +32,7 @@ return new class extends Migration {
             $table->foreign('kodePelTujuan')->references('kodePelabuhan')->on('pelabuhan')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('kodeBendera')->references('kodeNegara')->on('negara')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
             });
         }
 
