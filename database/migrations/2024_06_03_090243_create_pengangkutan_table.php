@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->char('kodePelMuat', 10)->nullable();
             $table->char('kodePelTujuan', 10)->nullable();
             $table->char('kodeBendera', 2)->nullable();
-            $table->char('nomorAju', 26);
+            $table->char('nomorAju', 26)->unique();
             $table->foreign('kodePelTransit')->references('kodePelabuhan')->on('pelabuhan')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('kodePelMuat')->references('kodePelabuhan')->on('pelabuhan')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('kodePelTujuan')->references('kodePelabuhan')->on('pelabuhan')->onDelete('set null')->onUpdate('cascade');

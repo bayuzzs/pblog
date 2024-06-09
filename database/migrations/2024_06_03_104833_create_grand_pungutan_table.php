@@ -13,7 +13,13 @@ return new class extends Migration {
         Schema::create('grand_pungutan', function (Blueprint $table) {
             $table->id('pungutanId');
             $table->enum('keterangan', ['BM', 'BMT', 'CUKAI', 'PPH', 'PPN']);
-            $table->char('nomorAju', 26);
+            $table->decimal('telahDilunasi', 24, 4);
+            $table->decimal('dibebaskan', 24, 4);
+            $table->decimal('tidakDipungut', 24, 4);
+            $table->decimal('ditunda', 24, 4);
+            $table->decimal('ditanggungPemerintah', 24, 4);
+            $table->decimal('dibayar', 24, 4);
+            $table->char('nomorAju', 26)->unique();
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             });

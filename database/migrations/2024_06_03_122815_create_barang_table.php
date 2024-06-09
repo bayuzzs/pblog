@@ -12,7 +12,6 @@ return new class extends Migration {
         {
         Schema::create('barang', function (Blueprint $table) {
             $table->id('barangId');
-            $table->integer('seri');
             $table->enum('kondisiBarang', ['1', '2', '3', '4', '5', '6', '7', '8']);
             $table->decimal('beratBersih', 24, 4);
             $table->string('tipe', 50);
@@ -48,16 +47,14 @@ return new class extends Migration {
             $table->decimal('biayaTambahanDiskon', 24, 2);
             $table->integer('nilaiKemasan');
             $table->char('kodeSatuanBarang', 3)->nullable();
-            $table->char('kodeHs', 10)->nullable();
+            $table->char('kodeHS', 10)->nullable();
             $table->char('kodeNegara', 2)->nullable();
             $table->char('kodeJenisKemasan', 2)->nullable();
-            $table->bigInteger('dokumenPendukungId')->unsigned()->nullable();
             $table->char('nomorAju', 26);
             $table->foreign('kodeSatuanBarang')->references('kodeSatuanBarang')->on('satuan_barang')->onDelete('set null')->onUpdate('cascade');
-            $table->foreign('kodeHs')->references('kodeHS')->on('hs')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('kodeHS')->references('kodeHS')->on('hs')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('kodeNegara')->references('kodeNegara')->on('negara')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('kodeJenisKemasan')->references('kodeJenisKemasan')->on('jenis_kemasan')->onDelete('set null')->onUpdate('cascade');
-            $table->foreign('dokumenPendukungId')->references('dokumenPendukungId')->on('dokumen_pendukung')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             });

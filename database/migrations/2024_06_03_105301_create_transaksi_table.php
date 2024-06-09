@@ -43,7 +43,7 @@ return new class extends Migration {
             $table->decimal('biayaTambahan', 24, 2);
             $table->decimal('diskon', 24, 2);
             $table->char('kodeValuta', 3)->nullable();
-            $table->char('nomorAju', 26);
+            $table->char('nomorAju', 26)->unique();
             $table->foreign('kodeValuta')->references('kodeValuta')->on('valuta')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
