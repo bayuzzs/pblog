@@ -1,0 +1,33 @@
+<?php
+if ( ! function_exists('generateJenisIncotermOptions') ) {
+    function generateJenisIncotermOptions( $selectedValue = null )
+        {
+        $options = [
+            'CFR' => 'Cost and Freight',
+            'CIF' => 'Cost, Insurance and Freight',
+            'CIP' => 'Carriage and Insurance Paid to',
+            'CPT' => 'Carriage Paid To',
+            'DAF' => 'Delivered At Frontier',
+            'DAP' => 'Delivered At Place',
+            'DAT' => 'Delivered At Terminal',
+            'DDP' => 'Delivered Duty Paid',
+            'DDU' => 'Delivered Duty Unpaid',
+            'DEQ' => 'Delivered Ex Quay',
+            'DES' => 'Delivered Ex Ship',
+            'EXW' => 'Ex Works',
+            'FAS' => 'Free Alongside Ship',
+            'FCA' => 'Free Carrier',
+            'FOB' => 'Free on Board',
+            'LAN' => 'LAINNYA',
+        ];
+
+        $html = '';
+
+        foreach ( $options as $value => $label ) {
+            $selected = ($selectedValue == $value) ? 'selected' : '';
+            $html .= "<option value=\"$value\" $selected>$label</option>";
+            }
+
+        return $html;
+        }
+    }
