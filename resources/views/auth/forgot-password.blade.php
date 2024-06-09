@@ -46,7 +46,8 @@
 												@enderror
 										</div>
 										<button type="submit"
-												class="w-full rounded-lg bg-blue-600 px-5 py-2.5 text-center font-poppins text-sm text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Atur Ulang
+												class="w-full rounded-lg bg-blue-600 px-5 py-2.5 text-center font-poppins text-sm text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300">Atur
+												Ulang
 												Sandi</button>
 										&nbsp
 								</form>

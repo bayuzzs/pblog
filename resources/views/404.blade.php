@@ -29,7 +29,7 @@
 								<p class="mb-4 text-lg font-light text-gray-500">Tidak dapat menemukan halaman yang Anda cari. Tetapi jangan
 										khawatir, temukan lebih banyak di halaman utama</p>
 								<a href="{{ route('home') }}"
-										class="my-4 inline-flex rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Kembali
+										class="my-4 inline-flex rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Kembali
 										ke Halaman Utama</a>
 						</div>
 				</div>

@@ -20,12 +20,14 @@
 								<x-nav-tab routeName="dokumen-impor.dokumen-pendukung">
 										Dokumen Pendukung
 								</x-nav-tab>
-								<x-nav-tab routeName="dokumen-impor.pengangkutan">
-										Pengangkutan
-								</x-nav-tab>
-								<x-nav-tab routeName="dokumen-impor.kemasan-kontainer">
-										Kemasan & Kontainer
-								</x-nav-tab>
+								@if ($dokumenImpor->isBerwujud)
+										<x-nav-tab routeName="dokumen-impor.pengangkutan">
+												Pengangkutan
+										</x-nav-tab>
+										<x-nav-tab routeName="dokumen-impor.kemasan-kontainer">
+												Kemasan & Kontainer
+										</x-nav-tab>
+								@endif
 								<x-nav-tab routeName="dokumen-impor.transaksi">
 										Transaksi
 								</x-nav-tab>

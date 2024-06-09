@@ -30,7 +30,7 @@
 										</div>
 								</div>
 								<button type="button"
-										class="ml-10 inline-flex items-center gap-x-2 justify-self-end rounded-lg border border-transparent bg-blue-600 px-2 py-1.5 text-sm text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50"
+										class="ml-10 inline-flex items-center gap-x-2 justify-self-end rounded-lg border border-transparent bg-blue-600 px-2 py-1.5 text-sm text-white hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50"
 										data-hs-overlay="#hs-change-avatar">
 										Unggah Foto
 								</button>
@@ -77,7 +77,7 @@
 																				Batal
 																		</button>
 																		<button type="submit"
-																				class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+																				class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50">
 																				Unggah
 																		</button>
 																</div>
@@ -186,7 +186,7 @@
 								</div>
 						</div>
 						<button type="submit"
-								class="mt-5 block w-full items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-center text-sm text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+								class="mt-5 block w-full items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-center text-sm text-white hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50">
 								Perbarui Sandi
 						</button>
 				</form>

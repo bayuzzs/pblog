@@ -41,7 +41,7 @@
 								</div>
 								<input type="text" id="table-search-users" name="search"
 										class="block w-full rounded-lg border border-gray-300 bg-transparent p-2 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:text-white"
-										placeholder="Cari kode Kemasan" value="{{ request('search') }}">
+										placeholder="Cari Data Kemasan" value="{{ request('search') }}">
 						</div>
 						<div class="flex gap-1">
 								<!-- Select -->
@@ -58,14 +58,14 @@
 										class="!left-0 hidden">
 										{{-- Let this choose stand alone --}}
 										<option value="">Choose</option>
-										<x-filter-option valueInput="kodeKemasan_asc" requestParam="sortOption">Kode Kemasan ↑</x-filter-option>
-										<x-filter-option valueInput="kodeKemasan_desc" requestParam="sortOption">Kode Kemasan ↓</x-filter-option>
+										<x-filter-option valueInput="kodeJenisKemasan_asc" requestParam="sortOption">Kode Kemasan ↑</x-filter-option>
+										<x-filter-option valueInput="kodeJenisKemasan_desc" requestParam="sortOption">Kode Kemasan ↓</x-filter-option>
 										<x-filter-option valueInput="namaKemasan_asc" requestParam="sortOption">Nama Kemasan ↑</x-filter-option>
 										<x-filter-option valueInput="namaKemasan_desc" requestParam="sortOption">Nama Kemasan ↓</x-filter-option>
 								</select>
 								<!-- End Select -->
 								<button type="submit"
-										class="rounded-lg bg-blue-700 px-7 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Cari</button>
+										class="rounded-lg bg-blue-600 px-7 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Cari</button>
 						</div>
 				</form>
 				{{-- Search bar end --}}
@@ -112,13 +112,13 @@
 																				class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
 																				<td class="py-3 ps-4">
 																						<div class="flex h-5 items-center">
-																								<input id="hs-table-checkbox-1" type="checkbox" name="kodeKemasan[]"
-																										value="{{ $jenisKemasan->kodeKemasan }}" onclick="event.stopPropagation();"
+																								<input id="hs-table-checkbox-1" type="checkbox" name="kodeJenisKemasan[]"
+																										value="{{ $jenisKemasan->kodeJenisKemasan }}" onclick="event.stopPropagation();"
 																										class="rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800">
 																						</div>
 																				</td>
 																				<td class="flex items-center px-6 py-4 text-gray-800 dark:text-gray-200">
-																						{{ $jenisKemasan->kodeKemasan }}
+																						{{ $jenisKemasan->kodeJenisKemasan }}
 																				</td>
 																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
 																						{{ $jenisKemasan->namaKemasan }}
@@ -185,8 +185,8 @@
 										</div>
 										<div class="custom-scrollbar overflow-y-auto p-4">
 												<div class="grid grid-cols-4 items-center gap-y-3">
-														<label for="kodeKemasan" class="text-sm dark:text-gray-50">Kode Kemasan</label>
-														<input type="number" id="kodeKemasan" name="kodeKemasan"
+														<label for="kodeJenisKemasan" class="text-sm dark:text-gray-50">Kode Kemasan</label>
+														<input type="number" id="kodeJenisKemasan" name="kodeJenisKemasan"
 																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 																placeholder="000" required>
 														<label for="namaKemasan" class="text-sm dark:text-gray-50">Nama Kemasan</label>
@@ -202,7 +202,7 @@
 														Tutup
 												</button>
 												<button type="submit"
-														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50">
 														Tambah
 												</button>
 										</div>
@@ -238,8 +238,8 @@
 										</div>
 										<div class="custom-scrollbar overflow-y-auto p-4">
 												<div class="grid grid-cols-4 items-center gap-y-3">
-														<label for="kodeKemasan" class="text-sm dark:text-gray-50">Kode Kemasan</label>
-														<input type="number" id="kodeKemasan" name="kodeKemasan"
+														<label for="kodeJenisKemasan" class="text-sm dark:text-gray-50">Kode Kemasan</label>
+														<input type="number" id="kodeJenisKemasan" name="kodeJenisKemasan"
 																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 																placeholder="000" required>
 														<label for="namaKemasan" class="text-sm dark:text-gray-50">Nama Kemasan</label>
@@ -255,7 +255,7 @@
 														Batal
 												</button>
 												<button type="submit"
-														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50">
 														Simpan
 												</button>
 										</div>
@@ -275,7 +275,7 @@
 @push('script-bawah')
 		<script>
 				function checkAll(e) {
-						document.getElementsByName("kodeKemasan[]").forEach((x) => (x.checked = e.checked));
+						document.getElementsByName("kodeJenisKemasan[]").forEach((x) => (x.checked = e.checked));
 				}
 
 				function submitDeleteForm() {

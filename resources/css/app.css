@@ -23,3 +23,8 @@
 .dokumen-impor-nav-active {
     @apply !border-blue-500 font-medium !text-blue-600 dark:!text-blue-600;
 }
+
+.hanging-indent {
+    text-indent: -1.5em;
+    padding-left: 1.5em;
+}

@@ -41,7 +41,7 @@
 								</div>
 								<input type="text" id="table-search-users" name="search"
 										class="block w-full rounded-lg border border-gray-300 bg-transparent p-2 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:text-white"
-										placeholder="Cari kode Jenis Dokumen" value="{{ request('search') }}">
+										placeholder="Cari Data Jenis Dokumen" value="{{ request('search') }}">
 						</div>
 						<div class="flex gap-1">
 								<!-- Select -->
@@ -65,7 +65,7 @@
 								</select>
 								<!-- End Select -->
 								<button type="submit"
-										class="rounded-lg bg-blue-700 px-7 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Cari</button>
+										class="rounded-lg bg-blue-600 px-7 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Cari</button>
 						</div>
 				</form>
 				{{-- Search bar end --}}
@@ -202,7 +202,7 @@
 														Tutup
 												</button>
 												<button type="submit"
-														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50">
 														Tambah
 												</button>
 										</div>
@@ -255,7 +255,7 @@
 														Batal
 												</button>
 												<button type="submit"
-														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50">
 														Simpan
 												</button>
 										</div>

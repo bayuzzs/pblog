@@ -5,7 +5,7 @@
 				class="custom-scrollbar h-[calc(100vh-150px)] w-full overflow-auto rounded-2xl bg-white p-5 shadow-xl dark:bg-gray-800">
 				<div class="flex justify-between">
 						<p class="mb-1 font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-200 md:text-3xl">
-								Daftar Data Pelabuhan Barang
+								Daftar Data Pelabuhan
 						</p>
 						<div class="hs-dropdown relative inline-flex">
 								<button id="hs-dropdown-delete" type="button"
@@ -41,7 +41,7 @@
 								</div>
 								<input type="text" id="table-search-users" name="search"
 										class="block w-full rounded-lg border border-gray-300 bg-transparent p-2 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:text-white"
-										placeholder="Cari kode Pelabuhan Barang" value="{{ request('search') }}">
+										placeholder="Cari kode Pelabuhan" value="{{ request('search') }}">
 						</div>
 						<div class="flex gap-1">
 								<!-- Select -->
@@ -65,7 +65,7 @@
 								</select>
 								<!-- End Select -->
 								<button type="submit"
-										class="rounded-lg bg-blue-700 px-7 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Cari</button>
+										class="rounded-lg bg-blue-600 px-7 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Cari</button>
 						</div>
 				</form>
 				{{-- Search bar end --}}
@@ -100,8 +100,12 @@
 																				Kode Pelabuhan
 																		</th>
 																		<th scope="col"
-																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">Nama
-																				Pelabuhan
+																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+																				Nama Pelabuhan
+																		</th>
+																		<th scope="col"
+																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+																				Nama Negara
 																		</th>
 
 																</tr>
@@ -122,6 +126,9 @@
 																				</td>
 																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
 																						{{ $pelabuhan->namaPelabuhan }}
+																				</td>
+																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
+																						{{ $pelabuhan->namaNegara }}
 																				</td>
 
 																		</tr>
@@ -193,6 +200,10 @@
 														<input type="text" id="namaPelabuhan" name="namaPelabuhan"
 																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 																placeholder="Nama Pelabuhan" required>
+														<label for="namaNegara" class="text-sm dark:text-gray-50">Nama Negara</label>
+														<input type="text" id="namaNegara" name="namaNegara"
+																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
+																placeholder="Nama Pelabuhan" required>
 												</div>
 										</div>
 										<div class="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-gray-700">
@@ -202,7 +213,7 @@
 														Tutup
 												</button>
 												<button type="submit"
-														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50">
 														Tambah
 												</button>
 										</div>
@@ -246,6 +257,10 @@
 														<input type="text" id="namaPelabuhan" name="namaPelabuhan"
 																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 																placeholder="Nama Pelabuhan" required>
+														<label for="namaNegara" class="text-sm dark:text-gray-50">Nama Negara</label>
+														<input type="text" id="namaNegara" name="namaNegara"
+																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
+																placeholder="Nama Pelabuhan" required>
 												</div>
 										</div>
 										<div class="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-gray-700">
@@ -255,7 +270,7 @@
 														Batal
 												</button>
 												<button type="submit"
-														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50">
 														Simpan
 												</button>
 										</div>

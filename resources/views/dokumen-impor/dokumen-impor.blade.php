@@ -20,13 +20,12 @@
 												Dokumen Baru
 										</button>
 										<button onclick="submitDeleteForm()"
-												class="{{-- {{ !$HSs->items() ? 'hidden' : '' }}  --}}flex w-full items-center gap-x-3.5 rounded-lg px-3 py-3 text-sm text-gray-800 hover:bg-gray-200 focus:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+												class="{{ !$dokumenImpors->items() ? 'hidden' : '' }} flex w-full items-center gap-x-3.5 rounded-lg px-3 py-3 text-sm text-gray-800 hover:bg-gray-200 focus:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:bg-gray-700">
 												Hapus Data
 										</button>
 								</div>
 						</div>
 				</div>
-
 				{{-- Search bar start --}}
 				<form action="{{ route('dokumen-impor') }}" method="GET"
 						class="sticky -top-5 z-10 mb-2 flex items-center justify-between gap-2 space-y-4 bg-white py-2 dark:bg-gray-800 md:space-y-0">
@@ -41,7 +40,7 @@
 								</div>
 								<input type="text" id="table-search-users" name="search"
 										class="block w-full rounded-lg border border-gray-300 bg-transparent p-2 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700"
-										placeholder="Cari kode HS" value="{{ request('search') }}">
+										placeholder="Cari nomor aju" value="{{ request('search') }}">
 						</div>
 						<div class="flex gap-1">
 								<!-- Select -->
@@ -58,17 +57,12 @@
 										class="!left-0 hidden">
 										{{-- Let this choose stand alone --}}
 										<option value="">Choose</option>
-										<x-filter-option valueInput="kodeHS_asc" requestParam="sortOption">Kode HS</x-filter-option>
-										<x-filter-option valueInput="kodeHS_desc" requestParam="sortOption">Kode HS (DESC)</x-filter-option>
-										<x-filter-option valueInput="uraianBarangBahasa_asc" requestParam="sortOption">Uraian Barang</x-filter-option>
-										<x-filter-option valueInput="uraianBarangBahasa_desc" requestParam="sortOption">Uraian Barang
-												(DESC)</x-filter-option>
-										<x-filter-option valueInput="isLartas_asc" requestParam="sortOption">Terkena Lartas</x-filter-option>
-										<x-filter-option valueInput="isLartas_desc" requestParam="sortOption">Tidak Terkena Lartas</x-filter-option>
+										<x-filter-option valueInput="nomorAju_asc" requestParam="sortOption">Nomor Aju ↓</x-filter-option>
+										<x-filter-option valueInput="nomorAju_desc" requestParam="sortOption">Nomor Aju ↑</x-filter-option>
 								</select>
 								<!-- End Select -->
 								<button type="submit"
-										class="rounded-lg bg-blue-700 px-7 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Cari</button>
+										class="rounded-lg bg-blue-600 px-7 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Cari</button>
 						</div>
 				</form>
 				{{-- Search bar end --}}
@@ -77,12 +71,16 @@
 						<x-alert.alert-error class="mb-3">{{ $error }}</x-alert.alert-error>
 				@endforeach
 
+				@session('error')
+						<x-alert.alert-error class="mb-3">{{ $value }}</x-alert.alert-error>
+				@endsession
+
 				@session('success')
 						<x-alert.alert-success class="mb-3">{{ $value }}</x-alert.alert-success>
 				@endsession
 
 				{{-- Table start --}}
-				<form action="{{ route('data-master.hs') }}" method="POST" class="flex flex-col" id="delete-form" method="POST">
+				<form action="{{ route('dokumen-impor') }}" method="POST" class="flex flex-col" id="delete-form" method="POST">
 						@csrf
 						@method('DELETE')
 						<div class="custom-scrollbar -m-1.5 overflow-x-auto">
@@ -99,58 +97,78 @@
 																		</th>
 																		<th scope="col"
 																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
-																				Kode HS
+																				Nomor Pengajuan
 																		</th>
 																		<th scope="col"
-																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">Uraian
-																				Barang (Bahasa)
+																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+																				Kantor Pabean
 																		</th>
 																		<th scope="col"
-																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">Uraian
-																				Barang (English)
+																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+																				Tipe Dokumen
 																		</th>
-																		<th scope="col"
-																				class="flex px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
-																				Terkena Lartas
+																		@if ($dokumenImpors->count() > 0)
+																				<th scope="col"
+																						class="px-3 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
 
-																		</th>
+																				</th>
+																		@endif
 																</tr>
 														</thead>
 														<tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-																{{-- @forelse ($HSs as $hs)
-																		<tr data-json="{{ json_encode($hs) }}" onclick="showEditModal(event)"
-																				class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
+																@forelse ($dokumenImpors as $dokumenImpor)
+																		<tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
 																				<td class="py-3 ps-4">
 																						<div class="flex h-5 items-center">
-																								<input id="hs-table-checkbox-1" type="checkbox" name="kodeHS[]" value="{{ $hs->kodeHS }}"
-																										onclick="event.stopPropagation();"
+																								<input id="hs-table-checkbox-1" type="checkbox" name="nomorAju[]"
+																										value="{{ $dokumenImpor->nomorAju }}" onclick="event.stopPropagation();"
 																										class="rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800">
 																						</div>
 																				</td>
-																				<td class="flex items-center px-6 py-4 text-gray-800 dark:text-gray-200">
-																						{{ $hs->kodeHS }}
+																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
+																						{{ printNomorAju($dokumenImpor->nomorAju) }}
 																				</td>
 																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
-																						{{ $hs->uraianBarangBahasa }}
+																						{{ $dokumenImpor->kantor ? $dokumenImpor->kantor->kodeKantor . ' - ' . $dokumenImpor->kantor->namaKantor : 'Kosong' }}
 																				</td>
 																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
-																						{{ $hs->uraianBarangEnglish }}
+																						{{ $dokumenImpor->isBerwujud ? 'Berwujud' : 'Tidak Berwujud' }}
 																				</td>
-																				<td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
-																						{{ $hs->isLartas ? 'Ya' : 'Tidak' }}
+																				<td class="flex items-center justify-center gap-5 px-3 py-4 text-sm text-gray-800 dark:text-gray-200">
+																						<div class="hs-tooltip [--placement:left]">
+																								<button type="button" class="hs-tooltip-toggle"
+																										onclick="editDokumen('{{ route('dokumen-impor.header', $dokumenImpor->nomorAju) }}')">
+																										<iconify-icon icon="iconamoon:edit-light" class="text-xl"></iconify-icon>
+																										<span
+																												class="hs-tooltip-content invisible absolute z-10 inline-block rounded-full bg-blue-600 px-4 py-1.5 text-white opacity-0 transition-opacity duration-200 hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+																												role="tooltip">
+																												Edit
+																										</span>
+																								</button>
+																						</div>
+																						<div class="hs-tooltip [--placement:left]">
+																								<button type="button" class="hs-tooltip-toggle">
+																										<iconify-icon icon="cil:print" class="text-xl"></iconify-icon>
+																										<span
+																												class="hs-tooltip-content invisible absolute z-10 inline-block rounded-full bg-blue-600 px-4 py-1.5 text-white opacity-0 transition-opacity duration-200 hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+																												role="tooltip">
+																												Cetak
+																										</span>
+																								</button>
+																						</div>
 																				</td>
 																		</tr>
-																@empty --}}
-																<tr>
-																		<td colspan="5">
-																				<div
-																						class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-400">
-																						<iconify-icon icon="iwwa:box" class="text-4xl"></iconify-icon>
-																						Tidak ada Dokumen Impor
-																				</div>
-																		</td>
-																</tr>
-																{{-- @endforelse --}}
+																@empty
+																		<tr>
+																				<td colspan="5">
+																						<div
+																								class="flex w-full flex-col items-center justify-center whitespace-nowrap px-6 py-4 text-center text-sm text-gray-800 dark:text-gray-400">
+																								<iconify-icon icon="iwwa:box" class="text-4xl"></iconify-icon>
+																								Tidak ada Dokumen Impor
+																						</div>
+																				</td>
+																		</tr>
+																@endforelse
 														</tbody>
 												</table>
 										</div>
@@ -160,16 +178,16 @@
 				{{-- Table end --}}
 
 				<!-- Pagination -->
-				{{-- @if ($HSs->hasPages())
+				@if ($dokumenImpors->hasPages())
 						<div class="mt-5 flex items-center justify-between px-3">
 								<p class="w-48 break-words text-sm dark:text-gray-400 sm:w-full">
-										Data <span class="font-semibold">{{ $HSs->firstItem() }}</span> ke <span
-												class="font-semibold">{{ $HSs->lastItem() }}</span> dari total <span
-												class="font-semibold">{{ $HSs->total() }}</span> Data HS
+										Data <span class="font-semibold">{{ $dokumenImpors->firstItem() }}</span> ke <span
+												class="font-semibold">{{ $dokumenImpors->lastItem() }}</span> dari total <span
+												class="font-semibold">{{ $dokumenImpors->total() }}</span> Data Dokumen Impoor
 								</p>
-								<x-pagination :data="$HSs" />
+								<x-pagination :data="$dokumenImpors" />
 						</div>
-				@endif --}}
+				@endif
 				<!-- End Pagination -->
 		</div>
 
@@ -178,7 +196,7 @@
 		<div id="hs-add-modal"
 				class="hs-overlay size-full pointer-events-none fixed start-0 top-0 z-[80] hidden overflow-y-auto overflow-x-hidden opacity-0 transition-all hs-overlay-open:opacity-100 hs-overlay-open:duration-500">
 				<div class="mt-20 sm:mx-auto sm:w-full sm:max-w-2xl">
-						<form action="{{ route('data-master.hs') }}" method="POST">
+						<form action="{{ route('dokumen-impor') }}" method="POST">
 								@csrf
 								<div
 										class="pointer-events-auto flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-gray-700/70">
@@ -205,28 +223,35 @@
 																		<p class="text-sm dark:text-gray-200 md:text-base">Jenis Pemberitahuan</p>
 																</div>
 																<div class="col-span-3">
-																		<x-select name="jenisPib">
-																				<option value="1" selected>PEMASUKAN</option>
-																		</x-select>
+																		<input type="text" name="jenisPemberitahuan"
+																				class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
+																				placeholder="Masukkan Jenis Pemberitahuan" value="PEMBERITAHUAN" required>
 																</div>
 														</div>
 														<div class="grid grid-cols-5 items-center gap-5">
 																<div class="col-span-2">
 																		<p class="text-sm dark:text-gray-200 md:text-base">Asal Barang</p>
 																</div>
-																<div class="col-span-3">
-																		<x-select name="jenisPib">
-																				<option value="1" selected>1 - LUAR DAERAH PABEAN</option>
-																		</x-select>
-																</div>
+																<input type="text" name="asalBarang"
+																		class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
+																		placeholder="Masukkan Asal Barang" value="LUAR DAERAH PABEAN" required>
 														</div>
 														<div class="grid grid-cols-5 items-center gap-5">
 																<div class="col-span-2">
 																		<p class="text-sm dark:text-gray-200 md:text-base">Tujuan Barang</p>
 																</div>
+																<input type="text" name="tujuanBarang"
+																		class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
+																		placeholder="Masukkan Tujuan Barang" value="DALAM DAERAH PABEAN" required>
+														</div>
+														<div class="grid grid-cols-5 items-center gap-5">
+																<div class="col-span-2">
+																		<p class="text-sm dark:text-gray-200 md:text-base">Tipe Dokumen</p>
+																</div>
 																<div class="col-span-3">
-																		<x-select name="jenisPib">
-																				<option value="1" selected>DALAM DAERAH PABEAN</option>
+																		<x-select name="isBerwujud">
+																				<option value="1" selected>Dokumen Barang Berwujud</option>
+																				<option value="0">Dokumen Barang Tidak Berwujud</option>
 																		</x-select>
 																</div>
 														</div>
@@ -236,6 +261,7 @@
 																</div>
 																<div class="col-span-3">
 																		<p class="text-sm font-semibold text-gray-800 dark:text-gray-200 md:text-base">PIB/IMPOR</p>
+																		<input type="hidden" name="jenisDokumen" value="PIB/IMPOR">
 																</div>
 														</div>
 												</div>
@@ -247,7 +273,7 @@
 														Batal
 												</button>
 												<button type="submit"
-														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
+														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50">
 														Selanjutnya
 												</button>
 										</div>
@@ -256,91 +282,9 @@
 				</div>
 		</div>
 		{{-- Modal Add end --}}
-		{{-- Modal Edit Start --}}
-		<div id="hs-edit-modal"
-				class="hs-overlay size-full pointer-events-none fixed start-0 top-0 z-[80] hidden overflow-y-auto overflow-x-hidden opacity-0 transition-all hs-overlay-open:opacity-100 hs-overlay-open:duration-500">
-				<div class="m-3 sm:mx-auto sm:w-full sm:max-w-lg">
-						<form action="{{ route('data-master.hs') }}" method="POST">
-								@csrf
-								@method('PUT')
-								<div
-										class="pointer-events-auto flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-gray-700/70">
-										<div class="flex items-center justify-between border-b px-4 py-3 dark:border-gray-700">
-												<h3 class="font-bold text-gray-800 dark:text-white">
-														Edit Data HS
-												</h3>
-												<button type="button"
-														class="size-7 flex items-center justify-center rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-gray-700"
-														data-hs-overlay="#hs-edit-modal">
-														<span class="sr-only">Tutup</span>
-														<svg class="size-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-																viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-																stroke-linejoin="round">
-																<path d="M18 6 6 18"></path>
-																<path d="m6 6 12 12"></path>
-														</svg>
-												</button>
-										</div>
-										<div class="custom-scrollbar overflow-y-auto p-4">
-												<div class="grid grid-cols-4 items-center gap-y-3">
-														<label for="kodeHS" class="text-sm dark:text-gray-50">Kode HS</label>
-														<input type="number" id="kodeHS" name="kodeHS"
-																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-																placeholder="00000000" required readonly>
-
-														<label for="uraianBarang" class="text-sm dark:text-gray-50">Uraian Barang (Bahasa)</label>
-														<input type="text" id="uraianBarang" name="uraianBarangBahasa"
-																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-																placeholder="Uraian dalam bhs Indonesia" required>
-
-														<label for="uraianBarangEnglish" class="text-sm dark:text-gray-50">Uraian Barang (English)</label>
-														<input type="text" id="uraianBarangEnglish" name="uraianBarangEnglish"
-																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-																placeholder="Uraian dalam bhs Inggris" required>
-
-														<label for="isLartas" class="text-sm dark:text-gray-50">Terkena Lartas?</label>
-														<div class="col-span-3">
-																<!-- Radio -->
-																<div class="grid gap-2 sm:grid-cols-2">
-																		<label for="isLartasYaEdit"
-																				class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-																				<input type="radio" name="isLartas" value="1"
-																						class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-																						id="isLartasYaEdit" required>
-																				<span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Ya</span>
-																		</label>
-
-																		<label for="isLartasTidakEdit"
-																				class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-																				<input type="radio" name="isLartas" value="0"
-																						class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-																						id="isLartasTidakEdit" required>
-																				<span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Tidak</span>
-																		</label>
-																</div>
-																<!-- End Radio -->
-														</div>
-												</div>
-										</div>
-										<div class="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-gray-700">
-												<button type="button"
-														class="inline-flex items-center gap-x-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800"
-														data-hs-overlay="#hs-edit-modal">
-														Batal
-												</button>
-												<button type="submit"
-														class="inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
-														Simpan
-												</button>
-										</div>
-								</div>
-						</form>
-				</div>
-		</div>
-		{{-- Modal Edit end --}}
 		{{-- Modal End --}}
 		{{-- Sort Form --}}
-		<form id="sort-form" action="{{ route('data-master.hs') }}" class="hidden">
+		<form id="sort-form" action="{{ route('dokumen-impor') }}" class="hidden">
 				<input type="hidden" name="sortOption">
 		</form>
 		{{-- Sort Form --}}
@@ -349,11 +293,15 @@
 @push('script-bawah')
 		<script>
 				function checkAll(e) {
-						document.getElementsByName("kodeHS[]").forEach((x) => (x.checked = e.checked));
+						document.getElementsByName("nomorAju[]").forEach((x) => (x.checked = e.checked));
 				}
 
 				function submitDeleteForm() {
 						document.getElementById('delete-form').submit();
+				}
+
+				function editDokumen(url) {
+						window.location.href = url
 				}
 
 				function submitSortForm(event) {
@@ -362,29 +310,6 @@
 						sortForm.querySelector('input[name="sortOption"]').value = event.currentTarget.value;
 						// then submit the form awokawokawok
 						sortForm.submit();
-				}
-
-				function showEditModal(event) {
-						// Ambil data json
-						const data = JSON.parse(event.currentTarget.getAttribute('data-json'));
-
-						// tangkap modal nya (karena form nya dalam modal)
-						const modal = document.querySelector('#hs-edit-modal');
-
-						// Mengisi semua input dalam modal berdasarkan nama atribut dari data-json
-						Object.keys(data).forEach(key => {
-								const inputs = modal.querySelectorAll(`[name="${key}"]`);
-								inputs.forEach(input => {
-										if (input.type === 'radio' || input.type === 'checkbox') {
-												input.checked = input.value == data[key];
-										} else {
-												input.value = data[key];
-										}
-								});
-						});
-
-						// Buka Modal nya
-						HSOverlay.open('#hs-edit-modal');
 				}
 		</script>
 @endpush

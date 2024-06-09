@@ -105,7 +105,7 @@
 																				class="text-blue-700 hover:underline dark:text-blue-500">Disini</a>
 																</div>
 																<button type="submit"
-																		class="me-2 w-full rounded-lg bg-blue-700 px-5 py-2.5 font-poppins text-sm text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Masuk</button>
+																		class="me-2 w-full rounded-lg bg-blue-600 px-5 py-2.5 font-poppins text-sm text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Masuk</button>
 														</form>
 												</div>
 												{{-- Login Tab Content End --}}
@@ -327,7 +327,7 @@
 																		@enderror
 																</div>
 																<button type="submit"
-																		class="me-2 w-full rounded-lg bg-blue-700 px-5 py-2.5 font-poppins text-sm text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Daftar</button>
+																		class="me-2 w-full rounded-lg bg-blue-600 px-5 py-2.5 font-poppins text-sm text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Daftar</button>
 														</form>
 												</div>
 										</div>

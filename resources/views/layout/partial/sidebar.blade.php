@@ -31,50 +31,6 @@
 										</x-slot:icon>
 										Dokumen Impor
 								</x-nav-link>
-
-								<li class="hs-accordion" id="users-accordion">
-										<button type="button"
-												class="hs-accordion-toggle flex w-full items-center gap-x-3.5 rounded-lg px-2.5 py-3.5 text-start text-sm text-gray-700 hover:bg-gray-100 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:hs-accordion-active:text-white">
-												<iconify-icon icon="gridicons:computer" class="text-lg"></iconify-icon>
-												Single Core System
-
-												<svg class="size-4 ms-auto hidden hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24"
-														height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-														stroke-linecap="round" stroke-linejoin="round">
-														<path d="m18 15-6-6-6 6" />
-												</svg>
-
-												<svg class="size-4 ms-auto block hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24"
-														height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-														stroke-linecap="round" stroke-linejoin="round">
-														<path d="m6 9 6 6 6-6" />
-												</svg>
-										</button>
-
-										<div id="users-accordion-child"
-												class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300">
-												<ul class="ps-2 pt-2">
-														<li>
-																<a class="flex items-center gap-x-2 rounded-lg px-2.5 py-3.5 text-sm text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
-																		href="#">
-																		<b>•</b> Dokumen Pabean
-																</a>
-														</li>
-														<li>
-																<a class="flex items-center gap-x-2 rounded-lg px-2.5 py-3.5 text-sm text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
-																		href="#">
-																		<b>•</b> Pengajuan Rush Handling
-																</a>
-														</li>
-														<li>
-																<a class="flex items-center gap-x-2 rounded-lg px-2.5 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
-																		href="#">
-																		<b>•</b> Dokumen Barang Kiriman
-																</a>
-														</li>
-												</ul>
-										</div>
-								</li>
 						@endauth
 						@auth('petugas')
 								<x-nav-link active="{{ request()->routeIs('dashboard') }}" href="{{ route('dashboard') }}">
