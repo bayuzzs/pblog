@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\DokumenImpor;
 
 use App\Http\Controllers\Controller;
+use App\Models\DokumenImpor\DokumenImpor;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -11,9 +12,16 @@ class HeaderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index( string $nomorAju ) : View
         {
-        return view('dokumen-impor.header');
+        try {
+            $dokumenImpor = DokumenImpor::where('nomorAju', $nomorAju)->firstOrFail();
+            return view('dokumen-impor.header', compact('dokumenImpor'));
+
+            } catch (\Exception $th) {
+            return redirect(route('dokumen-impor'))->with('error', 'Terjadi Kesalahan: ' . $th->getMessage());
+
+            }
         }
 
     /**
@@ -27,9 +35,15 @@ class HeaderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store( Request $request )
+    public function store( Request $request, string $nomorAju )
         {
-        //
+        try {
+            $dokumenImpor = DokumenImpor::where('nomorAju', $nomorAju)->firstOrFail();
+            $dokumenImpor->update($request->all());
+            return redirect(route('dokumen-impor.entitas', $dokumenImpor->nomorAju))->with('success', 'Berhasil Mengisi Data Header!');
+            } catch (\Exception $th) {
+            return redirect()->back()->with('error', 'Terjadi Kesalahan: ' . $th->getMessage());
+            }
         }
 
     /**

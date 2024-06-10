@@ -12,35 +12,15 @@ return new class extends Migration {
         {
         Schema::create('barang_tarif', function (Blueprint $table) {
             $table->id('barangTarifId');
-            $table->enum('jenisPungutan', [
-                'BK',
-                'BM',
-                'BMAD',
-                'BMI',
-                'BMKITE',
-                'BMP',
-                'BMTP',
-                'CEA',
-                'CMEA',
-                'CTEM',
-                'DENDA',
-                'DS',
-                'PNBP',
-                'PPH',
-                'PPHEKSPOR',
-                'PPN',
-                'PPNBM',
-                'PPNLOKAL'
-            ]);
-            $table->enum('kodeFasilitasTarif', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
-            $table->enum('jenisTarif', ['0', '1']);
-            $table->decimal('jumlahSatuan', 24, 2);
-            $table->boolean('isSementara');
-            $table->decimal('nilaiBayar', 24, 2);
+            $table->enum('keterangan', ['BM', 'BMT', 'CUKAI', 'PPH', 'PPN']);
+            $table->decimal('ditunda', 24, 4)->default(0);
+            $table->decimal('dibayar', 24, 4)->default(0);
+            $table->decimal('dibebaskan', 24, 4)->default(0);
+            $table->decimal('tidakDipungut', 24, 4)->default(0);
+            $table->decimal('telahDilunasi', 24, 4)->default(0);
+            $table->decimal('ditanggungPemerintah', 24, 4)->default(0);
             $table->bigInteger('barangId')->unsigned()->nullable();
-            $table->bigInteger('dokumenPendukungId')->unsigned()->nullable();
             $table->foreign('barangId')->references('barangId')->on('barang')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('dokumenPendukungId')->references('dokumenPendukungId')->on('dokumen_pendukung')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             });
         }

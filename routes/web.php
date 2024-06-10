@@ -28,8 +28,12 @@ Route::middleware('auth:pengimpor,petugas')->group(function () {
     Route::get('/beranda', [DashboardController::class, 'index'])->name('dashboard');
 
     });
-
-
+Route::get('/test', function () {
+    return view('test');
+    });
+Route::post('/test', function (Request $request) {
+    ddd($request->all());
+    });
 require __DIR__ . '/auth.php';
 require __DIR__ . '/pengimpor.php';
 require __DIR__ . '/petugas.php';

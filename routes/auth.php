@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('guest')->group(function () {
-	Route::get('/auth', [PengimporAuthController::class, 'indexAuth'])->middleware('bukan_petugas')->name('auth');
+	Route::get('/auth', [PengimporAuthController::class, 'indexAuth'])->middleware('pengimpor-only')->name('auth');
 
 	Route::get('/auth-petugas', [PetugasAuthController::class, 'indexAuth'])->name('auth-pengimpor');
 
@@ -28,7 +28,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth:pengimpor,petugas')->group(function () {
 	Route::get('/logout', [PengimporAuthController::class, 'logout'])->name('auth.logout');
 
-	Route::post('/change-password', [PengimporAuthController::class, 'storeChangePassword'])->middleware('bukan_petugas')->name('change-password.store');
+	Route::post('/change-password', [PengimporAuthController::class, 'storeChangePassword'])->middleware('pengimpor-only')->name('change-password.store');
 
-	Route::post('/update-profile', [PengimporAuthController::class, 'updateProfile'])->middleware('bukan_petugas')->name('updateProfile.store');
+	Route::post('/update-profile', [PengimporAuthController::class, 'updateProfile'])->middleware('pengimpor-only')->name('updateProfile.store');
 	});

@@ -14,6 +14,12 @@ class GrandPungutan extends Model
 
     protected $fillable = [
         'keterangan',
+        'telahDilunasi',
+        'dibebaskan',
+        'tidakDipungut',
+        'ditunda',
+        'ditanggungPemerintah',
+        'dibayar',
         'nomorAju',
     ];
 

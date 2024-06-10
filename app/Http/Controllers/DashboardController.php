@@ -17,19 +17,16 @@ class DashboardController extends Controller
     public function index( Request $request ) : View
         {
         if ( Auth::guard('petugas')->check() ) {
-            $search     = $request->query('search');
-            $sortOption = $request->query('sortOption', 'nama_asc');
+            $search                       = $request->query('search');
+            $sortOption                   = $request->query('sortOption', 'nama_asc');
             list($filter, $sortDirection) = explode('_', $sortOption);
-           
+
             $pengimpors = Pengimpor::query()
-            ->when($search, function ($query) use ($search) {
-                $query->where('nama', 'like', '%' . $search . '%');
-                })
-            ->orderBy($filter, $sortDirection)
-            ->paginate(10);
-            // $pengimpors = Pengimpor::when($search, function ($query) use ($search) {
-            //     return $query->where('nama', 'like', '%' . $search . '%');
-            //     })->orderBy('nama', 'asc')->paginate(10); omaygattt aakwoakwoakwokaowkaowkaokwa
+                ->when($search, function ($query) use ($search) {
+                    $query->where('nama', 'like', '%' . $search . '%');
+                    })
+                ->orderBy($filter, $sortDirection)
+                ->paginate(10);
             return view('dashboard-petugas', compact('pengimpors'));
             }
 

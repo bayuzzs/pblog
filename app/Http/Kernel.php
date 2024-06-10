@@ -54,7 +54,9 @@ class Kernel extends HttpKernel
      */
     protected $middlewareAliases = [
         'auth'             => \App\Http\Middleware\Authenticate::class,
-        'bukan_petugas'    => \App\Http\Middleware\RedirectIfPetugas::class,
+        'dokumen-impor'    => \App\Http\Middleware\DokumenImporExist::class,
+        'dokumen-berwujud' => \App\Http\Middleware\DokumenBerwujud::class,
+        'pengimpor-only'   => \App\Http\Middleware\RedirectIfPetugas::class,
         'auth.basic'       => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session'     => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers'    => \Illuminate\Http\Middleware\SetCacheHeaders::class,

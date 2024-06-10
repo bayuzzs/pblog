@@ -225,7 +225,7 @@
 																<div class="col-span-3">
 																		<input type="text" name="jenisPemberitahuan"
 																				class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-																				placeholder="Masukkan Jenis Pemberitahuan" value="PEMBERITAHUAN" required>
+																				placeholder="Masukkan Jenis Pemberitahuan" required>
 																</div>
 														</div>
 														<div class="grid grid-cols-5 items-center gap-5">
@@ -234,7 +234,7 @@
 																</div>
 																<input type="text" name="asalBarang"
 																		class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-																		placeholder="Masukkan Asal Barang" value="LUAR DAERAH PABEAN" required>
+																		placeholder="Masukkan Asal Barang" required>
 														</div>
 														<div class="grid grid-cols-5 items-center gap-5">
 																<div class="col-span-2">
@@ -242,7 +242,7 @@
 																</div>
 																<input type="text" name="tujuanBarang"
 																		class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-																		placeholder="Masukkan Tujuan Barang" value="DALAM DAERAH PABEAN" required>
+																		placeholder="Masukkan Tujuan Barang" required>
 														</div>
 														<div class="grid grid-cols-5 items-center gap-5">
 																<div class="col-span-2">

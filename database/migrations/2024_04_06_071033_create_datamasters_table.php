@@ -13,10 +13,8 @@ return new class extends Migration {
         Schema::create('hs', function (Blueprint $table) {
             $table->char('kodeHS', 10)->primary();
             $table->string('uraianBarangBahasa');
-            $table->string('uraianBarangEnglish');
-            $table->decimal('pphApi', 5, 2);
-            $table->decimal('pphNonApi', 5, 2);
-            $table->boolean('isLartas');
+            $table->decimal('pphApi', 5, 2)->default(0);
+            $table->decimal('pphNonApi', 5, 2)->default(0);
             $table->timestamps();
             });
 
