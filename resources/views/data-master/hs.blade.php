@@ -60,8 +60,8 @@
 										<option value="">Choose</option>
 										<x-filter-option valueInput="kodeHS_asc" requestParam="sortOption">Kode HS ↑</x-filter-option>
 										<x-filter-option valueInput="kodeHS_desc" requestParam="sortOption">Kode HS ↓</x-filter-option>
-										<x-filter-option valueInput="uraianBarangBahasa_asc" requestParam="sortOption">Uraian Barang ↑</x-filter-option>
-										<x-filter-option valueInput="uraianBarangBahasa_desc" requestParam="sortOption">Uraian Barang ↓
+										<x-filter-option valueInput="uraianBarang_asc" requestParam="sortOption">Uraian Barang ↑</x-filter-option>
+										<x-filter-option valueInput="uraianBarang_desc" requestParam="sortOption">Uraian Barang ↓
 										</x-filter-option>
 										<x-filter-option valueInput="isLartas_asc" requestParam="sortOption">Tidak Terkena Lartas </x-filter-option>
 										<x-filter-option valueInput="isLartas_desc" requestParam="sortOption">Terkena Lartas </x-filter-option>
@@ -106,10 +106,6 @@
 																				Barang (Bahasa)
 																		</th>
 																		<th scope="col"
-																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">Uraian
-																				Barang (English)
-																		</th>
-																		<th scope="col"
 																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
 																				PPH (API)
 																		</th>
@@ -117,11 +113,6 @@
 																				class="px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
 																				PPH (Non
 																				API)
-																		</th>
-																		<th scope="col"
-																				class="flex px-6 py-3 text-start text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
-																				Terkena Lartas
-
 																		</th>
 																</tr>
 														</thead>
@@ -140,19 +131,13 @@
 																						{{ $hs->kodeHS }}
 																				</td>
 																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
-																						{{ $hs->uraianBarangBahasa }}
-																				</td>
-																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
-																						{{ $hs->uraianBarangEnglish }}
+																						{{ $hs->uraianBarang }}
 																				</td>
 																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
 																						{{ $hs->pphApi }}
 																				</td>
 																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
 																						{{ $hs->pphNonApi }}
-																				</td>
-																				<td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
-																						{{ $hs->isLartas ? 'Ya' : 'Tidak' }}
 																				</td>
 																		</tr>
 																@empty
@@ -221,14 +206,9 @@
 																placeholder="00000000" required>
 
 														<label for="uraianBarang" class="text-sm dark:text-gray-50">Uraian Barang (Bahasa)</label>
-														<input type="text" id="uraianBarang" name="uraianBarangBahasa"
+														<input type="text" id="uraianBarang" name="uraianBarang"
 																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 																placeholder="Uraian dalam bhs Indonesia" required>
-
-														<label for="uraianBarangEnglish" class="text-sm dark:text-gray-50">Uraian Barang (English)</label>
-														<input type="text" id="uraianBarangEnglish" name="uraianBarangEnglish"
-																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-																placeholder="Uraian dalam bhs Inggris" required>
 
 														<label for="pphApi" class="text-sm dark:text-gray-50">PPH API</label>
 														<input type="number" id="pphApi" name="pphApi"
@@ -240,28 +220,6 @@
 																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 																placeholder="PPH (Non API)" step="0.01" required>
 
-														<label for="isLartas" class="text-sm dark:text-gray-50">Terkena Lartas?</label>
-														<div class="col-span-3">
-																<!-- Radio -->
-																<div class="grid gap-2 sm:grid-cols-2">
-																		<label for="isLartasYa"
-																				class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-																				<input type="radio" name="isLartas" value="1"
-																						class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-																						id="isLartasYa" required>
-																				<span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Ya</span>
-																		</label>
-
-																		<label for="isLartasTidak"
-																				class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-																				<input type="radio" name="isLartas" value="0"
-																						class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-																						id="isLartasTidak" required>
-																				<span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Tidak</span>
-																		</label>
-																</div>
-																<!-- End Radio -->
-														</div>
 												</div>
 										</div>
 										<div class="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-gray-700">
@@ -313,14 +271,9 @@
 																placeholder="00000000" required readonly>
 
 														<label for="uraianBarang" class="text-sm dark:text-gray-50">Uraian Barang (Bahasa)</label>
-														<input type="text" id="uraianBarang" name="uraianBarangBahasa"
+														<input type="text" id="uraianBarang" name="uraianBarang"
 																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 																placeholder="Uraian dalam bhs Indonesia" required>
-
-														<label for="uraianBarangEnglish" class="text-sm dark:text-gray-50">Uraian Barang (English)</label>
-														<input type="text" id="uraianBarangEnglish" name="uraianBarangEnglish"
-																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-																placeholder="Uraian dalam bhs Inggris" required>
 
 														<label for="pphApi" class="text-sm dark:text-gray-50">PPH API</label>
 														<input type="number" id="pphApi" name="pphApi"
@@ -331,29 +284,6 @@
 														<input type="number" id="pphNonApi" name="pphNonApi"
 																class="col-span-3 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 																placeholder="PPH (Non API)" step="0.01" required>
-
-														<label for="isLartas" class="text-sm dark:text-gray-50">Terkena Lartas?</label>
-														<div class="col-span-3">
-																<!-- Radio -->
-																<div class="grid gap-2 sm:grid-cols-2">
-																		<label for="isLartasYaEdit"
-																				class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-																				<input type="radio" name="isLartas" value="1"
-																						class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-																						id="isLartasYaEdit" required>
-																				<span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Ya</span>
-																		</label>
-
-																		<label for="isLartasTidakEdit"
-																				class="flex w-full cursor-pointer rounded-lg border border-gray-200 bg-white p-3 text-sm hover:bg-gray-100 focus:border-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700">
-																				<input type="radio" name="isLartas" value="0"
-																						class="mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800"
-																						id="isLartasTidakEdit" required>
-																				<span class="ms-3 text-sm text-gray-500 dark:text-gray-400">Tidak</span>
-																		</label>
-																</div>
-																<!-- End Radio -->
-														</div>
 												</div>
 										</div>
 										<div class="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-gray-700">
