@@ -147,7 +147,8 @@
 																								</button>
 																						</div>
 																						<div class="hs-tooltip [--placement:left]">
-																								<button type="button" class="hs-tooltip-toggle">
+																								<button type="button" class="hs-tooltip-toggle"
+																										onclick="cetakDokumen('{{ route('dokumen-impor.cetak', $dokumenImpor->nomorAju) }}')">
 																										<iconify-icon icon="cil:print" class="text-xl"></iconify-icon>
 																										<span
 																												class="hs-tooltip-content invisible absolute z-10 inline-block rounded-full bg-blue-600 px-4 py-1.5 text-white opacity-0 transition-opacity duration-200 hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
@@ -303,6 +304,11 @@
 				function editDokumen(url) {
 						window.location.href = url
 				}
+
+				function cetakDokumen(url) {
+						window.open(url, '_blank');
+				}
+
 
 				function submitSortForm(event) {
 						const sortForm = document.getElementById('sort-form');

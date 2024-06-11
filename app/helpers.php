@@ -63,6 +63,34 @@ if ( ! function_exists('cleanString') ) {
 
 
     }
+if ( ! function_exists('generateIndonesiaDate') ) {
+    function generateIndonesiaDate( $date )
+        {
+        $tanggal   = new DateTime($date);
+        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+
+        $formatter->setPattern('EEEE, d MMMM yyyy');
+
+        $tanggalFormatted = $formatter->format($tanggal);
+        return $tanggalFormatted;
+        }
+    }
+
+if ( ! function_exists('generateRupiahFormat') ) {
+    function generateRupiahFormat( $angka )
+        {
+
+        $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+
+        $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, 2);
+
+        $angkaFormatted = $formatter->formatCurrency($angka, 'IDR');
+
+        echo $angkaFormatted;
+
+
+        }
+    }
 
 require_once __DIR__ . '/Helpers/generate_jenis_impor_options.php';
 require_once __DIR__ . '/Helpers/generate_cara_bayar_options.php';

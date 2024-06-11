@@ -198,49 +198,50 @@ class BarangController extends Controller
         ]);
 
         $bm = [
-            "dibayar"              => request("BMDibayar"),
-            "ditanggungPemerintah" => request("BMDitanggungPemerintah"),
-            "ditunda"              => request("BMDitunda"),
-            "tidakDipungut"        => request("BMTidakDipungut"),
-            "dibebaskan"           => request("BMDibebaskan"),
-            "telahDilunasi"        => request("BMTelahDilunasi"),
+            "dibayar"              => request("BMDibayar", 0),
+            "ditanggungPemerintah" => request("BMDitanggungPemerintah", 0),
+            "ditunda"              => request("BMDitunda", 0),
+            "tidakDipungut"        => request("BMTidakDipungut", 0),
+            "dibebaskan"           => request("BMDibebaskan", 0),
+            "telahDilunasi"        => request("BMTelahDilunasi", 0),
         ];
 
         $bmt = [
-            "dibayar"              => request("BMTDibayar"),
-            "ditanggungPemerintah" => request("BMTDitanggungPemerintah"),
-            "ditunda"              => request("BMTDitunda"),
-            "tidakDipungut"        => request("BMTTidakDipungut"),
-            "dibebaskan"           => request("BMTDibebaskan"),
-            "telahDilunasi"        => request("BMTTelahDilunasi"),
+            "dibayar"              => request("BMTDibayar", 0),
+            "ditanggungPemerintah" => request("BMTDitanggungPemerintah", 0),
+            "ditunda"              => request("BMTDitunda", 0),
+            "tidakDipungut"        => request("BMTTidakDipungut", 0),
+            "dibebaskan"           => request("BMTDibebaskan", 0),
+            "telahDilunasi"        => request("BMTTelahDilunasi", 0),
         ];
 
         $cukai = [
-            "dibayar"              => request("CUKAIDibayar"),
-            "ditanggungPemerintah" => request("CUKAIDitanggungPemerintah"),
-            "ditunda"              => request("CUKAIDitunda"),
-            "tidakDipungut"        => request("CUKAITidakDipungut"),
-            "dibebaskan"           => request("CUKAIDibebaskan"),
-            "telahDilunasi"        => request("CUKAITelahDilunasi"),
+            "dibayar"              => request("CUKAIDibayar", 0),
+            "ditanggungPemerintah" => request("CUKAIDitanggungPemerintah", 0),
+            "ditunda"              => request("CUKAIDitunda", 0),
+            "tidakDipungut"        => request("CUKAITidakDipungut", 0),
+            "dibebaskan"           => request("CUKAIDibebaskan", 0),
+            "telahDilunasi"        => request("CUKAITelahDilunasi", 0),
         ];
 
         $pph = [
-            "dibayar"              => request("PPHDibayar"),
-            "ditanggungPemerintah" => request("PPHDitanggungPemerintah"),
-            "ditunda"              => request("PPHDitunda"),
-            "tidakDipungut"        => request("PPHTidakDipungut"),
-            "dibebaskan"           => request("PPHDibebaskan"),
-            "telahDilunasi"        => request("PPHTelahDilunasi"),
+            "dibayar"              => request("PPHDibayar", 0),
+            "ditanggungPemerintah" => request("PPHDitanggungPemerintah", 0),
+            "ditunda"              => request("PPHDitunda", 0),
+            "tidakDipungut"        => request("PPHTidakDipungut", 0),
+            "dibebaskan"           => request("PPHDibebaskan", 0),
+            "telahDilunasi"        => request("PPHTelahDilunasi", 0),
         ];
 
         $ppn = [
-            "dibayar"              => request("PPNDibayar"),
-            "ditanggungPemerintah" => request("PPNDitanggungPemerintah"),
-            "ditunda"              => request("PPNDitunda"),
-            "tidakDipungut"        => request("PPNTidakDipungut"),
-            "dibebaskan"           => request("PPNDibebaskan"),
-            "telahDilunasi"        => request("PPNTelahDilunasi"),
+            "dibayar"              => request("PPNDibayar", 0),
+            "ditanggungPemerintah" => request("PPNDitanggungPemerintah", 0),
+            "ditunda"              => request("PPNDitunda", 0),
+            "tidakDipungut"        => request("PPNTidakDipungut", 0),
+            "dibebaskan"           => request("PPNDibebaskan", 0),
+            "telahDilunasi"        => request("PPNTelahDilunasi", 0),
         ];
+
         return [$barang, $bm, $bmt, $cukai, $pph, $ppn];
         }
     }

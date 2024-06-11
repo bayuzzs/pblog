@@ -49,7 +49,7 @@ class HSController extends Controller
             $HSs = HS::query()
                 ->when($search, function ($query) use ($search) {
                     $query->where('kodeHS', 'like', '%' . $search . '%')
-                        ->orWhere('uraianBarangBahasa', 'like', '%' . $search . '%');
+                        ->orWhere('uraianBarang', 'like', '%' . $search . '%');
                     })
                 ->limit($limit)
                 ->get();
@@ -79,23 +79,19 @@ class HSController extends Controller
     public function store( Request $request )
         {
         $validatedRequest = $request->validate([
-            'kodeHS'              => 'required|unique:hs|max:10',
-            'uraianBarangBahasa'  => 'required',
-            'uraianBarangEnglish' => 'required',
-            'pphApi'              => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
-            'pphNonApi'           => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
-            'isLartas'            => 'required',
+            'kodeHS'       => 'required|unique:hs|max:10',
+            'uraianBarang' => 'required',
+            'pphApi'       => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'pphNonApi'    => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
         ], [
-            'kodeHS.unique'                => 'Kode HS sudah terdaftar',
-            'kodeHS.required'              => 'Kode HS harus diisi',
-            'kodeHS.max'                   => 'Kode HS maksimal 10 karakter',
-            'isLartas.required'            => 'Lartas harus diisi',
-            'uraianBarangBahasa.required'  => 'Uraian harus diisi',
-            'uraianBarangEnglish.required' => 'Uraian harus diisi',
-            'pphApi.required'              => 'PPH API harus diisi',
-            'pphApi.regex'                 => 'PPH API harus berupa angka dengan maksimal dua angka di belakang koma',
-            'pphNonApi.required'           => 'PPH Non-API harus diisi',
-            'pphNonApi.regex'              => 'PPH Non-API harus berupa angka dengan maksimal dua angka di belakang koma',
+            'kodeHS.unique'         => 'Kode HS sudah terdaftar',
+            'kodeHS.required'       => 'Kode HS harus diisi',
+            'kodeHS.max'            => 'Kode HS maksimal 10 karakter',
+            'uraianBarang.required' => 'Uraian harus diisi',
+            'pphApi.required'       => 'PPH API harus diisi',
+            'pphApi.regex'          => 'PPH API harus berupa angka dengan maksimal dua angka di belakang koma',
+            'pphNonApi.required'    => 'PPH Non-API harus diisi',
+            'pphNonApi.regex'       => 'PPH Non-API harus berupa angka dengan maksimal dua angka di belakang koma',
         ]);
 
 
@@ -129,23 +125,19 @@ class HSController extends Controller
     public function update( Request $request, HS $hS )
         {
         $validatedRequest = $request->validate([
-            'kodeHS'              => 'required|exists:hs|max:10',
-            'uraianBarangBahasa'  => 'required',
-            'uraianBarangEnglish' => 'required',
-            'pphApi'              => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
-            'pphNonApi'           => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
-            'isLartas'            => 'required',
+            'kodeHS'       => 'required|exists:hs|max:10',
+            'uraianBarang' => 'required',
+            'pphApi'       => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'pphNonApi'    => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
         ], [
-            'kodeHS.unique'                => 'Kode HS sudah terdaftar',
-            'kodeHS.required'              => 'Kode HS harus diisi',
-            'kodeHS.max'                   => 'Kode HS maksimal 10 karakter',
-            'isLartas.required'            => 'Lartas harus diisi',
-            'uraianBarangBahasa.required'  => 'Uraian harus diisi',
-            'uraianBarangEnglish.required' => 'Uraian harus diisi',
-            'pphApi.required'              => 'PPH API harus diisi',
-            'pphApi.regex'                 => 'PPH API harus berupa angka dengan maksimal dua angka di belakang koma',
-            'pphNonApi.required'           => 'PPH Non-API harus diisi',
-            'pphNonApi.regex'              => 'PPH Non-API harus berupa angka dengan maksimal dua angka di belakang koma',
+            'kodeHS.unique'         => 'Kode HS sudah terdaftar',
+            'kodeHS.required'       => 'Kode HS harus diisi',
+            'kodeHS.max'            => 'Kode HS maksimal 10 karakter',
+            'uraianBarang.required' => 'Uraian harus diisi',
+            'pphApi.required'       => 'PPH API harus diisi',
+            'pphApi.regex'          => 'PPH API harus berupa angka dengan maksimal dua angka di belakang koma',
+            'pphNonApi.required'    => 'PPH Non-API harus diisi',
+            'pphNonApi.regex'       => 'PPH Non-API harus berupa angka dengan maksimal dua angka di belakang koma',
         ]);
 
         try {

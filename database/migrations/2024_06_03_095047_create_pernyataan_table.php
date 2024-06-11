@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('nama');
             $table->string('tempat');
             $table->date('tanggal');
-            $table->char('nomorAju', 26);
+            $table->char('nomorAju', 26)->unique();
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             });

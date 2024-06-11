@@ -93,7 +93,7 @@
 												<label class="text-xs dark:text-gray-200 md:text-sm" for="tanggalTiba">Asuransi</label>
 												<x-select name="kodeAsuransi">
 														<option value="DN"
-																{{ $transaksi ? (!$transaksi->kodeAsuransi || $transaksi->kodeAsuransi == 'DN' ? 'selected' : '') : '' }}>
+																{{ $transaksi ? ($transaksi->kodeAsuransi == 'DN' ? 'selected' : '') : 'selected' }}>
 																DN</option>
 														<option value="LN" {{ $transaksi ? ($transaksi->kodeAsuransi == 'LN' ? 'selected' : '') : '' }}>LN
 														</option>

@@ -20,7 +20,7 @@
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="tanggalBc">HS</label>
 										<div class="col-span-2">
-												<x-combobox apiUrl="{{ route('api.hs') }}" name="kodeHS" fieldName="kodeHS" searchName="uraianBarangBahasa"
+												<x-combobox apiUrl="{{ route('api.hs') }}" name="kodeHS" fieldName="kodeHS" searchName="uraianBarang"
 														placeholder="Cari HS">
 												</x-combobox>
 										</div>
@@ -172,8 +172,8 @@
 								</div>
 						</div>
 				</div>
-				<button type="button"
-						class="mb-5 mt-5 inline-flex items-center gap-x-2 rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-600 disabled:pointer-events-none disabled:opacity-50">
+				<button type="button" disabled
+						class="mb-5 mt-5 inline-flex items-center gap-x-2 rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-600 disabled:opacity-50 disabled:hover:cursor-no-drop">
 						Pilih Dokumen Fasilitas
 				</button>
 				{{-- Table Start --}}
@@ -231,6 +231,7 @@
 						</div>
 				</div>
 				{{-- Table End --}}
+				{{-- Pungutan Start --}}
 				<div class="mt-5">
 						<p class="font-semibold dark:text-gray-200 md:text-lg">Pungutan Barang</p>
 						{{-- BM Start --}}
@@ -241,21 +242,21 @@
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Dibayar (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMDibayar" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMDibayar" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Ditanggung Pemerintah (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMDitanggungPemerintah" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMDitanggungPemerintah" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Ditunda (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMDitunda" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMDitunda" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
@@ -264,21 +265,21 @@
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Tidak Dipungut (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMTidakDipungut" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMTidakDipungut" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Dibebaskan (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMDibebaskan" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMDibebaskan" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Telah Dilunasi (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMTelahDilunasi" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMTelahDilunasi" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
@@ -294,21 +295,21 @@
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Dibayar (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMTDibayar" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMTDibayar" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Ditanggung Pemerintah (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMTDitanggungPemerintah" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMTDitanggungPemerintah" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Ditunda (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMTDitunda" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMTDitunda" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
@@ -317,21 +318,21 @@
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Tidak Dipungut (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMTTidakDipungut" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMTTidakDipungut" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Dibebaskan (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMTDibebaskan" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMTDibebaskan" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Telah Dilunasi (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="BMTTelahDilunasi" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="BMTTelahDilunasi" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
@@ -347,21 +348,21 @@
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Dibayar (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="CUKAIDibayar" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="CUKAIDibayar" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Ditanggung Pemerintah (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="CUKAIDitanggungPemerintah" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="CUKAIDitanggungPemerintah" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Ditunda (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="CUKAIDitunda" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="CUKAIDitunda" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
@@ -370,21 +371,21 @@
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Tidak Dipungut (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="CUKAITidakDipungut" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="CUKAITidakDipungut" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Dibebaskan (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="CUKAIDibebaskan" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="CUKAIDibebaskan" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Telah Dilunasi (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="CUKAITelahDilunasi" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="CUKAITelahDilunasi" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
@@ -400,21 +401,21 @@
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Dibayar (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPHDibayar" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPHDibayar" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Ditanggung Pemerintah (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPHDitanggungPemerintah" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPHDitanggungPemerintah" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Ditunda (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPHDitunda" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPHDitunda" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
@@ -423,21 +424,21 @@
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Tidak Dipungut (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPHTidakDipungut" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPHTidakDipungut" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Dibebaskan (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPHDibebaskan" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPHDibebaskan" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Telah Dilunasi (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPHTelahDilunasi" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPHTelahDilunasi" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
@@ -453,21 +454,21 @@
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Dibayar (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPNDibayar" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPNDibayar" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Ditanggung Pemerintah (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPNDitanggungPemerintah" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPNDitanggungPemerintah" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Ditunda (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPNDitunda" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPNDitunda" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
@@ -476,21 +477,21 @@
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Tidak Dipungut (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPNTidakDipungut" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPNTidakDipungut" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Dibebaskan (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPNDibebaskan" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPNDibebaskan" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
 												<div class="grid grid-cols-3 items-center">
 														<label class="text-xs dark:text-gray-200 md:text-sm">Telah Dilunasi (Rp.)</label>
 														<div class="col-span-2">
-																<input type="number" name="PPNTelahDilunasi" step="0.0001" placeholder="0.0000" required
+																<input type="number" name="PPNTelahDilunasi" step="0.0001" placeholder="0.0000"
 																		class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 														</div>
 												</div>
@@ -498,17 +499,19 @@
 								</div>
 						</div>
 						{{-- PPN End --}}
-						<div class="mt-10 flex justify-between">
-								<button type="button"
-										onclick="window.location.href='{{ route('dokumen-impor.barang', ['nomorAju' => $dokumenImpor->nomorAju]) }}'"
-										class="rounded-md border border-blue-600 px-10 py-2.5 text-sm font-medium text-blue-600 hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300">
-										Batal
-								</button>
-								<button type="submit"
-										class="rounded-md bg-blue-600 px-8 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-										Tambah
-								</button>
-						</div>
+				</div>
+				{{-- Pungutan End --}}
+				<div class="mt-10 flex justify-between">
+						<button type="button"
+								onclick="window.location.href='{{ route('dokumen-impor.barang', ['nomorAju' => $dokumenImpor->nomorAju]) }}'"
+								class="rounded-md border border-blue-600 px-10 py-2.5 text-sm font-medium text-blue-600 hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300">
+								Batal
+						</button>
+						<button type="submit"
+								class="rounded-md bg-blue-600 px-8 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+								Tambah
+						</button>
+				</div>
 		</form>
 
 @endsection

@@ -46,6 +46,7 @@ class EntitasController extends Controller
      */
     public function store( Request $request )
         {
+        $this->validateForm($request);
         try {
             $importirData      = $this->getImportir($request);
             $npwpPemusatanData = $this->getNpwpPemusatan($request);
@@ -83,7 +84,7 @@ class EntitasController extends Controller
             'importirNama'                => 'required',
             'importirAlamat'              => 'required',
             'importirJenisApi'            => 'required',
-            'importirNoApi'               => 'required',
+            'importirNoApi'               => 'required|max:10',
             'npwpPemusatanNoIdentitas'    => 'required|max:20',
             'npwpPemusatanJenisIdentitas' => 'required',
             'npwpPemusatanNama'           => 'required',

@@ -24,6 +24,8 @@ Route::middleware('auth:pengimpor')->group(function () {
         Route::prefix('/{nomorAju}')->middleware('dokumen-impor')->group(function () {
             Route::get('/', [DokumenImporController::class, 'redirect']);
 
+            Route::get('/cetak', [DokumenImporController::class, 'print'])->name('dokumen-impor.cetak');
+
             Route::get('/header', [HeaderController::class, 'index'])->name('dokumen-impor.header');
             Route::post('/header', [HeaderController::class, 'store']);
 

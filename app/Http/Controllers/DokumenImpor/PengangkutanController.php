@@ -46,6 +46,7 @@ class PengangkutanController extends Controller
             "nomorBc"         => "required|max:6",
             "tanggalBc"       => "required|date",
             "nomorPosBc"      => "required|max:4",
+            "nomorSubPosBc"   => "required|max:8",
             "namaPengangkut"  => "required",
             "nomorPengangkut" => "required",
             "kodeCaraAngkut"  => "required",

@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->decimal('ditunda', 24, 4);
             $table->decimal('ditanggungPemerintah', 24, 4);
             $table->decimal('dibayar', 24, 4);
-            $table->char('nomorAju', 26)->unique();
+            $table->char('nomorAju', 26);
             $table->foreign('nomorAju')->references('nomorAju')->on('dokumen_impor')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             });

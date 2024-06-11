@@ -16,7 +16,7 @@ class HS extends Model
 
     protected $fillable = [
         'kodeHS',
-        'uraianBarangBahasa',
+        'uraianBarang',
         'pphApi',
         'pphNonApi',
     ];

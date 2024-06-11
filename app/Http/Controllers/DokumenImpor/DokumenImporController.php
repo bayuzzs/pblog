@@ -3,9 +3,20 @@
 namespace App\Http\Controllers\DokumenImpor;
 
 use App\Http\Controllers\Controller;
+use App\Models\DokumenImpor\Barang;
 use App\Models\DokumenImpor\DokumenImpor;
-use Illuminate\Contracts\View\View;
+use App\Models\DokumenImpor\GrandPungutan;
+use App\Models\DokumenImpor\Importir;
+use App\Models\DokumenImpor\Kemasan;
+use App\Models\DokumenImpor\Kontainer;
+use App\Models\DokumenImpor\PemilikBarang;
+use App\Models\DokumenImpor\Pengangkutan;
+use App\Models\DokumenImpor\Pengirim;
+use App\Models\DokumenImpor\Penjual;
+use App\Models\DokumenImpor\Pernyataan;
+use App\Models\DokumenImpor\Transaksi;
 use Illuminate\Http\Request;
+
 
 class DokumenImporController extends Controller
     {
@@ -42,6 +53,79 @@ class DokumenImporController extends Controller
         return redirect(route('dokumen-impor.header', ['nomorAju' => $nomorAju]));
         }
 
+
+    public function print( Request $request, string $nomorAju )
+        {
+        try {
+            $dokumenImpor  = DokumenImpor::where('nomorAju', $nomorAju)->firstOrFail();
+            $pengirim      = Pengirim::where('nomorAju', $dokumenImpor->nomorAju)->first();
+            $penjual       = Penjual::where('nomorAju', $dokumenImpor->nomorAju)->first();
+            $importir      = Importir::where('nomorAju', $dokumenImpor->nomorAju)->first();
+            $pemilikBarang = PemilikBarang::where('nomorAju', $dokumenImpor->nomorAju)->first();
+            $pengangkutan  = Pengangkutan::where('nomorAju', $dokumenImpor->nomorAju)->first();
+            $transaksi     = Transaksi::where('nomorAju', $dokumenImpor->nomorAju)->first();
+            $pernyataan    = Pernyataan::where('nomorAju', $dokumenImpor->nomorAju)->first();
+            $barangs       = Barang::where('nomorAju', $dokumenImpor->nomorAju)->get();
+            $kemasans      = Kemasan::where('nomorAju', $dokumenImpor->nomorAju)->get();
+            $kontainers    = Kontainer::where('nomorAju', $dokumenImpor->nomorAju)->get();
+
+            $grandPungutan = GrandPungutan::where('nomorAju', $nomorAju)->get();
+
+            $barangPungutans = [];
+
+            $total = (object) [
+                'telahDilunasi'        => 0,
+                'dibebaskan'           => 0,
+                'tidakDipungut'        => 0,
+                'ditunda'              => 0,
+                'ditanggungPemerintah' => 0,
+                'dibayar'              => 0,
+            ];
+
+            foreach ( $grandPungutan as $pungutan ) {
+                $barangPungutans[$pungutan->keterangan] = (object) [
+                    'telahDilunasi'        => $pungutan->telahDilunasi,
+                    'dibebaskan'           => $pungutan->dibebaskan,
+                    'tidakDipungut'        => $pungutan->tidakDipungut,
+                    'ditunda'              => $pungutan->ditunda,
+                    'ditanggungPemerintah' => $pungutan->ditanggungPemerintah,
+                    'dibayar'              => $pungutan->dibayar,
+                ];
+
+                $total->telahDilunasi += $pungutan->telahDilunasi;
+                $total->dibebaskan += $pungutan->dibebaskan;
+                $total->tidakDipungut += $pungutan->tidakDipungut;
+                $total->ditunda += $pungutan->ditunda;
+                $total->ditanggungPemerintah += $pungutan->ditanggungPemerintah;
+                $total->dibayar += $pungutan->dibayar;
+                }
+            if ( $barangPungutans ) {
+                $barangPungutans['total'] = $total;
+                }
+
+            return view(
+                'dokumen-impor.print',
+                compact(
+                    'dokumenImpor',
+                    'pengirim',
+                    'penjual',
+                    'importir',
+                    'pemilikBarang',
+                    'pengangkutan',
+                    'transaksi',
+                    'pernyataan',
+                    'barangs',
+                    'kemasans',
+                    'kontainers',
+                    'barangPungutans'
+                )
+            );
+
+            } catch (\Exception $th) {
+            return redirect(route('dokumen-impor'))->with('error', 'Terjadi Kesalahan: ' . $th->getMessage());
+
+            }
+        }
 
     /**
      * Show the form for creating a new resource.
