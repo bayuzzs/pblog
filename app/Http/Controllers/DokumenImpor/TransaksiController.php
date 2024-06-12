@@ -56,7 +56,7 @@ class TransaksiController extends Controller
             'bruto'              => 'required|decimal:0,4|min:0',
             'netto'              => 'required|decimal:0,4|min:0',
         ], [
-            'required' => 'Field ini wajib diisi.',
+            'required' => 'Kolom :attribute wajib diisi.',
             'min'      => 'Nilai tidak boleh kurang dari 0.',
             'decimal'  => 'Nilai harus berupa angka.',
         ]);

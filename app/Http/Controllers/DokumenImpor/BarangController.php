@@ -192,9 +192,9 @@ class BarangController extends Controller
             "asuransi"             => "required|decimal:0,4",
             "cif"                  => "required|decimal:0,2",
         ], [
-            "required" => ":attribute harus diisi",
-            "numeric"  => ":attribute harus berupa angka",
-            "decimal"  => ":attribute harus berupa angka dengan (angka dibelakang koma harus bernilai :decimal)",
+            "required" => "Kolom :attribute harus diisi",
+            "numeric"  => "Kolom :attribute harus berupa angka",
+            "decimal"  => "Kolom :attribute harus berupa angka dengan (angka dibelakang koma harus bernilai :decimal)",
         ]);
 
         $bm = [
