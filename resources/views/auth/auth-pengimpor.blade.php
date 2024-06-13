@@ -40,14 +40,14 @@
 												<nav class="-mb-0.5 flex justify-center space-x-6" aria-label="Tabs" role="tablist">
 														{{-- Login Tab --}}
 														<button type="button"
-																class="active inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm text-gray-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50 hs-tab-active:border-blue-600 hs-tab-active:font-semibold hs-tab-active:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
+																class="{{ session('activeTab') == 'register' ? '' : 'active' }} inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm text-gray-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50 hs-tab-active:border-blue-600 hs-tab-active:font-semibold hs-tab-active:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
 																id="horizontal-alignment-item-1" data-hs-tab="#login-tab" aria-controls="login-tab" role="tab">
 																Masuk
 														</button>
 														{{-- Login Tab End --}}
 														{{-- Register Tab --}}
 														<button type="button"
-																class="inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm text-gray-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50 hs-tab-active:border-blue-600 hs-tab-active:font-semibold hs-tab-active:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
+																class="{{ session('activeTab') == 'register' ? 'active' : '' }} inline-flex items-center gap-x-2 whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm text-gray-500 hover:text-blue-600 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50 hs-tab-active:border-blue-600 hs-tab-active:font-semibold hs-tab-active:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
 																id="horizontal-alignment-item-2" data-hs-tab="#register-tab" aria-controls="register-tab"
 																role="tab">
 																Daftar
@@ -58,7 +58,8 @@
 
 										{{-- Login Tab Content --}}
 										<div class="mt-3">
-												<div id="login-tab" role="tabpanel" aria-labelledby="horizontal-alignment-item-1">
+												<div id="login-tab" class="{{ session('activeTab') == 'register' ? 'hidden' : '' }}" role="tabpanel"
+														aria-labelledby="horizontal-alignment-item-1">
 														<form class="space-y-3 md:space-y-4 lg:mt-5" action="{{ route('login.store') }}" method="POST">
 																@csrf
 																@session('status')
@@ -110,7 +111,8 @@
 												</div>
 												{{-- Login Tab Content End --}}
 												{{-- Register Tab Content --}}
-												<div id="register-tab" class="hidden" role="tabpanel" aria-labelledby="horizontal-alignment-item-2">
+												<div id="register-tab" class="{{ session('activeTab') == 'register' ? '' : 'hidden' }}" role="tabpanel"
+														aria-labelledby="horizontal-alignment-item-2">
 														<form class="space-y-3 md:space-y-4 lg:mt-5" action="{{ route('register.store') }}" method="POST">
 																@csrf
 																@session('status')

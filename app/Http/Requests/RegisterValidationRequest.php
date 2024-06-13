@@ -48,5 +48,19 @@ class RegisterValidationRequest extends FormRequest
         ];
         }
 
+    public function messages() : array
+        {
+        return [
+            'required'           => 'Kolom :attribute wajib diisi.',
+            'npwp.unique'        => 'NPWP sudah terdaftar.',
+            'username.unique'    => 'Nama Pengguna sudah terdaftar.',
+            'email.unique'       => 'Email sudah terdaftar.',
+            'email.email'        => 'Email harus berupa alamat email yang valid.',
+            'password.confirmed' => 'Konfirmasi sandi tidak cocok.',
+            'digits'             => ':attribute harus :digits angka.',
+            'numeric'            => ':attribute harus berupa angka.',
+        ];
+        }
+
 
     }
