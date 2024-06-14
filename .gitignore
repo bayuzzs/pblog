@@ -5,6 +5,7 @@
 /storage/*.key
 /vendor
 .env.backup
+asd.env
 .env.production
 Homestead.json
 Homestead.yaml
