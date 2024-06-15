@@ -27,12 +27,12 @@ class RegisterValidationRequest extends FormRequest
             'npwp'              => 'required|unique:pengimpor|numeric|digits:16',
             'namaPerusahaan'    => 'required|',
             'alamatPerusahaan'  => 'required|',
-            'teleponPerusahaan' => 'required|numeric|digits:12',
+            'teleponPerusahaan' => 'required|numeric|digits:13',
             'username'          => 'required|unique:pengimpor',
             'password'          => 'required|confirmed|min:8',
             'nama'              => 'required|',
             'email'             => 'required|unique:pengimpor|email:dns',
-            'telepon'           => 'required|digits:12',
+            'telepon'           => 'required|digits:13',
         ];
         }
 

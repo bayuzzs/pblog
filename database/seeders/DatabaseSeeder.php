@@ -23,14 +23,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run() : void
         {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        $faker    = \Faker\Factory::create();
-        $npwpList = [];
+        $faker = \Faker\Factory::create();
 
         \App\Models\Pengimpor::create([
             'npwp'              => '1234567890123456',
@@ -40,30 +33,9 @@ class DatabaseSeeder extends Seeder
             'username'          => 'pengimpor',
             'password'          => Hash::make('pengimpor'),
             'nama'              => 'Pengimpor',
-            'email'             => 'qgN8I@example.com',
+            'email'             => 'babayu@email.com',
             'telepon'           => '1234567890',
         ]);
-        for ( $i = 0; $i < 30; $i++ ) {
-            do {
-                $npwp = substr(str_shuffle('123456789012343') . $i, 0, 16);
-
-                if ( ! in_array($npwp, $npwpList) ) {
-                    array_push($npwpList, $npwp);
-                    break;
-                    }
-                } while ( true );
-            \App\Models\Pengimpor::create([
-                'npwp'              => $npwpList[$i],
-                'namaPerusahaan'    => $faker->company,
-                'alamatPerusahaan'  => $faker->address,
-                'teleponPerusahaan' => $faker->numerify('123456789012'),
-                'username'          => $faker->unique()->userName,
-                'password'          => $faker->password,
-                'nama'              => $faker->name,
-                'email'             => $faker->unique()->email,
-                'telepon'           => $faker->numerify('123456789012'),
-            ]);
-            }
 
         \App\Models\Petugas::create([
             'username' => 'petugas',

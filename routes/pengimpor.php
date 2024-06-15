@@ -13,7 +13,7 @@ use App\Http\Controllers\DokumenImpor\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:pengimpor')->group(function () {
-    Route::get('/settings', [DashboardController::class, 'settingsIndex'])->name('settings');
+    Route::get('/pengaturan', [DashboardController::class, 'settingsIndex'])->name('settings');
 
     Route::prefix('/dokumen-impor')->group(function () {
         Route::get('/', [DokumenImporController::class, 'index'])->name('dokumen-impor');

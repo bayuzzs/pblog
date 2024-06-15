@@ -29,13 +29,14 @@
 																{!! generateJenisIdentitasOptions() !!}
 														@endif
 												</x-select>
-												<input type="text" name="importirNoIdentitas" value="{{ $importir ? $importir->noIdentitas : '' }}"
+												<input type="text" name="importirNoIdentitas"
+														value="{{ $importir ? $importir->noIdentitas : old('importirNoIdentitas') }}"
 														class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 														placeholder="Masukkan No Identitas" required>
 										</div>
 										<div class="grid grid-cols-3 items-center">
 												<p class="text-sm dark:text-gray-200 md:text-base">Nama</p>
-												<input type="text" name="importirNama" value="{{ $importir ? $importir->nama : '' }}"
+												<input type="text" name="importirNama" value="{{ $importir ? $importir->nama : old('importirNama') }}"
 														class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 														placeholder="Nama" required>
 										</div>
@@ -44,7 +45,7 @@
 												<p class="text-sm dark:text-gray-200 md:text-base">Alamat</p>
 												<textarea name="importirAlamat"
 												  class="col-span-2 rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-												  rows="3" placeholder="Alamat" required>{{ $importir ? $importir->alamat : '' }}</textarea>
+												  rows="3" placeholder="Alamat" required>{{ $importir ? $importir->alamat : old('importirAlamat') }}</textarea>
 										</div>
 										<div class="grid grid-cols-3 items-center gap-2">
 												<x-select name="importirJenisApi" placeholder="Pilih Jenis API">
@@ -55,7 +56,7 @@
 														<option value="02" {{ $importir ? ($importir->jenisApi == '02' ? 'selected' : '') : '' }}>API P
 														</option>
 												</x-select>
-												<input type="text" name="importirNoApi" value="{{ $importir ? $importir->noApi : '' }}"
+												<input type="text" name="importirNoApi" value="{{ $importir ? $importir->noApi : old('importirNoApi') }}"
 														class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 														placeholder="Nomor API" required>
 										</div>
@@ -74,13 +75,14 @@
 														@endif
 												</x-select>
 												<input type="text" name="npwpPemusatanNoIdentitas"
-														value="{{ $npwpPemusatan ? $npwpPemusatan->noIdentitas : '' }}"
+														value="{{ $npwpPemusatan ? $npwpPemusatan->noIdentitas : old('npwpPemusatanNoIdentitas') }}"
 														class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 														placeholder="Masukkan No Identitas" required>
 										</div>
 										<div class="grid grid-cols-3 items-center">
 												<p class="text-sm dark:text-gray-200 md:text-base">Nama</p>
-												<input type="text" name="npwpPemusatanNama" value="{{ $npwpPemusatan ? $npwpPemusatan->nama : '' }}"
+												<input type="text" name="npwpPemusatanNama"
+														value="{{ $npwpPemusatan ? $npwpPemusatan->nama : old('npwpPemusatanNama') }}"
 														class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 														placeholder="Nama" required>
 										</div>
@@ -89,7 +91,7 @@
 												<p class="text-sm dark:text-gray-200 md:text-base">Alamat</p>
 												<textarea name="npwpPemusatanAlamat"
 												  class="col-span-2 rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-												  rows="3" placeholder="Alamat" required>{{ $npwpPemusatan ? $npwpPemusatan->alamat : '' }}</textarea>
+												  rows="3" placeholder="Alamat" required>{{ $npwpPemusatan ? $npwpPemusatan->alamat : old('npwpPemusatanAlamat') }}</textarea>
 										</div>
 								</div>
 								{{-- Pemilik Barang --}}
@@ -106,13 +108,14 @@
 														@endif
 												</x-select>
 												<input type="text" name="pemilikBarangNoIdentitas"
-														value="{{ $pemilikBarang ? $pemilikBarang->noIdentitas : '' }}"
+														value="{{ $pemilikBarang ? $pemilikBarang->noIdentitas : old('pemilikBarangNoIdentitas') }}"
 														class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 														placeholder="Masukkan No Identitas" required>
 										</div>
 										<div class="grid grid-cols-3 items-center">
 												<p class="text-sm dark:text-gray-200 md:text-base">Nama</p>
-												<input type="text" name="pemilikBarangNama" value="{{ $pemilikBarang ? $pemilikBarang->nama : '' }}"
+												<input type="text" name="pemilikBarangNama"
+														value="{{ $pemilikBarang ? $pemilikBarang->nama : old('pemilikBarangNama') }}"
 														class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 														placeholder="Nama" required>
 										</div>
@@ -121,7 +124,7 @@
 												<p class="text-sm dark:text-gray-200 md:text-base">Alamat</p>
 												<textarea name="pemilikBarangAlamat"
 												  class="col-span-2 rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-												  rows="3" placeholder="Alamat" required>{{ $pemilikBarang ? $pemilikBarang->alamat : '' }}</textarea>
+												  rows="3" placeholder="Alamat" required>{{ $pemilikBarang ? $pemilikBarang->alamat : old('pemilikBarangAlamat') }}</textarea>
 										</div>
 								</div>
 								{{-- Pengirim --}}
@@ -131,7 +134,7 @@
 										</div>
 										<div class="grid grid-cols-3 items-center">
 												<p class="text-sm dark:text-gray-200 md:text-base">Nama</p>
-												<input type="text" name="pengirimNama" value="{{ $pengirim ? $pengirim->nama : '' }}"
+												<input type="text" name="pengirimNama" value="{{ $pengirim ? $pengirim->nama : old('pengirimNama') }}"
 														class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 														placeholder="Nama" required>
 										</div>
@@ -139,7 +142,7 @@
 												<p class="text-sm dark:text-gray-200 md:text-base">Alamat</p>
 												<textarea name="pengirimAlamat"
 												  class="col-span-2 rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-												  rows="3" placeholder="Alamat" required>{{ $pengirim ? $pengirim->alamat : '' }}</textarea>
+												  rows="3" placeholder="Alamat" required>{{ $pengirim ? $pengirim->alamat : old('pengirimAlamat') }}</textarea>
 										</div>
 										<div class="grid grid-cols-3 items-center">
 												<p class="text-sm dark:text-gray-200 md:text-base">Negara</p>
@@ -170,7 +173,7 @@
 										</div>
 										<div class="grid grid-cols-3 items-center">
 												<p class="text-sm dark:text-gray-200 md:text-base">Nama</p>
-												<input type="text" name="penjualNama" value="{{ $penjual ? $penjual->nama : '' }}"
+												<input type="text" name="penjualNama" value="{{ $penjual ? $penjual->nama : old('penjualNama') }}"
 														class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
 														placeholder="Nama" required>
 										</div>
@@ -179,7 +182,7 @@
 												<p class="text-sm dark:text-gray-200 md:text-base">Alamat</p>
 												<textarea name="penjualAlamat"
 												  class="col-span-2 rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-												  rows="3" placeholder="Alamat" required>{{ $penjual ? $penjual->alamat : '' }}</textarea>
+												  rows="3" placeholder="Alamat" required>{{ $penjual ? $penjual->alamat : old('penjualAlamat') }}</textarea>
 										</div>
 										<div class="grid grid-cols-3 items-center">
 												<p class="text-sm dark:text-gray-200 md:text-base">Negara</p>

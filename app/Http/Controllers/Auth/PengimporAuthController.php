@@ -70,7 +70,12 @@ class PengimporAuthController extends Controller
         }
     public function updateProfile( Request $request )
         {
-        $request->validate(['userProfile' => 'required|image|mimes:jpeg,jpg,png|max:2048']);
+        $request->validate(['userProfile' => 'required|image|mimes:jpeg,jpg,png|max:1024'], [
+            'userProfile.required' => 'Profil harus diisi.',
+            'userProfile.image'    => 'Profil harus berupa gambar.',
+            'userProfile.mimes'    => 'Profil harus berupa format jpeg, jpg, png.',
+            'userProfile.max'      => 'Profil maksimal 1 MB.',
+        ]);
 
         if ( ! empty(Auth::guard('pengimpor')->user()->urlProfile) && Storage::exists('public/avatars/' . Auth::guard('pengimpor')->user()->urlProfile) ) {
             Storage::delete('public/avatars/' . Auth::guard('pengimpor')->user()->urlProfile);

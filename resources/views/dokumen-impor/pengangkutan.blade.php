@@ -33,23 +33,24 @@
 														@endif
 												</x-select>
 										</div>
-										<input type="text" name="nomorBc" id="nomorBc" value="{{ $pengangkutan ? $pengangkutan->nomorBc : '' }}"
-												placeholder="Masukkan 6 Digit Nomor BC" required
+										<input type="text" name="nomorBc" id="nomorBc"
+												value="{{ $pengangkutan ? $pengangkutan->nomorBc : old('nomorBc') }}" placeholder="Masukkan 6 Digit Nomor BC"
+												required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="tanggalBc">Tanggal BC 1.1/1.2</label>
 										<input type="date" name="tanggalBc" id="tanggalBc"
-												value="{{ $pengangkutan ? $pengangkutan->tanggalBc : '' }}" required
+												value="{{ $pengangkutan ? $pengangkutan->tanggalBc : old('tanggalBc') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center gap-2">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="nomorPosBc">Nomor POS</label>
 										<input type="text" name="nomorPosBc" id="nomorPosBc" placeholder="Nomor POS BC" required
-												value="{{ $pengangkutan ? $pengangkutan->nomorPosBc : '' }}"
+												value="{{ $pengangkutan ? $pengangkutan->nomorPosBc : old('nomorPosBc') }}"
 												class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 										<input type="text" name="nomorSubPosBc" placeholder="Nomor Sub POS BC" required
-												value="{{ $pengangkutan ? $pengangkutan->nomorSubPosBc : '' }}"
+												value="{{ $pengangkutan ? $pengangkutan->nomorSubPosBc : old('nomorSubPosBc') }}"
 												class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center gap-2">
@@ -67,13 +68,13 @@
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="namaPengangkut">Nama Sarana Pengangkut</label>
 										<input type="text" name="namaPengangkut" id="namaPengangkut" placeholder="Nama Pengangkut" required
-												value="{{ $pengangkutan ? $pengangkutan->namaPengangkut : '' }}"
+												value="{{ $pengangkutan ? $pengangkutan->namaPengangkut : old('namaPengangkut') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="nomorPengangkut">Nomor Voy/Flight</label>
 										<input type="text" name="nomorPengangkut" id="nomorPengangkut" placeholder="Nomor Pengangkut" required
-												value="{{ $pengangkutan ? $pengangkutan->nomorPengangkut : '' }}"
+												value="{{ $pengangkutan ? $pengangkutan->nomorPengangkut : old('nomorPengangkut') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 						</div>
@@ -101,7 +102,7 @@
 								<div class="grid grid-cols-3 items-center gap-2">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="tanggalTiba">Perkiraan Tanggal Tiba</label>
 										<input type="date" name="tanggalTiba" id="tanggalTiba" placeholder="Nomor POS BC" required
-												value="{{ $pengangkutan ? $pengangkutan->tanggalTiba : '' }}"
+												value="{{ $pengangkutan ? $pengangkutan->tanggalTiba : old('tanggalTiba') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
@@ -170,7 +171,7 @@
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="kodeTps">Tempat Penimbunan</label>
 										<input type="text" name="kodeTps" id="kodeTps" placeholder="Kode TPS atau Tempat Penimbunan" required
-												value="{{ $pengangkutan ? $pengangkutan->kodeTps : '' }}"
+												value="{{ $pengangkutan ? $pengangkutan->kodeTps : old('kodeTps') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 						</div>

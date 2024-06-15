@@ -36,33 +36,36 @@
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Kode</label>
-										<input type="text" name="kodeBarang" id="kodeBarang" placeholder="Kode Barang" required
+										<input type="text" name="kodeBarang" id="kodeBarang" placeholder="Kode Barang"
+												value="{{ old('kodeBarang') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<p class="text-sm dark:text-gray-200 md:text-base">Uraian</p>
 										<textarea name="uraian" required
 										  class="col-span-2 rounded-lg border-gray-200 px-2 py-2 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-										  rows="3" placeholder="Uraian Barang"></textarea>
+										  rows="3" placeholder="Uraian Barang">{{ old('uraian') }}</textarea>
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Merk</label>
-										<input type="text" name="merk" placeholder="Merk Barang" required
+										<input type="text" name="merk" placeholder="Merk Barang" value="{{ old('merk') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Tipe</label>
-										<input type="text" name="tipe" placeholder="Tipe Barang" required
+										<input type="text" name="tipe" placeholder="Tipe Barang" value="{{ old('tipe') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="ukuran">Ukuran</label>
-										<input type="number" name="ukuran" id="ukuran" step="0.01" placeholder="Ukuran Barang" required
+										<input type="number" name="ukuran" id="ukuran" step="0.01" placeholder="Ukuran Barang"
+												value="{{ old('ukuran') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Spesifikasi Lain</label>
-										<input type="text" name="spesifikasiLain" id="spesifikasiLain" placeholder="Spesifikasi Lain Barang" required
+										<input type="text" name="spesifikasiLain" id="spesifikasiLain" placeholder="Spesifikasi Lain Barang"
+												value="{{ old('spesifikasiLain') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center gap-2">
@@ -83,7 +86,8 @@
 								</div>
 								<div class="grid grid-cols-3 items-center gap-2">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="beratBersih">Berat Bersih (Kg)</label>
-										<input type="number" name="beratBersih" id="beratBersih" step="0.0001" placeholder="0.0000" required
+										<input type="number" name="beratBersih" id="beratBersih" step="0.0001" placeholder="0.0000"
+												value="{{ old('beratBersih') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 						</div>
@@ -92,10 +96,11 @@
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="diskon">Satuan</label>
 										<div class="col-span-2 grid grid-cols-4 gap-2">
 												<input type="number" name="nilaiSatuan" id="nilaiSatuan" placeholder="000"
+														value="{{ old('nilaiSatuan') }}"
 														class="col-span-1 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 												<div class="col-span-3">
-														<x-combobox name="kodeSatuanBarang" apiUrl="{{ route('api.satuan-barang') }}" fieldName="kodeSatuanBarang"
-																searchName="namaSatuanBarang" placeholder="Cari Satuan Barang">
+														<x-combobox name="kodeSatuanBarang" apiUrl="{{ route('api.satuan-barang') }}"
+																fieldName="kodeSatuanBarang" searchName="namaSatuanBarang" placeholder="Cari Satuan Barang">
 														</x-combobox>
 												</div>
 										</div>
@@ -104,6 +109,7 @@
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="diskon">Kemasan</label>
 										<div class="col-span-2 grid grid-cols-4 gap-2">
 												<input type="number" name="nilaiKemasan" id="nilaiKemasan" placeholder="000"
+														value="{{ old('nilaiKemasan') }}"
 														class="col-span-1 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 												<div class="col-span-3">
 														<x-combobox name="kodeJenisKemasan" apiUrl="{{ route('api.jenis-kemasan') }}"
@@ -115,7 +121,7 @@
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Amount DAT</label>
 										<input type="number" name="amountDAT" id="amountDAT" step="0.01" placeholder="Masukan nilai DAT"
-												required
+												value="{{ old('amountDAT') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center gap-2">
@@ -130,44 +136,49 @@
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Jatuh Tempo</label>
-										<input type="date" name="jatuhTempo" id="jatuhTempo" required
+										<input type="date" name="jatuhTempo" id="jatuhTempo" value="{{ old('jatuhTempo') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Voluntary Declaration</label>
 										<input type="number" name="voluntaryDeclaration" id="voluntaryDeclaration" step="0.01"
-												placeholder="Masukkan nilai" required
+												placeholder="Masukkan nilai" value="{{ old('voluntaryDeclaration') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">(Biaya Tambahan - Diskon)</label>
 										<input type="number" name="biayaTambahanDiskon" id="biayaTambahanDiskon" step="0.01" placeholder="0.00"
-												required
+												value="{{ old('biayaTambahanDiskon') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">FOB</label>
-										<input type="number" name="fob" id="fob" step="0.01" placeholder="0.00" required
+										<input type="number" name="fob" id="fob" step="0.01" placeholder="0.00"
+												value="{{ old('fob') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Harga Satuan</label>
-										<input type="number" name="hargaSatuan" id="hargaSatuan" step="0.01" placeholder="0.00" required
+										<input type="number" name="hargaSatuan" id="hargaSatuan" step="0.01" placeholder="0.00"
+												value="{{ old('hargaSatuan') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Freight</label>
-										<input type="number" name="freight" id="freight" step="0.01" placeholder="0.00" required
+										<input type="number" name="freight" id="freight" step="0.01" placeholder="0.00"
+												value="{{ old('freight') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Asuransi</label>
-										<input type="number" name="asuransi" id="asuransi" step="0.0001" placeholder="0.0000" required
+										<input type="number" name="asuransi" id="asuransi" step="0.0001" placeholder="0.0000"
+												value="{{ old('asuransi') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">CIF Rupiah</label>
-										<input type="number" name="cif" id="cif" step="0.01" placeholder="0.00" required
+										<input type="number" name="cif" id="cif" step="0.01" placeholder="0.00"
+												value="{{ old('cif') }}" required
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 						</div>

@@ -41,7 +41,7 @@
 										<label class="text-xs dark:text-gray-200 md:text-sm">NDPBM</label>
 										<div class="col-span-2">
 												<input type="number" name="ndpbm" step="0.0001" placeholder="Masukkan Nilai NDPBM"
-														value="{{ $transaksi ? $transaksi->ndpbm : '' }}"
+														value="{{ $transaksi ? $transaksi->ndpbm : old('ndpbm') }}"
 														class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 										</div>
 								</div>
@@ -66,26 +66,27 @@
 												@endif
 										</x-select>
 										<input type="number" name="nilaiIncoterm" id="nilaiIncoterm" 00"
-												value="{{ $transaksi ? $transaksi->nilaiIncoterm : '' }}"
+												value="{{ $transaksi ? $transaksi->nilaiIncoterm : old('nilaiIncoterm') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center gap-2">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="biayaTambahan">Biaya Tambahan</label>
 										<input type="number" name="biayaTambahan" id="biayaTambahan" step="0.01"
-												value="{{ $transaksi ? $transaksi->biayaTambahan : '' }}"
+												value="{{ $transaksi ? $transaksi->biayaTambahan : old('biayaTambahan') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="diskon">Diskon</label>
 										<input type="number" name="diskon" id="diskon" step="0.01"
-												value="{{ $transaksi ? $transaksi->diskon : '' }}"
+												value="{{ $transaksi ? $transaksi->diskon : old('diskon') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 						</div>
 						<div class="space-y-3 md:space-y-10">
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm" for="diskon">Freight</label>
-										<input type="number" name="freight" step="0.0001" value="{{ $transaksi ? $transaksi->freight : '' }}"
+										<input type="number" name="freight" step="0.0001"
+												value="{{ $transaksi ? $transaksi->freight : old('freight') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center gap-2">
@@ -100,31 +101,31 @@
 												</x-select>
 										</div>
 										<input type="number" name="nilaiAsuransi" step="0.01"
-												value="{{ $transaksi ? $transaksi->nilaiAsuransi : '' }}"
+												value="{{ $transaksi ? $transaksi->nilaiAsuransi : old('nilaiAsuransi') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Voluntary Declaration</label>
 										<input type="number" name="nilaiVD" id="nilaiVD" step="0.0001"
-												value="{{ $transaksi ? $transaksi->nilaiVD : '' }}"
+												value="{{ $transaksi ? $transaksi->nilaiVD : old('nilaiVD') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Rupiah</label>
 										<input type="number" name="cif" id="cif" step="0.01"
-												value="{{ $transaksi ? $transaksi->cif : '' }}"
+												value="{{ $transaksi ? $transaksi->cif : old('cif') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Berat Kotor (KG)</label>
 										<input type="number" name="bruto" id="bruto" step="0.0001"
-												value="{{ $transaksi ? $transaksi->bruto : '' }}"
+												value="{{ $transaksi ? $transaksi->bruto : old('bruto') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 								<div class="grid grid-cols-3 items-center">
 										<label class="text-xs dark:text-gray-200 md:text-sm">Berat Bersih (KG)</label>
 										<input type="number" name="netto" id="netto	" step="0.0001"
-												value="{{ $transaksi ? $transaksi->netto : '' }}"
+												value="{{ $transaksi ? $transaksi->netto : old('netto') }}"
 												class="col-span-2 block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600">
 								</div>
 						</div>
