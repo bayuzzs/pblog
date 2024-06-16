@@ -1,66 +1,36 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![poster - Copy](https://github.com/bayuzzs/pblog/assets/77946987/965d2dd1-5f88-4472-9dab-c9ef0d9af643)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Polibatam Logistik
 
-## About Laravel
+## Description
+PBLog (Polibatam Logistik) is a website-based application program that is used for management purposes in customs activities using the website and is found in the Customs Portal application system which is a computer-based application program that is used for management purposes in customs activities using the website. This application covers business processes that focus on BC 2.0 documents or focus on import processes.
+This PBLog application is an innovative prototype development of the government's CEISA 4.0 application, which can only be accessed by customs service users, so that students who are studying logistics processes, especially customs, do not have access to this application. On the other hand, this application will really help students, especially to understand the customs process and practice processing customs documents. Therefore, it is deemed important to provide facilities in the form of applications that provide the same functionality as the CEISA 4.0 application but can be accessed or used freely by students.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Teams
+100017 Metta Santiputri - Project Manager
+4342301013 Bayu Maulana - Leader
+4342301012 Ibnu Hanif Salsabila
+4342301005 Akbar Hafiz
+4342301001 Rahel Simanjuntak
+4342301030 Yocelyn Theona Setiawan
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Functional Requirements
+F001	Importers can register a new account
+F002	Importers and Officers can log into the system
+F003	Importers can change password after login
+F004	importers can change the password before logging in
+F005	Importers can manage intangible goods documents
+F006	Importers can manage tangible goods documents
+F007	Officers can manage master data
+F008	The officer can view the list of importing accounts
+F009	Importers can print PIB document results in PDF format
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Technology Stacks Used
+<ul>
+    <li>Laravel 10 as Backend Service</li>
+    <li>Blade as Frontend Templating Engine</li>
+    <li>MySQL as Database Management System</li>
+    <li>PrelineUI as TailwindCSS Component Library</li>
+    <li>Gmail as SMTP account</li>
+    <li>Laravel 10 as Backend Service</li>
+</ul>
