@@ -14,13 +14,13 @@ return new class extends Migration {
             $table->string('npwp', 16)->primary();
             $table->string('namaPerusahaan');
             $table->text('alamatPerusahaan');
-            $table->char('teleponPerusahaan', 12);
+            $table->char('teleponPerusahaan', 13);
             $table->string('username')->unique();
             $table->string('password');
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('urlProfile')->nullable();
-            $table->char('telepon', 12);
+            $table->char('telepon', 13);
             $table->rememberToken();
             $table->timestamps();
             });

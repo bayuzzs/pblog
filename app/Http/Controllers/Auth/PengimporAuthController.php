@@ -21,12 +21,18 @@ class PengimporAuthController extends Controller
         {
         $validatedRequest = $request->validated();
 
-        Pengimpor::create([
-            'password' => Hash::make($request->password),
-            ...$validatedRequest
-        ]);
+        try {
+            Pengimpor::create([
+                'password' => Hash::make($request->password),
+                ...$validatedRequest
+            ]);
 
-        return redirect('auth')->with('status', 'Berhasil Daftar! silahkan login.');
+            return redirect('auth')->with('status', 'Berhasil Daftar! silahkan login.');
+
+            } catch (\Exception $th) {
+            return redirect()->back()->with('error', 'Terjadi Kesalahan: ' . $th->getMessage());
+            }
+
         }
 
     public function storeLogin( Request $request )

@@ -72,28 +72,30 @@
 																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
 																						{{ $barang->nilaiSatuan }}
 																				</td>
-																				<td class="flex items-center justify-center gap-5 px-3 py-4 text-sm text-gray-800 dark:text-gray-200">
-																						<div class="hs-tooltip [--placement:left]">
-																								<button type="button" class="hs-tooltip-toggle"
-																										onclick="editBarang('{{ route('dokumen-impor.barang.edit', ['nomorAju' => $dokumenImpor->nomorAju, 'barangId' => $barang->barangId]) }}')">
-																										<iconify-icon icon="iconamoon:edit-light" class="text-xl"></iconify-icon>
-																										<span
-																												class="hs-tooltip-content invisible absolute z-10 inline-block rounded-full bg-blue-600 px-4 py-1.5 text-white opacity-0 transition-opacity duration-200 hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
-																												role="tooltip">
-																												Edit
-																										</span>
-																								</button>
-																						</div>
-																						<div class="hs-tooltip [--placement:left]">
-																								<button type="button" class="hs-tooltip-toggle"
-																										onclick="deleteBarang('{{ $barang->barangId }}')">
-																										<iconify-icon icon="mdi:trash-outline" class="text-xl"></iconify-icon>
-																										<span
-																												class="hs-tooltip-content invisible absolute z-10 inline-block rounded-full bg-blue-600 px-4 py-1.5 text-white opacity-0 transition-opacity duration-200 hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
-																												role="tooltip">
-																												Hapus
-																										</span>
-																								</button>
+																				<td class="px-3 py-4 text-sm text-gray-800 dark:text-gray-200">
+																						<div class="flex items-center justify-center gap-5">
+																								<div class="hs-tooltip [--placement:top]">
+																										<button type="button" class="hs-tooltip-toggle"
+																												onclick="editBarang('{{ route('dokumen-impor.barang.edit', ['nomorAju' => $dokumenImpor->nomorAju, 'barangId' => $barang->barangId]) }}')">
+																												<iconify-icon icon="iconamoon:edit-light" class="text-xl"></iconify-icon>
+																												<span
+																														class="hs-tooltip-content invisible absolute z-10 inline-block rounded-full bg-blue-600 px-4 py-1.5 text-white opacity-0 transition-opacity duration-200 hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+																														role="tooltip">
+																														Edit
+																												</span>
+																										</button>
+																								</div>
+																								<div class="hs-tooltip [--placement:top]">
+																										<button type="button" class="hs-tooltip-toggle"
+																												onclick="deleteBarang('{{ $barang->barangId }}')">
+																												<iconify-icon icon="mdi:trash-outline" class="text-xl"></iconify-icon>
+																												<span
+																														class="hs-tooltip-content invisible absolute z-10 inline-block rounded-full bg-blue-600 px-4 py-1.5 text-white opacity-0 transition-opacity duration-200 hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+																														role="tooltip">
+																														Hapus
+																												</span>
+																										</button>
+																								</div>
 																						</div>
 																				</td>
 																		</tr>

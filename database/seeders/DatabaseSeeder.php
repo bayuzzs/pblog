@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Petugas::create([
             'username' => 'petugas',
-            'password' => Hash::make('petugas'),
+            'password' => Hash::make('trpllpi'),
         ]);
 
         $this->call([

@@ -27,12 +27,12 @@ class RegisterValidationRequest extends FormRequest
             'npwp'              => 'required|unique:pengimpor|numeric|digits:16',
             'namaPerusahaan'    => 'required|',
             'alamatPerusahaan'  => 'required|',
-            'teleponPerusahaan' => 'required|numeric|digits:13',
+            'teleponPerusahaan' => 'required|numeric|digits_between:10,13',
             'username'          => 'required|unique:pengimpor',
             'password'          => 'required|confirmed|min:8',
             'nama'              => 'required|',
             'email'             => 'required|unique:pengimpor|email:dns',
-            'telepon'           => 'required|digits:13',
+            'telepon'           => 'required|digits_between:10,13',
         ];
         }
 
@@ -59,6 +59,7 @@ class RegisterValidationRequest extends FormRequest
             'password.confirmed' => 'Konfirmasi sandi tidak cocok.',
             'digits'             => ':attribute harus :digits angka.',
             'numeric'            => ':attribute harus berupa angka.',
+            'digits_between'     => ':attribute harus :min sampai :max angka.',
         ];
         }
 

@@ -134,28 +134,30 @@
 																				<td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
 																						{{ $dokumenImpor->isBerwujud ? 'Berwujud' : 'Tidak Berwujud' }}
 																				</td>
-																				<td class="flex items-center justify-center gap-5 px-3 py-4 text-sm text-gray-800 dark:text-gray-200">
-																						<div class="hs-tooltip [--placement:left]">
-																								<button type="button" class="hs-tooltip-toggle"
-																										onclick="editDokumen('{{ route('dokumen-impor.header', $dokumenImpor->nomorAju) }}')">
-																										<iconify-icon icon="iconamoon:edit-light" class="text-xl"></iconify-icon>
-																										<span
-																												class="hs-tooltip-content invisible absolute z-10 inline-block rounded-full bg-blue-600 px-4 py-1.5 text-white opacity-0 transition-opacity duration-200 hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
-																												role="tooltip">
-																												Edit
-																										</span>
-																								</button>
-																						</div>
-																						<div class="hs-tooltip [--placement:left]">
-																								<button type="button" class="hs-tooltip-toggle"
-																										onclick="cetakDokumen('{{ route('dokumen-impor.cetak', $dokumenImpor->nomorAju) }}')">
-																										<iconify-icon icon="cil:print" class="text-xl"></iconify-icon>
-																										<span
-																												class="hs-tooltip-content invisible absolute z-10 inline-block rounded-full bg-blue-600 px-4 py-1.5 text-white opacity-0 transition-opacity duration-200 hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
-																												role="tooltip">
-																												Cetak
-																										</span>
-																								</button>
+																				<td class="px-3 py-4 text-sm text-gray-800 dark:text-gray-200">
+																						<div class="flex items-center justify-center gap-5">
+																								<div class="hs-tooltip [--placement:top]">
+																										<button type="button" class="hs-tooltip-toggle"
+																												onclick="editDokumen('{{ route('dokumen-impor.header', $dokumenImpor->nomorAju) }}')">
+																												<iconify-icon icon="iconamoon:edit-light" class="text-xl"></iconify-icon>
+																												<span
+																														class="hs-tooltip-content invisible absolute z-10 inline-block rounded-full bg-blue-600 px-4 py-1.5 text-white opacity-0 transition-opacity duration-200 hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+																														role="tooltip">
+																														Edit
+																												</span>
+																										</button>
+																								</div>
+																								<div class="hs-tooltip [--placement:top]">
+																										<button type="button" class="hs-tooltip-toggle"
+																												onclick="cetakDokumen('{{ route('dokumen-impor.cetak', $dokumenImpor->nomorAju) }}')">
+																												<iconify-icon icon="cil:print" class="text-xl"></iconify-icon>
+																												<span
+																														class="hs-tooltip-content invisible absolute z-10 inline-block rounded-full bg-blue-600 px-4 py-1.5 text-white opacity-0 transition-opacity duration-200 hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+																														role="tooltip">
+																														Cetak
+																												</span>
+																										</button>
+																								</div>
 																						</div>
 																				</td>
 																		</tr>

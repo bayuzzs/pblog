@@ -86,10 +86,13 @@ class JenisKemasanController extends Controller
             'namaKemasan.required'      => 'Nama kemasan harus diisi',
         ]);
 
-        JenisKemasan::create($validatedRequest);
+        try {
+            JenisKemasan::create($validatedRequest);
+            return redirect(route('data-master.jenis-kemasan'))->with('success', 'Data Kemasan berhasil ditambahkan');
 
-        return redirect(route('data-master.jenis-kemasan'))->with('success', 'Data Kemasan berhasil ditambahkan');
-        //
+            } catch (\Exception $th) {
+            return redirect(route('data-master.jenis-kemasan'))->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
+            }
         }
 
     /**
