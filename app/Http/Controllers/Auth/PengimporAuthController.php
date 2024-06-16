@@ -72,7 +72,7 @@ class PengimporAuthController extends Controller
             }
 
         $user->update(['password' => Hash::make($request->newPassword)]);
-        return redirect('settings')->with('success-reset-password', 'Kata Sandi Berhasil Diubah');
+        return redirect(route('settings'))->with('success-reset-password', 'Kata Sandi Berhasil Diubah');
         }
     public function updateProfile( Request $request )
         {
@@ -92,7 +92,7 @@ class PengimporAuthController extends Controller
 
         $user = Auth::guard('pengimpor')->user();
         $user->update(['urlProfile' => $nama]);
-        return redirect('settings')->with('success-update-profile', 'Profil Berhasil Diubah');
+        return redirect(route('settings'))->with('success-update-profile', 'Profil Berhasil Diubah');
         }
 
     public function logout( Request $request )

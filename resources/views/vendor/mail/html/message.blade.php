@@ -2,9 +2,7 @@
 		{{-- Header --}}
 		<x-slot:header>
 				<x-mail::header :url="config('app.url')">
-						{{-- <img style="max-width: 200px" src="{{ url('/images/logo/polibatam-logistik-caption.png') }}" alt="logo"> --}}
-						<img style="max-width: 200px" src="https://www.upload.ee/image/16532691/polibatam-logistik-caption.png"
-								alt="logo">
+						<img style="max-width: 200px" src="{{ url('/images/logo/polibatam-logistik-caption.png') }}" alt="logo">
 				</x-mail::header>
 		</x-slot:header>
 

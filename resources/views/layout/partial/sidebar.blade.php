@@ -3,7 +3,7 @@
 		<div class="px-8 pt-7">
 				<!-- Logo -->
 				<a class="inline-block flex-none rounded-xl text-xl font-semibold focus:opacity-80 focus:outline-none"
-						href="../templates/admin/index.html" aria-label="Preline">
+						href="{{ route('dashboard') }}" aria-label="Polibatam Logistik">
 						<img class="w-52" src="{{ asset('images/logo/polibatam-logistik-caption.png') }}" alt="Polibatam Logistik">
 				</a>
 				<!-- End Logo -->
