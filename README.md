@@ -7,17 +7,17 @@
 <p>This PBLog application is an innovative prototype development of the government's CEISA 4.0 application, which can only be accessed by customs service users, so that students who are studying logistics processes, especially customs, do not have access to this application. On the other hand, this application will really help students, especially to understand the customs process and practice processing customs documents. Therefore, it is deemed important to provide facilities in the form of applications that provide the same functionality as the CEISA 4.0 application but can be accessed or used freely by students.</p>
 
 ## Teams
-<pre>
-100017     Metta Santiputri     - Project Manager<br>
-4342301013 Bayu Maulana         - Leader<br>
+<p>
+100017 Metta Santiputri - Project Manager<br>
+4342301013 Bayu Maulana - Leader<br>
 4342301012 Ibnu Hanif Salsabila<br>
 4342301005 Akbar Hafiz<br>
 4342301001 Rahel Simanjuntak<br>
 4342301030 Yocelyn Theona Setiawan
-</pre>
+</p>
 
 ## Functional Requirements
-<pre>
+<p>
 F001 Importers can register a new account<br>
 F002 Importers and Officers can log into the system<br>
 F003 Importers can change password after login<br>
@@ -27,7 +27,7 @@ F006 Importers can manage tangible goods documents<br>
 F007 Officers can manage master data<br>
 F008 Officers can view the list of importing accounts<br>
 F009 Importers can print PIB document results in PDF format
-</pre>
+</p>
 
 
 
