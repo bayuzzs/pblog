@@ -8,8 +8,8 @@
 
 ## Teams
 <pre>
-100017 Metta Santiputri - Project Manager<br>
-4342301013 Bayu Maulana - Leader<br>
+100017     Metta Santiputri     - Project Manager<br>
+4342301013 Bayu Maulana         - Leader<br>
 4342301012 Ibnu Hanif Salsabila<br>
 4342301005 Akbar Hafiz<br>
 4342301001 Rahel Simanjuntak<br>
