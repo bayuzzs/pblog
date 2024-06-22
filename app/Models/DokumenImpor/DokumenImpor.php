@@ -23,6 +23,7 @@ class DokumenImpor extends Model
         'asalBarang',
         'tujuanBarang',
         'jenisDokumen',
+        'jenisPemberitahuan',
         'jenisPib',
         'jenisImpor',
         'caraBayar',

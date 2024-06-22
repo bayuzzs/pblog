@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('asalBarang');
             $table->string('tujuanBarang');
             $table->string('jenisDokumen');
+            $table->string('jenisPemberitahuan');
             $table->boolean('isBerwujud');
             $table->enum('jenisPib', ['1', '2'])->nullable();
             $table->enum('jenisImpor', ['1', '2', '3', '4', '5', '6', '7'])->nullable();
