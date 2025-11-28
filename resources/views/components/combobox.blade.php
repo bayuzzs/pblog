@@ -7,29 +7,93 @@
     'value' => '',
 ])
 
-<div class="relative"
-		data-hs-combo-box='{
-  "apiUrl": "{{ $apiUrl }}",
-	"apiSearchQuery": "search",
-	"outputEmptyTemplate": "<div class=\"py-2 flex w-full flex-col items-center justify-center px-4 text-sm text-gray-800 rounded-lg dark:bg-gray-900 dark:text-gray-200\"><iconify-icon icon=\"iwwa:box\" class=\"text-4xl\"></iconify-icon>Tidak ada data</div>",
-	"outputLoaderTemplate": "<div class=\"flex items-center justify-center rounded-lg bg-white px-4 py-2 text-sm text-gray-800 dark:bg-gray-900 dark:text-gray-200\"><div class=\"size-6 inline-block animate-spin rounded-full border-[3px] border-current border-t-transparent text-blue-600 dark:text-blue-500\" role=\"status\" aria-label=\"loading\"><span class=\"sr-only\">Loading...</span></div></div>",
-  "outputItemTemplate": "<div class=\"cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-gray-900 dark:hover:bg-gray-800 dark:text-gray-200 dark:focus:bg-gray-800\" data-hs-combo-box-output-item><div class=\"flex justify-between items-center w-full\"><div><span data-hs-combo-box-output-item-field=\"{{ $fieldName }}\" data-hs-combo-box-search-text data-hs-combo-box-value></span><div data-hs-combo-box-output-item-field=\"{{ $searchName }}\" data-hs-combo-box-search-text></div></div><span class=\"hidden hs-combo-box-selected:block\"><svg class=\"flex-shrink-0 size-3.5 text-blue-600 dark:text-blue-500\" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"></polyline></svg></span></div></div>"
-}'>
-		<div class="relative">
-				<input
-						class="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600"
-						type="text" data-hs-combo-box-input="" name="{{ $name }}" value="{{ $value }}"
-						placeholder="{{ $placeholder }}" required>
-				<div class="absolute end-3 top-1/2 -translate-y-1/2" data-hs-combo-box-toggle="">
-						<svg class="size-3.5 flex-shrink-0 text-gray-500 dark:text-gray-500" xmlns="http://www.w3.org/2000/svg"
-								width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-								stroke-linecap="round" stroke-linejoin="round">
-								<path d="m7 15 5 5 5-5"></path>
-								<path d="m7 9 5-5 5 5"></path>
-						</svg>
-				</div>
-		</div>
-		<div
-				class="absolute z-50 max-h-72 w-full overflow-hidden overflow-y-auto rounded-lg border border-gray-200 bg-white p-1 dark:border-gray-700 dark:bg-gray-900 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-gray-500 [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-gray-700 [&::-webkit-scrollbar]:w-2"
-				style="display: none;" data-hs-combo-box-output=""></div>
+@php
+    $uniqueId = 'combo-' . uniqid();
+@endphp
+
+<div class="relative custom-combobox" id="{{ $uniqueId }}" data-api="{{ $apiUrl }}" data-field="{{ $fieldName }}" data-search="{{ $searchName }}">
+    <input type="hidden" name="{{ $name }}" value="{{ $value }}" class="combo-value" required>
+    
+    <div class="relative">
+        <input type="text" value="{{ $value }}" placeholder="{{ $placeholder }}" autocomplete="off"
+            class="combo-input block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:focus:ring-gray-600">
+        <div class="absolute end-3 top-1/2 -translate-y-1/2 cursor-pointer combo-toggle">
+            <svg class="size-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </div>
+    </div>
+    
+    <div class="combo-dropdown absolute z-50 mt-2 max-h-72 w-full overflow-y-auto rounded-lg border border-gray-200 bg-white p-1 dark:border-gray-700 dark:bg-gray-900 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-gray-500" style="display: none;"></div>
 </div>
+
+@once
+@push('script-bawah')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.custom-combobox').forEach(function(el) {
+        var input = el.querySelector('.combo-input');
+        var value = el.querySelector('.combo-value');
+        var dropdown = el.querySelector('.combo-dropdown');
+        var toggle = el.querySelector('.combo-toggle');
+        var apiUrl = el.getAttribute('data-api');
+        var fieldName = el.getAttribute('data-field');
+        var searchName = el.getAttribute('data-search');
+        var isOpen = false;
+        
+        function openDropdown() {
+            isOpen = true;
+            dropdown.style.display = 'block';
+            fetchData(input.value);
+        }
+        
+        function closeDropdown() {
+            isOpen = false;
+            dropdown.style.display = 'none';
+        }
+        
+        function fetchData(query) {
+            dropdown.innerHTML = '<div class="p-4 text-center"><div class="inline-block h-6 w-6 animate-spin rounded-full border-[3px] border-current border-t-transparent text-blue-600"></div></div>';
+            
+            var url = new URL(apiUrl);
+            if (query) url.searchParams.append('search', query);
+            
+            fetch(url).then(function(r) { return r.json(); }).then(function(data) {
+                var items = data.data || data;
+                if (items.length === 0) {
+                    dropdown.innerHTML = '<div class="p-4 text-center text-gray-500">Tidak ada data</div>';
+                } else {
+                    var html = '';
+                    items.forEach(function(item) {
+                        html += '<div class="combo-item cursor-pointer p-2 hover:bg-gray-100 rounded" data-val="' + item[fieldName] + '"><div class="font-medium">' + item[fieldName] + '</div><div class="text-xs text-gray-500">' + item[searchName] + '</div></div>';
+                    });
+                    dropdown.innerHTML = html;
+                    dropdown.querySelectorAll('.combo-item').forEach(function(item) {
+                        item.addEventListener('click', function() {
+                            var val = this.getAttribute('data-val');
+                            input.value = val;
+                            value.value = val;
+                            console.log('Selected:', val);
+                            closeDropdown();
+                        });
+                    });
+                }
+            });
+        }
+        
+        input.addEventListener('focus', openDropdown);
+        input.addEventListener('input', function() { openDropdown(); });
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (isOpen) closeDropdown(); else openDropdown();
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (!el.contains(e.target)) closeDropdown();
+        });
+    });
+    console.log('✅ Combobox ready');
+});
+</script>
+@endpush
+@endonce
