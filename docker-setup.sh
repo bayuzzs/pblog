@@ -1,6 +1,11 @@
 #!/bin/bash
 
-echo "=== Starting Pblog Docker Setup ==="
+# Support for both Docker and Podman
+DOCKER_CMD="${DOCKER_CMD:-docker}"
+COMPOSE_CMD="${COMPOSE_CMD:-docker compose}"
+
+echo "=== Starting Pblog Container Setup ==="
+echo "Using: $COMPOSE_CMD"
 
 # Copy .env.docker to .env if .env doesn't exist
 if [ ! -f .env ]; then
@@ -11,8 +16,8 @@ else
 fi
 
 # Build and start containers
-echo "Building and starting Docker containers..."
-docker compose up -d --build
+echo "Building and starting containers..."
+$COMPOSE_CMD up -d --build
 
 # Wait for containers to be ready
 echo "Waiting for containers to start..."
@@ -20,29 +25,29 @@ sleep 5
 
 # Install composer dependencies
 echo "Installing Composer dependencies..."
-docker compose exec app composer install
+$COMPOSE_CMD exec app composer install
 
 # Install npm dependencies and build assets
 echo "Installing NPM dependencies..."
-docker compose exec app npm install
+$COMPOSE_CMD exec app npm install
 
 echo "Building Tailwind CSS and assets..."
-docker compose exec app npm run build
+$COMPOSE_CMD exec app npm run build
 
 # Generate application key if not set
 echo "Generating application key..."
-docker compose exec app php artisan key:generate
+$COMPOSE_CMD exec app php artisan key:generate
 
 # Run migrations
 echo "Running database migrations and seeders..."
-docker compose exec app php artisan migrate:fresh --seed
+$COMPOSE_CMD exec app php artisan migrate:fresh --seed
 
 # Clear and cache config
 echo "Clearing and caching configuration..."
-docker compose exec app php artisan config:clear
-docker compose exec app php artisan cache:clear
-docker compose exec app php artisan view:clear
-docker compose exec app php artisan route:clear
+$COMPOSE_CMD exec app php artisan config:clear
+$COMPOSE_CMD exec app php artisan cache:clear
+$COMPOSE_CMD exec app php artisan view:clear
+$COMPOSE_CMD exec app php artisan route:clear
 
 echo ""
 echo "=== Setup Complete! ==="

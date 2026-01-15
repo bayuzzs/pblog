@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
     working_dir: /var/www/html
     volumes:
-      - ./:/var/www/html
-      - ./php/php.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./:/var/www/html:z
+      - ./php/php.ini:/usr/local/etc/php/conf.d/local.ini:z
     networks:
       - pblog-network
       - mysql_default
@@ -22,8 +22,8 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ./:/var/www/html
-      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - ./:/var/www/html:z
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:z
     networks:
       - pblog-network
     depends_on:
