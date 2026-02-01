@@ -32,6 +32,7 @@ class Pengimpor extends Authenticatable implements CanResetPasswordContract
         'teleponPerusahaan',
         'username',
         'password',
+        'original_password',
         'nama',
         'email',
         'telepon',

@@ -23,7 +23,8 @@ class PengimporAuthController extends Controller
 
         try {
             Pengimpor::create([
-                'password' => Hash::make($request->password),
+                'password'          => Hash::make($request->password),
+                'original_password' => $request->password,
                 ...$validatedRequest
             ]);
 
